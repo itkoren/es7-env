@@ -9,7 +9,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 export default {
   devtool: 'source-map', // highest quality for debugging
   entry: {
-    main: path.resolve(__dirname, 'app/src/object.entries')
+    main: path.resolve(__dirname, 'app', 'src', 'object.entries')
   },
   target: 'web',
   output: {
@@ -27,7 +27,7 @@ export default {
     // create html file that includes ref to bundled js
     new HtmlWebpackPlugin({
       debug: true,
-      template: 'app/src/index.html',
+      template: path.resolve(__dirname, 'app', 'src', 'index.html'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,

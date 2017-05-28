@@ -18,7 +18,7 @@ export default {
   plugins: [
     // create html file that includes ref to bundled js
     new HtmlWebpackPlugin({
-      template: 'app/src/index.html',
+      template: path.resolve(__dirname, 'app', 'src', 'index.html'),
       debug: true,
       inject: true
     }),
