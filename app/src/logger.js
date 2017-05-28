@@ -3,15 +3,16 @@
 let divLog;
 
 function createOuterElement() {
-  let outer = document.getElementById('console-log-div');
+  const id = 'console-log-div';
+  let outer = document.getElementById(id);
 
   if (!outer) {
     outer = document.createElement('fieldset');
-    outer.id = 'console-log-div';
+    outer.id = id;
     document.body.appendChild(outer);
   }
 
-  outer.classList.add('console-log-div');
+  outer.classList.add(id);
 
   const style = outer.style;
   style.fontFamily = 'monospace';
