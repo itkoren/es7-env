@@ -13,9 +13,9 @@ WORKDIR /var/app
 
 # --------------------------------------
 # cache npm modules for faster builds
-RUN npm install -g nodemon babel-cli@7.0.0-alpha.9
+RUN npm install -g nodemon babel-cli@7.0.0-alpha.9 yarn
 COPY ./package.json /var/app
-RUN npm install
+RUN yarn
 # --------------------------------------
 
 # --------------------------------------
