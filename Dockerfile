@@ -1,7 +1,7 @@
 # --------------------------------------
 # build from a base image that includes
-# everything needed to run Node.js v7.9
-FROM node:7.9
+# everything needed to run Node.js v7.10
+FROM node:7.10
 # --------------------------------------
 
 # --------------------------------------
@@ -13,9 +13,10 @@ WORKDIR /var/app
 
 # --------------------------------------
 # cache npm modules for faster builds
-RUN npm install -g nodemon babel-cli@7.0.0-alpha.9
+RUN yarn global add nodemon babel-cli@7.0.0-alpha.10
 COPY ./package.json /var/app
-RUN npm install
+COPY ./yarn.lock /var/app
+RUN yarn
 # --------------------------------------
 
 # --------------------------------------
