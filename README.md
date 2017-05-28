@@ -20,7 +20,7 @@ The container has Node.js v7.10 installed.
 
 You can use this version of Node.js to run your code by running `F={filename.js} npm run es7:node` or `F={filename.js} yarn es7:node` from an external command line, or `node ./app/src/{filename.js}` from a command line whithin the container.
 
-### Run Babel.js v7.0-alpha.9
+### Run Babel.js v7.0-alpha.10
 
 The container has an alpha version of the latest Babel.js installed and configured.
 
