@@ -34,7 +34,7 @@ const rightsByRoles = {
 Object.entries(rightsByRoles).forEach(([role, rights]) => {
   logger.log('Role:', role);
   rights.forEach(right => {
-    logger.log('  -', right.name, `(ID: ${right.id})`);
+    logger.log('  *', right.name, `(ID: ${right.id})`);
   });
   logger.log('');
 });
