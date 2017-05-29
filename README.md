@@ -1,13 +1,14 @@
 # ES7 Environment with Docker
 
-An isolated docker based environment to run the latest ES7 (ES2017) features with latest and greatest Node.js and Babel versions, while keeping existing projects with zero risk.
+An isolated docker based environment to run the latest ES7 (ES2017) features with latest and greatest Node.js and Babel versions, while keeping existing projects at zero risk.
 
 ### Getting Started
 
 To get started with this repository:
 
-- Install Docker on your computer ([Docker for Mac](https://docs.docker.com/docker-for-mac/), [Docker for Windows](https://docs.docker.com/docker-for-windows/), or just play Docker on linux)
-- Make sure you have any version of Node.js installed on your machine (you just need to be able to "npm run").
+- Install Docker on your machine ([Docker for Mac](https://docs.docker.com/docker-for-mac/), [Docker for Windows](https://docs.docker.com/docker-for-windows/), or just play Docker on linux)
+- Make sure you have any version of Node.js installed on your machine (you just need to be able to "npm run"), or [Install Node.js](https://nodejs.org/en/download/package-manager/)
+- (Optional) [Install yarn](https://yarnpkg.com/lang/en/docs/install/) on your machine (It will make your life better ;)
 - Clone the above repository to your machine
 - Run `npm run es7:make` or `yarn es7:make` in the console
 - Run `npm run es7` or `yarn es7` in the same console
