@@ -1,7 +1,7 @@
 # --------------------------------------
 # build from a base image that includes
-# everything needed to run Node.js v7.10
-FROM node:7.10
+# everything needed to run Node.js v8.0
+FROM node:8.0
 # --------------------------------------
 
 # --------------------------------------
