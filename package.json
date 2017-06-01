@@ -36,6 +36,8 @@
     "eslint-plugin-import": "latest",
     "eslint-watch": "latest",
     "express": "latest",
+    "body-parser": "latest",
+    "esprima": "latest",
     "extract-text-webpack-plugin": "latest",
     "html-webpack-plugin": "latest",
     "npm-run-all": "latest",

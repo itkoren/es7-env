@@ -14,5 +14,13 @@
   <meta charset="UTF-8">
 </head>
 <body>
+  <form id="formCode" method="POST" action="/code" target="post">
+    <textarea name="code" rows="30" cols="220"></textarea>
+    <button type="create" class="btn btn-primary start">
+      <i class="glyphicon glyphicon-upload"></i>
+      <span>Run Code</span>
+    </button>
+  </form>
+  <iframe width="0" height="0" border="0" name="post" id="post"></iframe>
 </body>
 </html>

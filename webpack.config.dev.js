@@ -7,7 +7,8 @@ import LiveReloadPlugin from 'webpack-livereload-plugin';
 export default {
   devtool: 'inline-source-map',
   entry: [
-    path.resolve(__dirname, 'app', 'src', 'object.entries')
+    //path.resolve(__dirname, 'app', 'src', 'object.entries'),
+    path.resolve(__dirname, 'app', 'src', 'code')
   ],
   target: 'web',
   output: {
