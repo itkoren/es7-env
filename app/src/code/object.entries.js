@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('./logger');
+const console = require('../utils/logger');
 
 const rightsByRoles = {
   agent: [{
@@ -31,10 +31,11 @@ const rightsByRoles = {
   }]
 };
 
+console.log('\nProcessing Object.entries:');
 Object.entries(rightsByRoles).forEach(([role, rights]) => {
-  logger.log('Role:', role);
+  console.log('Role:', role);
   rights.forEach(right => {
-    logger.log('  *', right.name, `(ID: ${right.id})`);
+    console.log('  *', right.name, `(ID: ${right.id})`);
   });
-  logger.log('');
+  console.log('');
 });

@@ -3,13 +3,11 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import LiveReloadPlugin from 'webpack-livereload-plugin';
+import Entries from './build/entries';
 
 export default {
   devtool: 'inline-source-map',
-  entry: [
-    //path.resolve(__dirname, 'app', 'src', 'object.entries'),
-    path.resolve(__dirname, 'app', 'src', 'code')
-  ],
+  entry: Entries.getEntries({ staticIfNoDynamic: true }),
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'app', 'src'),

@@ -5,12 +5,11 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import Entries from './build/entries';
 
 export default {
   devtool: 'source-map', // highest quality for debugging
-  entry: {
-    main: path.resolve(__dirname, 'app', 'src', 'object.entries')
-  },
+  entry: Entries.getEntries({ onlyStatic: true }),
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'), // output dir (std)

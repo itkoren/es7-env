@@ -13,7 +13,7 @@ WORKDIR /var/app
 
 # --------------------------------------
 # cache npm modules for faster builds
-RUN yarn global add nodemon babel-cli@7.0.0-alpha.10
+RUN yarn global add nodemon babel-cli@7.0.0-alpha.12
 COPY ./package.json /var/app
 COPY ./yarn.lock /var/app
 RUN yarn
