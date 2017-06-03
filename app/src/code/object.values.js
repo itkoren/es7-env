@@ -31,7 +31,9 @@ const rightsByRoles = {
   }]
 };
 
-console.log('\nProcessing Object.values:');
+console.log('');
+console.log('Processing Object.values:');
+console.log('');
 Object.values(rightsByRoles).forEach(rights => {
   rights.forEach(right => {
     console.log(right.name, `(ID: ${right.id})`);

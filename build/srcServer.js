@@ -26,6 +26,7 @@ function isValidJS(js) {
 
 /* eslint-disable no-console */
 const port = 3000;
+const dirSrc = path.join(__dirname, '..', 'app', 'src');
 const app = express();
 const compiler = webpack(config);
 const webpackDevMiddlewareInstance = webpackMiddleware(compiler, {
@@ -46,24 +47,27 @@ app.get('/files', (req, res) => {
 });
 
 app.post('/code', (req, res) => {
-  console.log(req.body);
+  const dirCode = path.join(dirSrc, 'code');
+
   if (req.body.code) {
     const base = req.body.code || '';
-    const code = `'use strict';\nconst console = require('../utils/logger');\nconsole.log('Start Running Code!');\n\n${base}\n`;
+    const code = `'use strict';\n\nconst console = require('../utils/logger');\n\nconsole.log('');\nconsole.log('Start Running Code!');\nconsole.log('');\n\n${base}\n`;
 
     if (isValidJS(code)) {
+      const entry = path.join(dirCode, 'code');
       console.log(chalk.green('Code is valid! Going to save it to file!'));
 
-      const stream = fs.createWriteStream(path.join(__dirname, '..', 'app', 'src', 'code', 'code.js'), {
+      const stream = fs.createWriteStream(`${entry}.js`, {
         autoClose: true,
         flags: 'w'
       });
+
       stream.once('open', () => {
         stream.write(`${code}\n`);
         stream.end();
 
         console.log(chalk.green('Code was saved to file!'));
-        Entries.setSingleDynamicEntry(path.join(__dirname, '..', 'app', 'src', 'code', 'code'));
+        Entries.setSingleDynamicEntry(entry);
 
         // The configuration is changed
         compiler.options.entry = config.entry;
@@ -79,7 +83,7 @@ app.post('/code', (req, res) => {
       return res.sendStatus(500);
     }
   } else if (req.body.file) {
-    Entries.setSingleDynamicEntry(path.join(__dirname, '..', 'app', 'src', 'code', req.body.file));
+    Entries.setSingleDynamicEntry(path.join(dirCode, req.body.file));
 
     // The configuration is changed
     compiler.options.entry = config.entry;
@@ -96,7 +100,7 @@ app.post('/code', (req, res) => {
 app.use(webpackDevMiddlewareInstance);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'app', 'src', 'index.html'));
+  res.sendFile(path.join(dirSrc, 'index.html'));
 });
 
 app.listen(port, err => {

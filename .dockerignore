@@ -9,3 +9,4 @@ Dockerfile
 dev.dockerfile
 npm-debug.log
 web-dev.sh
+code.js
