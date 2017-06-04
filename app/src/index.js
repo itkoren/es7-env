@@ -1,15 +1,43 @@
 /*global Vue VueForm axios*/
 /*eslint no-undef: "error"*/
-var model = {
+var stored = localStorage.getItem('es7-model');
+var defaults = {
+  type: 'file',
   code: '',
   file: '',
   files: []
 };
+var valid = {
+  code: true
+};
+
+if (stored) {
+  try {
+    stored = JSON.parse(stored);
+  } catch (ex) {
+    stored = defaults;
+  }
+} else {
+  stored = defaults;
+}
+
+var model = Object.assign({}, {
+  type: stored.type,
+  code: stored.code,
+  file: stored.file,
+  files: defaults.files
+});
 
 Vue.use(VueForm, {
   inputClasses: {
     valid: 'form-control-success',
     invalid: 'form-control-danger'
+  },
+  validators: {
+    'validcode': function () {
+      // return true to set input as $valid, false to set as $invalid
+      return valid.code;
+    }
   }
 });
 
@@ -30,25 +58,72 @@ new Vue({
   },
   methods: {
     fieldClassName: function (field) {
-      if (!field) {
-        return '';
-      }
-      if ((field.$touched || field.$submitted) && field.$valid) {
+      if (field && (field.$submitted) && field.$valid) {
         return 'has-success';
       }
-      if ((field.$touched || field.$submitted) && field.$invalid) {
+      if (field && (field.$submitted) && field.$invalid) {
         return 'has-danger';
       }
+
+      return '';
     },
     onSubmit: function () {
-      axios.post('/code', { file: model.file, code: model.code })
-        .then(res => {
-          // JSON responses are automatically parsed.
-          console.log(res); // eslint-disable-line no-console
-        })
-        .catch(e => {
-          console.log(e); // eslint-disable-line no-console
-        });
+      var body = {};
+
+      if (this.formstate.code && this.formstate.code.$error && this.formstate.code.$error.validcode) {
+        valid.code = true;
+
+        delete this.formstate.code.$error.validcode;
+        delete this.formstate.$error.code;
+
+        this.formstate._reset();
+        this.formstate.$submitted = true;
+
+        if ('code' === model.type) {
+          this.formstate = {
+            $valid: true,
+            $invalid: false
+          };
+        }
+      }
+
+      if (this.formstate.$valid) {
+        if ('file' === model.type) {
+          body.file = model.file;
+        } else if ('code' === model.type) {
+          body.code = model.code;
+        }
+
+        localStorage.setItem('es7-model', JSON.stringify(model));
+
+        axios.post('/code', body)
+          .then(res => {
+            console.log(res); // eslint-disable-line no-console
+            setTimeout(function () {
+              this.formstate.$submitted = false;
+            }.bind(this), 500);
+          })
+          .catch(e => {
+            if (stored) {
+              localStorage.setItem('es7-model', JSON.stringify(stored));
+              this.model = Object.assign({}, this.model, stored);
+            } else {
+              localStorage.removeItem('es7-model');
+              this.model = Object.assign({}, this.model, {
+                type: 'file',
+                code: '',
+                file: ''
+              });
+            }
+
+            model = this.model;
+            if ('code' === this.model.type) {
+              valid.code = false;
+            }
+
+            console.log(e); // eslint-disable-line no-console
+          });
+      }
     }
   }
 });

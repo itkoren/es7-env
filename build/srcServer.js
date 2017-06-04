@@ -90,6 +90,8 @@ app.post('/code', (req, res) => {
 
     // Recompile the bundle with the new config
     webpackDevMiddlewareInstance.invalidate();
+
+    return res.sendStatus(200);
   } else {
     console.log(chalk.red('No Valid Code to Run! Do Nothing!'));
 

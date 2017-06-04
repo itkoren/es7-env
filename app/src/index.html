@@ -20,23 +20,29 @@
 <body>
   <div id="app" class="container py-5">
     <vue-form :state="formstate" v-model="formstate" @submit.prevent="onSubmit">
-      <validate auto-label class="form-group required-field" :class="fieldClassName(formstate.file)">
-        <label>File</label>
-        <select v-if="model.files && model.files.length" class="form-control" name="file" required v-model.lazy="model.file">
+      <field class="form-group">
+        <label>Type:</label>
+        <input type="radio" id="file-type" name="type" value="file" v-model.lazy="model.type"> File
+        <input type="radio" id="code-type" name="type" value="code" v-model.lazy="model.type"> Code<br>
+      </field>
+      <validate auto-label class="form-group" :class="fieldClassName(formstate.file)" :disabled="model.type === 'code' ? true : false">
+        <label>File:</label>
+        <select v-if="model.files && model.files.length" class="form-control" name="file" v-model.lazy="model.file" :disabled="model.type === 'code' ? true : false">
           <option :value="null">Choose...</option>
           <option v-for="file of model.files" v-bind:value="file">{{file}}</option>
         </select>
-        <field-messages name="file" show="$touched || $dirty || $submitted" class="form-control-feedback">
+        <field-messages name="file" show="$submitted" class="form-control-feedback">
           <div>Success!</div>
         </field-messages>
       </validate>
-      <validate auto-label class="form-group" :class="fieldClassName(formstate.code)">
-        <label>Code</label>
-        <textarea name="code" class="form-control" rows="20" maxlength="10000" v-model.lazy="model.code"></textarea>
+      <validate auto-label class="form-group" :class="fieldClassName(formstate.code)" :disabled="model.type === 'file' ? true : false">
+        <label>Code:</label>
+        <textarea name="code" class="form-control" rows="20" maxlength="10000" v-model.lazy="model.code" :disabled="model.type === 'file' ? true : false" validcode></textarea>
         <small class="form-text text-muted">Enter no more than 10000 characters.</small>
-        <field-messages name="comments" show="$touched || $submitted" class="form-control-feedback">
+        <field-messages name="code" show="$submitted" class="form-control-feedback">
           <div>Success!</div>
           <div slot="maxlength">Comments must be less than 10000 characters</div>
+          <div slot="validcode">Invalid Code! Reverted!</div>
         </field-messages>
       </validate>
       <div class="py-2 text-center">
