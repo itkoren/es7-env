@@ -67,6 +67,15 @@ new Vue({
 
       return '';
     },
+    onFileChange: function () {
+      let file = model.file;
+      model.code = '';
+      if (!file) { // default select option
+        return false;
+      }
+      let sourceCode = require('!!babel-loader!raw-loader!./code/' + file);
+      model.code = sourceCode;
+    },
     onSubmit: function () {
       var body = {};
 
