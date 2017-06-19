@@ -1,7 +1,5 @@
 'use strict';
 
-const console = require('../utils/logger');
-
 const rightsByRoles = {
   agent: [{
       id: 1,

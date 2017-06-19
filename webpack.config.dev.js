@@ -25,6 +25,11 @@ export default {
       appendScriptTag: true
     })
   ],
+  resolve: {
+    alias: {
+      'logger': path.resolve(__dirname, 'app', 'src', 'utils', 'logger')
+    }
+  },
   module: {
     loaders: [{
         test: /\.js$/,
@@ -34,6 +39,11 @@ export default {
       {
         test: /\.css$/,
         loaders: ['style-loader', 'css-loader']
+      },
+      // provide the code modules with the browser logger
+      {
+        test: /app\/src\/code\/.*\.js$/,
+        loaders: ['imports-loader?console=logger']
       }
     ]
   }
