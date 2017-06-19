@@ -1,5 +1,8 @@
 /*global Vue VueForm axios*/
 /*eslint no-undef: "error"*/
+
+import '../assets/styles.css';
+
 var stored = localStorage.getItem('es7-model');
 var defaults = {
   type: 'file',
@@ -88,20 +91,14 @@ new Vue({
         this.formstate._reset();
         this.formstate.$submitted = true;
 
-        if ('code' === model.type) {
-          this.formstate = {
-            $valid: true,
-            $invalid: false
-          };
-        }
+        this.formstate = {
+          $valid: true,
+          $invalid: false
+        };
       }
 
       if (this.formstate.$valid) {
-        if ('file' === model.type) {
-          body.file = model.file;
-        } else if ('code' === model.type) {
-          body.code = model.code;
-        }
+        body.code = model.code;
 
         localStorage.setItem('es7-model', JSON.stringify(model));
 
@@ -125,10 +122,7 @@ new Vue({
               });
             }
 
-            model = this.model;
-            if ('code' === this.model.type) {
-              valid.code = false;
-            }
+            valid.code = false;
 
             console.log(e); // eslint-disable-line no-console
           });

@@ -9,7 +9,7 @@
   see https://github.com/jaketrent/html-webpack-template/blob/master/index.ejs
   -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
@@ -18,35 +18,44 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 </head>
 <body>
-  <div id="app" class="container py-5">
+  <div id="app">
     <vue-form :state="formstate" v-model="formstate" @submit.prevent="onSubmit">
-      <field class="form-group">
-        <label>Type:</label>
-        <input type="radio" id="file-type" name="type" value="file" v-model.lazy="model.type"> File
-        <input type="radio" id="code-type" name="type" value="code" v-model.lazy="model.type"> Code<br>
-      </field>
-      <validate auto-label class="form-group" :class="fieldClassName(formstate.file)" :disabled="model.type === 'code' ? true : false">
-        <label>File:</label>
-        <select v-if="model.files && model.files.length" class="form-control" name="file" v-model.lazy="model.file" :disabled="model.type === 'code' ? true : false" @change="onFileChange">
-          <option :value="null">Choose...</option>
-          <option v-for="file of model.files" v-bind:value="file">{{file}}</option>
-        </select>
-        <field-messages name="file" show="$submitted" class="form-control-feedback">
-          <div>Success!</div>
-        </field-messages>
-      </validate>
-      <validate auto-label class="form-group" :class="fieldClassName(formstate.code)" :disabled="model.type === 'file' ? true : false">
-        <label>Code:</label>
-        <textarea name="code" class="form-control" rows="20" maxlength="10000" v-model.lazy="model.code" :disabled="model.type === 'file' ? true : false" validcode></textarea>
-        <small class="form-text text-muted">Enter no more than 10000 characters.</small>
-        <field-messages name="code" show="$submitted" class="form-control-feedback">
-          <div>Success!</div>
-          <div slot="maxlength">Comments must be less than 10000 characters</div>
-          <div slot="validcode">Invalid Code! Reverted!</div>
-        </field-messages>
-      </validate>
-      <div class="py-2 text-center">
-        <button class="btn btn-primary" type="submit">Run</button>
+      <div class="container-fluid p-5">
+        <div class="row">
+          <div class="col-md-5 block">
+            <validate auto-label class="form-group centered" :class="fieldClassName(formstate.code)">
+              <label>Code:</label>
+              <textarea id="code" name="code" class="form-control" maxlength="10000" v-model.lazy="model.code" validcode></textarea>
+              <small class="form-text text-muted">Enter no more than 10000 characters.</small>
+              <field-messages name="code" show="$submitted" class="form-control-feedback">
+                <div>Success!</div>
+                <div slot="maxlength">Comments must be less than 10000 characters</div>
+                <div slot="validcode">Invalid Code! Reverted!</div>
+              </field-messages>
+            </validate>
+          </div>
+          <div class="col-md-2 block">
+            <div class="centered">
+              <validate auto-label class="form-group" :class="fieldClassName(formstate.file)">
+                <label>Load Example:</label>
+                <select v-if="model.files && model.files.length" class="custom-select form-control form-control-lg" name="file" v-model.lazy="model.file" @change="onFileChange">
+                  <option :value="null">Choose...</option>
+                  <option v-for="file of model.files" v-bind:value="file">{{file}}</option>
+                </select>
+                <field-messages name="file" show="$submitted" class="form-control-feedback">
+                  <div>Success!</div>
+                </field-messages>
+              </validate>
+              <button class="btn btn-lg btn-primary" type="submit">Run</button>
+            </div>
+          </div>
+          <div class="col-md-5 block">
+            <div class="form-group centered">
+              <label>Console Output:</label>
+              <pre><code id="console-log" class="form-control text-left"></code></pre>
+            </div>
+          </div>
+        </div>
       </div>
     </vue-form>
   </div>
