@@ -47,11 +47,10 @@ app.get('/files', (req, res) => {
 });
 
 app.post('/code', (req, res) => {
-  const dirCode = path.join(dirSrc, 'code');
+  const dirCode = path.join(dirSrc, 'snippets');
 
   if (req.body.code) {
-    const base = req.body.code || '';
-    const code = `'use strict';\n\nconsole.log('');\nconsole.log('Start Running Code!');\nconsole.log('');\n\n${base}\n`;
+    const code = req.body.code || '';
 
     if (isValidJS(code)) {
       const entry = path.join(dirCode, 'code');

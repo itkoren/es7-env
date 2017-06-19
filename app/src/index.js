@@ -76,7 +76,7 @@ new Vue({
       if (!file) { // default select option
         return false;
       }
-      let sourceCode = require('!!babel-loader!raw-loader!./code/' + file);
+      let sourceCode = require('!!babel-loader!raw-loader!./snippets/' + file);
       model.code = sourceCode;
     },
     onSubmit: function () {

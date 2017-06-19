@@ -42,7 +42,7 @@ export default {
       },
       // provide the code modules with the browser logger
       {
-        test: /app\/src\/code\/.*\.js$/,
+        test: /app\/src\/snippets\/.*\.js$/,
         loaders: ['imports-loader?console=logger']
       }
     ]

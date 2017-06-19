@@ -43,6 +43,7 @@ pre code, textarea {
 #code,
 #console-log {
   font-size: 1.1rem;
+  padding: 1rem;
 }
 #code:not(:disabled), #code:not([readonly]),
 #console-log:not(:disabled), #console-log:not([readonly]) {

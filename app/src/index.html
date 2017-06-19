@@ -37,7 +37,7 @@
           <div class="col-md-2 block">
             <div class="centered">
               <validate auto-label class="form-group" :class="fieldClassName(formstate.file)">
-                <label>Load Example:</label>
+                <label>Snippets:</label>
                 <select v-if="model.files && model.files.length" class="custom-select form-control form-control-lg" name="file" v-model.lazy="model.file" @change="onFileChange">
                   <option :value="null">Choose...</option>
                   <option v-for="file of model.files" v-bind:value="file">{{file}}</option>
@@ -46,12 +46,12 @@
                   <div>Success!</div>
                 </field-messages>
               </validate>
-              <button class="btn btn-lg btn-primary" type="submit">Run</button>
+              <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Run</button>
             </div>
           </div>
           <div class="col-md-5 block">
             <div class="form-group centered">
-              <label>Console Output:</label>
+              <label>Output:</label>
               <pre><code id="console-log" class="form-control text-left"></code></pre>
             </div>
           </div>

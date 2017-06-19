@@ -7,13 +7,13 @@ const dynamicEntries = [];
 const current = {
   entries: []
 };
-const staticEntries = []
+const staticEntries = [];
 const alwaysEntries = [
   path.resolve(__dirname, '..', 'app', 'src', 'index')
 ];
 
 files.forEach(file => {
-  staticEntries.push(path.resolve(__dirname, '..', 'app', 'src', 'code', file));
+  staticEntries.push(path.resolve(__dirname, '..', 'app', 'src', 'snippets', file));
 });
 
 function clearDynamic(noUpdate) {
@@ -75,7 +75,7 @@ function getEntries({ all, staticIfNoDynamic, dynamicIfNoStatic, onlyDynamic, on
   return current.entries;
 }
 
-module.exports = {
+export default {
   clearDynamic,
   addDynamicEntry,
   setSingleDynamicEntry,
