@@ -1,5 +1,6 @@
-/*global Vue VueForm axios*/
+/*global Vue VueForm axios LoadingBar*/
 /*eslint no-undef: "error"*/
+var timer;
 var stored = localStorage.getItem('es7-model');
 var defaults = {
   type: 'file',
@@ -50,11 +51,49 @@ axios.get('/files')
     console.log(e); // eslint-disable-line no-console
   });
 
+function updateProgress(comp, val) {
+  if (comp && comp.loading) {
+    if (typeof val !== 'undefined' && !isNaN(val)) {
+      comp.loading.progress = val;
+    } else {
+      if (comp.progress > 20 && comp.progress < 80) {
+        comp.loading.progress += 20;
+      } else {
+        comp.loading.progress += 10;
+      }
+    }
+
+    if (comp.loading.progress < 100) {
+      timer = setTimeout(function () {
+        updateProgress(comp);
+      }, 20);
+    }
+  }
+}
+
+function stopProgress(comp) {
+  if (timer) {
+    clearTimeout(timer);
+  }
+
+  if (comp && comp.loading) {
+    comp.loading.progress = 100;
+  }
+}
+
 new Vue({
   el: '#app',
+  components: {
+    LoadingBar: LoadingBar
+  },
   data: {
     formstate: {},
-    model: model
+    model: model,
+    loading: {
+      progress: 0,
+      error: false,
+      direction: 'right'
+    }
   },
   methods: {
     fieldClassName: function (field) {
@@ -67,6 +106,17 @@ new Vue({
 
       return '';
     },
+
+    setLoadingError(bol) {
+      this.loading.error = bol;
+    },
+    loadingErrorDone() {
+      this.loading.error = false
+    },
+    loadingProgressDone() {
+      this.loading.progress = 0
+    },
+
     onSubmit: function () {
       var body = {};
 
@@ -88,6 +138,7 @@ new Vue({
       }
 
       if (this.formstate.$valid) {
+        updateProgress(this, 0);
         if ('file' === model.type) {
           body.file = model.file;
         } else if ('code' === model.type) {
@@ -100,10 +151,13 @@ new Vue({
           .then(res => {
             console.log(res); // eslint-disable-line no-console
             setTimeout(function () {
+              stopProgress(this);
               this.formstate.$submitted = false;
             }.bind(this), 500);
           })
           .catch(e => {
+            this.setLoadingError(true);
+
             if (stored) {
               localStorage.setItem('es7-model', JSON.stringify(stored));
               this.model = Object.assign({}, this.model, stored);
@@ -120,6 +174,10 @@ new Vue({
             if ('code' === this.model.type) {
               valid.code = false;
             }
+
+            setTimeout(() => {
+              stopProgress(this);
+            }, 2000);
 
             console.log(e); // eslint-disable-line no-console
           });
