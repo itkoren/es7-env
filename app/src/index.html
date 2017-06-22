@@ -30,7 +30,7 @@
       </field>
       <validate auto-label class="form-group" :class="fieldClassName(formstate.file)" :disabled="model.type === 'code' ? true : false">
         <label>File:</label>
-        <select v-if="model.files && model.files.length" class="form-control" name="file" v-model.lazy="model.file" :disabled="model.type === 'code' ? true : false">
+        <select v-if="model.files && model.files.length" class="form-control" name="file" v-model.lazy="model.file" :disabled="model.type === 'code' ? true : false" @change="onFileChange">
           <option :value="null">Choose...</option>
           <option v-for="file of model.files" v-bind:value="file">{{file}}</option>
         </select>

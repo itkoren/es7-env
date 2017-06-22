@@ -51,7 +51,7 @@ app.post('/code', (req, res) => {
 
   if (req.body.code) {
     const base = req.body.code || '';
-    const code = `'use strict';\n\nconst console = require('../utils/logger');\n\nconsole.log('');\nconsole.log('Start Running Code!');\nconsole.log('');\n\n${base}\n`;
+    const code = `'use strict';\n\nconsole.log('');\nconsole.log('Start Running Code!');\nconsole.log('');\n\n${base}\n`;
 
     if (isValidJS(code)) {
       const entry = path.join(dirCode, 'code');

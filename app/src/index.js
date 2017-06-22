@@ -106,6 +106,15 @@ new Vue({
 
       return '';
     },
+    onFileChange: function () {
+      let file = model.file;
+      model.code = '';
+      if (!file) { // default select option
+        return false;
+      }
+      let sourceCode = require('!!babel-loader!raw-loader!./code/' + file);
+      model.code = sourceCode;
+    },
 
     setLoadingError(bol) {
       this.loading.error = bol;
@@ -138,7 +147,6 @@ new Vue({
       }
 
       if (this.formstate.$valid) {
-        updateProgress(this, 0);
         if ('file' === model.type) {
           body.file = model.file;
         } else if ('code' === model.type) {
