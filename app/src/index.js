@@ -51,36 +51,6 @@ axios.get('/files')
     console.log(e); // eslint-disable-line no-console
   });
 
-function updateProgress(comp, val) {
-  if (comp && comp.loading) {
-    if (typeof val !== 'undefined' && !isNaN(val)) {
-      comp.loading.progress = val;
-    } else {
-      if (comp.progress > 20 && comp.progress < 80) {
-        comp.loading.progress += 20;
-      } else {
-        comp.loading.progress += 10;
-      }
-    }
-
-    if (comp.loading.progress < 100) {
-      timer = setTimeout(function () {
-        updateProgress(comp);
-      }, 20);
-    }
-  }
-}
-
-function stopProgress(comp) {
-  if (timer) {
-    clearTimeout(timer);
-  }
-
-  if (comp && comp.loading) {
-    comp.loading.progress = 100;
-  }
-}
-
 new Vue({
   el: '#app',
   components: {
@@ -106,6 +76,7 @@ new Vue({
 
       return '';
     },
+
     onFileChange: function () {
       let file = model.file;
       model.code = '';
@@ -114,6 +85,36 @@ new Vue({
       }
       let sourceCode = require('!!babel-loader!raw-loader!./code/' + file);
       model.code = sourceCode;
+    },
+
+    updateProgress(val) {
+      if (this.loading) {
+        if (typeof val !== 'undefined' && !isNaN(val)) {
+          this.loading.progress = val;
+        } else {
+          if (this.loading.progress > 20 && this.loading.progress < 80) {
+            this.loading.progress += 20;
+          } else {
+            this.loading.progress += 10;
+          }
+        }
+
+        if (this.loading.progress < 100) {
+          timer = setTimeout(function () {
+            this.updateProgress();
+          }.bind(this), 20);
+        }
+      }
+    },
+
+    stopProgress() {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      if (this.loading) {
+        this.loading.progress = 100;
+      }
     },
 
     setLoadingError(bol) {
@@ -147,6 +148,8 @@ new Vue({
       }
 
       if (this.formstate.$valid) {
+        this.updateProgress(this, 0);
+
         if ('file' === model.type) {
           body.file = model.file;
         } else if ('code' === model.type) {
@@ -159,7 +162,7 @@ new Vue({
           .then(res => {
             console.log(res); // eslint-disable-line no-console
             setTimeout(function () {
-              stopProgress(this);
+              this.stopProgress(this);
               this.formstate.$submitted = false;
             }.bind(this), 500);
           })
@@ -184,7 +187,7 @@ new Vue({
             }
 
             setTimeout(() => {
-              stopProgress(this);
+              this.stopProgress(this);
             }, 2000);
 
             console.log(e); // eslint-disable-line no-console
