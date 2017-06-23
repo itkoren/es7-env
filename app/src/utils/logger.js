@@ -1,22 +1,26 @@
 'use strict';
 
+// cache the log element
 let consoleLog;
 
 
-function logTo() {
-  let id = 'console-log';
-  let logEl = document.getElementById(id);
+function getOrCreateElement(id, type, parent) {
+  let el = document.getElementById(id);
 
-  if (!logEl) {
-    logEl = document.createElement('textarea');
-    logEl.id = id;
-    document.body.appendChild.appendChild(logEl);
+  if (!el) {
+    el = document.createElement(type);
+    el.id = id;
+    (parent || document.body).appendChild(el);
   }
 
-  logEl.readOnly = true;
-  logEl.classList.add(id);
+  el.classList.add(id);
 
-  return logEl;
+  return el;
+}
+
+function logTo() {
+  let outer = getOrCreateElement('console-box', 'pre');
+  return getOrCreateElement('console-log', 'code', outer);
 }
 
 function logInBrowser() {
@@ -40,7 +44,7 @@ function logInBrowser() {
 
     consoleLog.textContent += '\n';
 
-    consoleLog.scrollTop = consoleLog.scrollHeight;
+    consoleLog.parentNode.scrollTop = consoleLog.parentNode.scrollHeight;
   }
 }
 

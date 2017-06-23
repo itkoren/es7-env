@@ -27,23 +27,29 @@ export default {
   ],
   resolve: {
     alias: {
-      'logger': path.resolve(__dirname, 'app', 'src', 'utils', 'logger')
+      'vue$': 'vue/dist/vue.esm.js',
+      'logger': path.resolve(__dirname, 'app', 'src', 'utils', 'logger'),
     }
   },
   module: {
-    loaders: [{
+    loaders: [
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loaders: ['babel-loader']
       },
       {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        test: /\.vue$/,
+        loaders: ['vue-loader']
       },
       // provide the code modules with the browser logger
       {
         test: /app\/src\/snippets\/.*\.js$/,
         loaders: ['imports-loader?console=logger']
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader']
       }
     ]
   }

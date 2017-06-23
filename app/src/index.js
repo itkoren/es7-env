@@ -1,7 +1,17 @@
-/*global Vue VueForm axios*/
-/*eslint no-undef: "error"*/
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/styles.css';
+import 'codemirror/mode/javascript/javascript'
+import 'codemirror/addon/selection/active-line.js';
+import 'codemirror/theme/base16-light.css';
+import 'codemirror/addon/hint/show-hint.js';
+import 'codemirror/addon/hint/show-hint.css';
+import 'codemirror/addon/hint/javascript-hint.js';
+
+import {codemirror} from 'vue-codemirror-lite'
+import axios from 'axios';
+import Vue from 'vue';
+import VueForm from 'vue-form';
+
 
 var stored = localStorage.getItem('es7-model');
 var defaults = {
@@ -55,9 +65,30 @@ axios.get('/files')
 
 new Vue({
   el: '#app',
-  data: {
-    formstate: {},
-    model: model
+  components: {
+    codemirror
+  },
+  data: function () {
+    return {
+      formstate: {},
+      model: model,
+      editorOptions: {
+        mode: 'javascript',
+        theme: 'base16-light',
+        tabSize: 2,
+        lineNumbers: true,
+        lineWrapping: true,
+        styleActiveLine: true,
+        extraKeys: {
+          'Ctrl-Space': 'autocomplete',
+          'Ctrl-Enter': this.onSubmit,
+        },
+      },
+    };
+  },
+  created() {
+    // fight the FOUC
+    document.querySelector('.no-fouc').classList.remove('no-fouc');
   },
   methods: {
     fieldClassName: function (field) {
@@ -70,14 +101,18 @@ new Vue({
 
       return '';
     },
-    onFileChange: function () {
+    onFileSelect: function () {
       let file = model.file;
-      model.code = '';
-      if (!file) { // default select option
+      // default select option has no file
+      if (!file) {
+        console.warn('file not found'); // eslint-disable-line no-console
         return false;
       }
-      let sourceCode = require('!!babel-loader!raw-loader!./snippets/' + file);
-      model.code = sourceCode;
+      let snippetHeader = `/* '${file}' */\n\n`;
+      model.code = snippetHeader + require('!!babel-loader!raw-loader!./snippets/' + file);
+      // reset the select box to indicate to the user that snippets just serve
+      // as an initial template that can be edited before running the code
+      model.file = '';
     },
     onSubmit: function () {
       var body = {};
