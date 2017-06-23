@@ -78,7 +78,7 @@
         <validate auto-label class="col" :class="fieldClassName(formstate.code)">
           <div id="code-box" class="text-left">
             <codemirror id="code" name="code" v-model="model.code" :options="editorOptions" ref="codeEditor"
-                        validcode></codemirror>
+                        validcode maxlength="10000"></codemirror>
           </div>
         </validate>
         <div class="col">
@@ -90,7 +90,8 @@
       <footer class="navbar flex-row">
         <field-messages name="code" show="$submitted" class="form-control-feedback">
           <div>Success!</div>
-          <div slot="validcode">Invalid Code! Reverted!</div>
+          <div slot="maxlength">Code must be less than 10000 characters</div>
+          <div slot="validcode">Invalid Code! Reverted</div>
         </field-messages>
         <!--<field-messages name="file" show="$submitted" class="form-control-feedback">-->
         <!--<div>Success!</div>-->
