@@ -61,6 +61,7 @@
 <body class="h-100">
 <div class="overlay"></div>
 <div id="app" class="h-100 p-3">
+  <loading-bar id="loading-bar" :on-error-done="loadingErrorDone" :on-progress-done="loadingProgressDone" :direction="loading.direction" :progress="loading.progress" :error="loading.error"></loading-bar>
   <vue-form class="h-100" :state="formstate" v-model="formstate" @submit.prevent="onSubmit">
     <div class="h-100 d-flex flex-column">
       <nav id="topNav" class="navbar flex-row">

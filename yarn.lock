@@ -5135,7 +5135,13 @@ vue-template-es2015-compiler@^1.2.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.5.2.tgz#a0a6c50c941d2a4abda963f2f42c337ac450ee95"
 
-vue@^2.3.4:
+vue2-loading-bar@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/vue2-loading-bar/-/vue2-loading-bar-0.0.1.tgz#5fec3acaa07e4d9dabf10b769b1c3ad5a3018787"
+  dependencies:
+    vue ""
+
+vue@, vue@^2.3.4:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.3.4.tgz#5ec3b87a191da8090bbef56b7cfabd4158038171"
 

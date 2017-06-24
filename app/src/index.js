@@ -1,18 +1,22 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'vue2-loading-bar/src/css/loading-bar.css';
 import '../assets/styles.css';
-import 'codemirror/mode/javascript/javascript'
+
+import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/selection/active-line.js';
 import 'codemirror/theme/base16-light.css';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/hint/show-hint.css';
 import 'codemirror/addon/hint/javascript-hint.js';
 
-import {codemirror} from 'vue-codemirror-lite'
 import axios from 'axios';
 import Vue from 'vue';
 import VueForm from 'vue-form';
+import LoadingBar from 'vue2-loading-bar';
+import {codemirror} from 'vue-codemirror-lite'
 
 
+var timer;
 var stored = localStorage.getItem('es7-model');
 var defaults = {
   type: 'file',
@@ -66,12 +70,19 @@ axios.get('/files')
 new Vue({
   el: '#app',
   components: {
-    codemirror
+    LoadingBar,
+    codemirror,
   },
-  data: function () {
+
+  data() {
     return {
       formstate: {},
       model: model,
+      loading: {
+        progress: 0,
+        error: false,
+        direction: 'right'
+      },
       editorOptions: {
         mode: 'javascript',
         theme: 'base16-light',
@@ -86,11 +97,14 @@ new Vue({
       },
     };
   },
+
   created() {
     // fight the FOUC
     document.querySelector('.no-fouc').classList.remove('no-fouc');
   },
+
   methods: {
+
     fieldClassName: function (field) {
       if (field && (field.$submitted) && field.$valid) {
         return 'has-success';
@@ -101,19 +115,61 @@ new Vue({
 
       return '';
     },
+
     onFileSelect: function () {
-      let file = model.file;
+      let file = this.model.file;
       // default select option has no file
       if (!file) {
         console.warn('file not found'); // eslint-disable-line no-console
         return false;
       }
       let snippetHeader = `/* '${file}' */\n\n`;
-      model.code = snippetHeader + require('!!babel-loader!raw-loader!./snippets/' + file);
+      this.model.code = snippetHeader + require('!!babel-loader!raw-loader!./snippets/' + file);
       // reset the select box to indicate to the user that snippets just serve
       // as an initial template that can be edited before running the code
-      model.file = '';
+      this.model.file = '';
     },
+
+    updateProgress(val) {
+      if (this.loading) {
+        if (typeof val !== 'undefined' && !isNaN(val)) {
+          this.loading.progress = val;
+        } else {
+          if (this.loading.progress > 20 && this.loading.progress < 80) {
+            this.loading.progress += 20;
+          } else {
+            this.loading.progress += 10;
+          }
+        }
+
+        if (this.loading.progress < 100) {
+          timer = setTimeout(function () {
+            this.updateProgress();
+          }.bind(this), 20);
+        }
+      }
+    },
+
+    stopProgress() {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      if (this.loading) {
+        this.loading.progress = 100;
+      }
+    },
+
+    setLoadingError(bol) {
+      this.loading.error = bol;
+    },
+    loadingErrorDone() {
+      this.loading.error = false
+    },
+    loadingProgressDone() {
+      this.loading.progress = 0
+    },
+
     onSubmit: function () {
       var body = {};
 
@@ -133,18 +189,21 @@ new Vue({
       }
 
       if (this.formstate.$valid) {
-        body.code = model.code;
-
-        localStorage.setItem('es7-model', JSON.stringify(model));
+        this.updateProgress(this, 0);
+        body.code = this.model.code;
+        localStorage.setItem('es7-model', JSON.stringify(this.model));
 
         axios.post('/code', body)
           .then(res => {
             console.log(res); // eslint-disable-line no-console
             setTimeout(function () {
+              this.stopProgress(this);
               this.formstate.$submitted = false;
             }.bind(this), 500);
           })
           .catch(e => {
+            this.setLoadingError(true);
+
             if (stored) {
               localStorage.setItem('es7-model', JSON.stringify(stored));
               this.model = Object.assign({}, this.model, stored);
@@ -158,6 +217,10 @@ new Vue({
             }
 
             valid.code = false;
+
+            setTimeout(() => {
+              this.stopProgress(this);
+            }, 2000);
 
             console.log(e); // eslint-disable-line no-console
           });
