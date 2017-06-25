@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import express from 'express';
 import bodyParser from 'body-parser';
-import esprima from 'esprima';
+import { parse } from 'esprima';
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import config from '../webpack.config.dev';
@@ -16,8 +16,9 @@ function isValidJS(js) {
   let valid = true;
 
   try {
-    esprima.parse(js);
+    parse(js);
   } catch (ex) {
+    console.log(ex);
     valid = false;
   }
 
