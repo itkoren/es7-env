@@ -1,5 +1,21 @@
-/*global Vue VueForm axios LoadingBar*/
-/*eslint no-undef: "error"*/
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'vue2-loading-bar/src/css/loading-bar.css';
+import '../assets/styles.css';
+
+import 'codemirror/mode/javascript/javascript.js'
+import 'codemirror/addon/selection/active-line.js';
+import 'codemirror/theme/base16-light.css';
+import 'codemirror/addon/hint/show-hint.js';
+import 'codemirror/addon/hint/show-hint.css';
+import 'codemirror/addon/hint/javascript-hint.js';
+
+import axios from 'axios';
+import Vue from 'vue';
+import VueForm from 'vue-form';
+import LoadingBar from 'vue2-loading-bar';
+import {codemirror} from 'vue-codemirror-lite'
+
+
 var timer;
 var stored = localStorage.getItem('es7-model');
 var defaults = {
@@ -54,18 +70,41 @@ axios.get('/files')
 new Vue({
   el: '#app',
   components: {
-    LoadingBar: LoadingBar
+    LoadingBar,
+    codemirror,
   },
-  data: {
-    formstate: {},
-    model: model,
-    loading: {
-      progress: 0,
-      error: false,
-      direction: 'right'
-    }
+
+  data() {
+    return {
+      formstate: {},
+      model: model,
+      loading: {
+        progress: 0,
+        error: false,
+        direction: 'right'
+      },
+      editorOptions: {
+        mode: 'javascript',
+        theme: 'base16-light',
+        tabSize: 2,
+        lineNumbers: true,
+        lineWrapping: true,
+        styleActiveLine: true,
+        extraKeys: {
+          'Ctrl-Space': 'autocomplete',
+          'Ctrl-Enter': this.onSubmit,
+        },
+      },
+    };
   },
+
+  created() {
+    // fight the FOUC
+    document.querySelector('.no-fouc').classList.remove('no-fouc');
+  },
+
   methods: {
+
     fieldClassName: function (field) {
       if (field && (field.$submitted) && field.$valid) {
         return 'has-success';
@@ -77,14 +116,18 @@ new Vue({
       return '';
     },
 
-    onFileChange: function () {
-      let file = model.file;
-      model.code = '';
-      if (!file) { // default select option
+    onFileSelect: function () {
+      let file = this.model.file;
+      // default select option has no file
+      if (!file) {
+        console.warn('file not found'); // eslint-disable-line no-console
         return false;
       }
-      let sourceCode = require('!!babel-loader!raw-loader!./code/' + file);
-      model.code = sourceCode;
+      let snippetHeader = `/* '${file}' */\n\n`;
+      this.model.code = snippetHeader + require('!!babel-loader!raw-loader!./snippets/' + file);
+      // reset the select box to indicate to the user that snippets just serve
+      // as an initial template that can be edited before running the code
+      this.model.file = '';
     },
 
     updateProgress(val) {
@@ -139,24 +182,16 @@ new Vue({
         this.formstate._reset();
         this.formstate.$submitted = true;
 
-        if ('code' === model.type) {
-          this.formstate = {
-            $valid: true,
-            $invalid: false
-          };
-        }
+        this.formstate = {
+          $valid: true,
+          $invalid: false
+        };
       }
 
       if (this.formstate.$valid) {
         this.updateProgress(this, 0);
-
-        if ('file' === model.type) {
-          body.file = model.file;
-        } else if ('code' === model.type) {
-          body.code = model.code;
-        }
-
-        localStorage.setItem('es7-model', JSON.stringify(model));
+        body.code = this.model.code;
+        localStorage.setItem('es7-model', JSON.stringify(this.model));
 
         axios.post('/code', body)
           .then(res => {
@@ -181,10 +216,7 @@ new Vue({
               });
             }
 
-            model = this.model;
-            if ('code' === this.model.type) {
-              valid.code = false;
-            }
+            valid.code = false;
 
             setTimeout(() => {
               this.stopProgress(this);

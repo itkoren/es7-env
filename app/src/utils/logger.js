@@ -1,46 +1,26 @@
 'use strict';
 
-let divLog;
+// cache the log element
+let consoleLog;
 
-function createOuterElement() {
-  const id = 'console-log-div';
-  let outer = document.getElementById(id);
 
-  if (!outer) {
-    outer = document.createElement('fieldset');
-    outer.id = id;
-    document.body.appendChild(outer);
+function getOrCreateElement(id, type, parent) {
+  let el = document.getElementById(id);
+
+  if (!el) {
+    el = document.createElement(type);
+    el.id = id;
+    (parent || document.body).appendChild(el);
   }
 
-  outer.classList.add(id);
+  el.classList.add(id);
 
-  const style = outer.style;
-  style.fontFamily = 'monospace';
-  style.marginTop = '20px';
-  style.marginLeft = '10px';
-  style.marginRight = '10px';
-  style.marginBottom = '20px';
-  style.whiteSpace = 'pre';
-  style.border = '1px solid black';
-  style.borderRadius = '5px';
-  style.padding = '5px 10px';
-
-  return outer;
+  return el;
 }
 
 function logTo() {
-  const outer = createOuterElement();
-  const caption = document.createTextNode('console output');
-  const legend = document.createElement('legend');
-  const div = document.createElement('div');
-
-  div.id = 'console-log-text';
-
-  legend.appendChild(caption);
-  outer.appendChild(legend);
-  outer.appendChild(div);
-
-  return div;
+  let outer = getOrCreateElement('console-box', 'pre');
+  return getOrCreateElement('console-log', 'code', outer);
 }
 
 function logInBrowser() {
@@ -58,11 +38,13 @@ function logInBrowser() {
         }
       }
 
-      divLog = divLog || logTo();
-      divLog.textContent += ' ' + msg;
+      consoleLog = consoleLog || logTo();
+      consoleLog.textContent += (msg + ' ');
     });
 
-    divLog.textContent += '\n';
+    consoleLog.textContent += '\n';
+
+    consoleLog.parentNode.scrollTop = consoleLog.parentNode.scrollHeight;
   }
 }
 
@@ -70,7 +52,7 @@ function log() {
   const args = [].slice.call(arguments);
 
   if ('undefined' !== typeof document) {
-    args.unshift('LOG:');
+    args.unshift('[LOG]');
     logInBrowser.apply(null, args);
   } else {
     console.log.apply(this, args); // eslint-disable-line no-console
@@ -81,7 +63,7 @@ function success() {
   const args = [].slice.call(arguments);
 
   if ('undefined' !== typeof document) {
-    args.unshift('SUCCESS:');
+    args.unshift('[SUCCESS]');
     logInBrowser.apply(null, args);
   } else {
     console.log(require('chalk').green.apply(this, args)); // eslint-disable-line no-console
@@ -92,7 +74,7 @@ function error() {
   const args = [].slice.call(arguments);
 
   if ('undefined' !== typeof document) {
-    args.unshift('ERROR:');
+    args.unshift('[ERROR]');
     logInBrowser.apply(null, args);
   } else {
     console.error(require('chalk').red.apply(this, args)); // eslint-disable-line no-console
@@ -103,7 +85,7 @@ function warn() {
   const args = [].slice.call(arguments);
 
   if ('undefined' !== typeof document) {
-    args.unshift('WARNING:');
+    args.unshift('[WARNING]');
     logInBrowser.apply(null, args);
   } else {
     console.warn(require('chalk').orange.apply(this, args)); // eslint-disable-line no-console
@@ -114,7 +96,7 @@ function info() {
   const args = [].slice.call(arguments);
 
   if ('undefined' !== typeof document) {
-    args.unshift('INFO:');
+    args.unshift('[INFO]');
     logInBrowser.apply(null, args);
   } else {
     console.info.apply(this, args); // eslint-disable-line no-console
@@ -123,7 +105,7 @@ function info() {
 
 function dir() {
   const args = [].slice.call(arguments);
-  args.unshift('DIR:');
+  args.unshift('[DIR]');
   logInBrowser.apply(null, args);
 }
 

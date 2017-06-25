@@ -1,0 +1,70 @@
+
+/* reset */
+
+html {
+  height: 100%;
+}
+
+button, select, input {
+  border-radius: 0 !important;
+}
+
+pre {
+  margin: 0;
+  /* prevent empty space at top when there's a child element */
+  white-space: normal;
+}
+
+pre code {
+  white-space: pre-wrap;
+}
+
+
+/* base */
+
+body {
+  min-height: 100vh;
+  font-size: 24px;
+  color: #555;
+  background-color: #fafafa;
+}
+
+
+/* layout */
+
+.flex-grow {
+  flex: 1;
+}
+
+.form-control-feedback {
+  /* make sure the message container doesn't collapse when it's empty */
+  height: 2rem;
+}
+
+
+/* custom */
+
+#code-box,
+#console-box {
+  font-size: 1.2rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+#console-box {
+  padding: 1rem;
+  color: #777;
+}
+
+#code-box {
+  height: 100%;
+}
+
+#code-box .CodeMirror {
+  height: 100%;
+  background-color: #fff;
+}
+
+#code-box .CodeMirror .CodeMirror-activeline-background {
+  background-color: #f6f6f6;
+}
