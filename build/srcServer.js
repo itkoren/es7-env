@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 import path from 'path';
@@ -29,15 +30,41 @@ function isValidJS(js) {
   return valid;
 }
 
-/* eslint-disable no-console */
+function deleteFile(file, complete = () => {}) {
+  if (file) {
+    fs.stat(file, (err, stats) => {
+      if (!err && stats.isFile()) {
+        fs.unlink(file, err => {
+          if (!err) {
+            console.log(`file ${file} was deleted successfully`);
+          } else {
+            console.log(`file ${file} could not be deleted`);
+          }
+
+          complete(err);
+        });
+      } else {
+        complete(err);
+      }
+    });
+  } else {
+    complete(new Error(`file ${file} not found!`));
+  }
+}
+
 const port = 3000;
 const dirSrc = path.join(__dirname, '..', 'app', 'src');
+const dirSnippets = path.join(dirSrc, 'snippets');
+const entry = path.join(dirSnippets, 'code');
 const app = express();
 const compiler = webpack(config);
 const webpackDevMiddlewareInstance = webpackMiddleware(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
 });
+
+// Delete old code file
+deleteFile(`${entry}.js`);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -52,13 +79,10 @@ app.get('/files', (req, res) => {
 });
 
 app.post('/code', (req, res) => {
-  const dirCode = path.join(dirSrc, 'snippets');
-
   if (req.body.code) {
     const code = req.body.code || '';
 
     if (!shouldValidate(code) || isValidJS(code)) {
-      const entry = path.join(dirCode, 'code');
       console.log(chalk.green('Code is valid! Going to save it to file!'));
 
       const stream = fs.createWriteStream(`${entry}.js`, {
@@ -87,7 +111,7 @@ app.post('/code', (req, res) => {
       return res.sendStatus(500);
     }
   } else if (req.body.file) {
-    Entries.setSingleDynamicEntry(path.join(dirCode, req.body.file));
+    Entries.setSingleDynamicEntry(path.join(dirSnippets, req.body.file));
 
     // The configuration is changed
     compiler.options.entry = config.entry;
