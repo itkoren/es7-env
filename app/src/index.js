@@ -12,6 +12,7 @@ import 'codemirror/addon/hint/javascript-hint.js';
 import axios from 'axios';
 import Vue from 'vue';
 import VueForm from 'vue-form';
+import help from './components/help/help.vue';
 import LoadingBar from 'vue2-loading-bar';
 import { codemirror } from 'vue-codemirror-lite'
 
@@ -70,6 +71,7 @@ axios.get('/files')
 new Vue({
   el: '#app',
   components: {
+    help,
     LoadingBar,
     codemirror,
   },

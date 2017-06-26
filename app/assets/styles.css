@@ -27,8 +27,21 @@ body {
   font-size: 24px;
   color: #555;
   background-color: #fafafa;
+  letter-spacing: .02em;
 }
 
+::-webkit-scrollbar {
+  width: 9px;  /* for vertical scrollbars */
+  height: 9px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+}
 
 /* layout */
 
@@ -67,4 +80,8 @@ body {
 
 #code-box .CodeMirror .CodeMirror-activeline-background {
   background-color: #f6f6f6;
+}
+
+.btn-outline-primary {
+  background-color: #fff;
 }
