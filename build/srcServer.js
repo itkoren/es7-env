@@ -12,6 +12,10 @@ import chalk from 'chalk';
 import Entries from './entries';
 import files from './files';
 
+function shouldValidate(js) {
+  return !js || !js.includes('esprima no-validate');
+}
+
 function isValidJS(js) {
   let valid = true;
 
@@ -53,7 +57,7 @@ app.post('/code', (req, res) => {
   if (req.body.code) {
     const code = req.body.code || '';
 
-    if (isValidJS(code)) {
+    if (!shouldValidate(code) || isValidJS(code)) {
       const entry = path.join(dirCode, 'code');
       console.log(chalk.green('Code is valid! Going to save it to file!'));
 
