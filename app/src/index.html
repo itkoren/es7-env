@@ -16,7 +16,7 @@
   <style>
     /* use 'opacity' to show/hide, not 'display' - it may disrupt vue's
     component rendering at some lifecycle phases */
-    .overlay {
+    .splash {
       opacity: 0;
       position: absolute;
       top: calc(50% - 80px);
@@ -27,7 +27,7 @@
       background-color: #0f4d87;
     }
 
-    .overlay:before {
+    .splash:before {
       content: '';
       position: absolute;
       top: calc(50% - 34px);
@@ -43,7 +43,7 @@
       opacity: 0;
     }
 
-    .no-fouc .overlay {
+    .no-fouc .splash {
       opacity: 1;
     }
 
@@ -59,9 +59,10 @@
   </script>
 </head>
 <body class="h-100">
-<div class="overlay"></div>
+<div class="splash"></div>
 <div id="app" class="h-100 p-3">
-  <loading-bar id="loading-bar" :on-error-done="loadingErrorDone" :on-progress-done="loadingProgressDone" :direction="loading.direction" :progress="loading.progress" :error="loading.error"></loading-bar>
+  <loading-bar id="loading-bar" :on-error-done="loadingErrorDone" :on-progress-done="loadingProgressDone"
+               :direction="loading.direction" :progress="loading.progress" :error="loading.error"></loading-bar>
   <vue-form class="h-100" :state="formstate" v-model="formstate" @submit.prevent="onSubmit">
     <div class="h-100 d-flex flex-column">
       <nav id="topNav" class="navbar flex-row">
@@ -94,9 +95,7 @@
           <div slot="maxlength">Code must be less than 10000 characters</div>
           <div slot="validcode">Invalid Code! Reverted</div>
         </field-messages>
-        <!--<field-messages name="file" show="$submitted" class="form-control-feedback">-->
-        <!--<div>Success!</div>-->
-        <!--</field-messages>-->
+        <help class="ml-auto"></help>
       </footer>
     </div>
   </vue-form>
