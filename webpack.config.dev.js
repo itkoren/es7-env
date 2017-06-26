@@ -7,7 +7,7 @@ import Entries from './build/entries';
 
 export default {
   devtool: 'inline-source-map',
-  entry: Entries.getEntries({ staticIfNoDynamic: true }),
+  entry: Entries.getEntries({ alwaysIfNoDynamic: true }),
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'app', 'src'),

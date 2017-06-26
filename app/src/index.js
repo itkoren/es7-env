@@ -14,18 +14,18 @@ import Vue from 'vue';
 import VueForm from 'vue-form';
 import help from './components/help/help.vue';
 import LoadingBar from 'vue2-loading-bar';
-import {codemirror} from 'vue-codemirror-lite'
+import { codemirror } from 'vue-codemirror-lite'
 
+let timer;
+let stored = localStorage.getItem('es7-model');
 
-var timer;
-var stored = localStorage.getItem('es7-model');
-var defaults = {
+const defaults = {
   type: 'file',
   code: '',
   file: '',
   files: []
 };
-var valid = {
+const valid = {
   code: true
 };
 
@@ -39,7 +39,7 @@ if (stored) {
   stored = defaults;
 }
 
-var model = Object.assign({}, {
+const model = Object.assign({}, {
   type: stored.type,
   code: stored.code,
   file: stored.file,
@@ -52,7 +52,7 @@ Vue.use(VueForm, {
     invalid: 'form-control-danger'
   },
   validators: {
-    'validcode': function () {
+    'validcode':() => {
       // return true to set input as $valid, false to set as $invalid
       return valid.code;
     }
@@ -107,7 +107,7 @@ new Vue({
 
   methods: {
 
-    fieldClassName: function (field) {
+    fieldClassName(field) {
       if (field && (field.$submitted) && field.$valid) {
         return 'has-success';
       }
@@ -118,15 +118,20 @@ new Vue({
       return '';
     },
 
-    onFileSelect: function () {
-      let file = this.model.file;
+    onFileSelect() {
+      const file = this.model.file;
+
       // default select option has no file
       if (!file) {
         console.warn('file not found'); // eslint-disable-line no-console
         return false;
       }
-      let snippetHeader = `/* '${file}' */\n\n`;
-      this.model.code = snippetHeader + require('!!babel-loader!raw-loader!./snippets/' + file);
+
+      const snippetHeader = `/* '${file}' */\n\n`;
+      const snippetBody = require(`!!babel-loader!raw-loader!./snippets/${file}`);
+
+      this.model.code = `${snippetHeader}${snippetBody}`;
+
       // reset the select box to indicate to the user that snippets just serve
       // as an initial template that can be edited before running the code
       this.model.file = '';
@@ -165,15 +170,17 @@ new Vue({
     setLoadingError(bol) {
       this.loading.error = bol;
     },
+
     loadingErrorDone() {
       this.loading.error = false
     },
+
     loadingProgressDone() {
       this.loading.progress = 0
     },
 
-    onSubmit: function () {
-      var body = {};
+    onSubmit() {
+      const body = {};
 
       if (this.formstate.code && this.formstate.code.$error && this.formstate.code.$error.validcode) {
         valid.code = true;

@@ -41,7 +41,7 @@ function setSingleDynamicEntry(entry, noUpdate) {
   }
 }
 
-function getEntries({ all, staticIfNoDynamic, dynamicIfNoStatic, onlyDynamic, onlyStatic, onlyStaticNoAlways }) {
+function getEntries({ all, staticIfNoDynamic, alwaysIfNoDynamic, dynamicIfNoStatic, onlyDynamic, onlyStatic, onlyStaticNoAlways, onlyAllways }) {
   current.entries.length = 0;
 
   if (all) {
@@ -61,6 +61,13 @@ function getEntries({ all, staticIfNoDynamic, dynamicIfNoStatic, onlyDynamic, on
     } else {
       current.entries.push.apply(current.entries, alwaysEntries.concat(dynamicEntries));
     }
+  } else if (alwaysIfNoDynamic) {
+    current.type = { alwaysIfNoDynamic: true };
+    if (0 < dynamicEntries.length) {
+      current.entries.push.apply(current.entries, alwaysEntries.concat(dynamicEntries));
+    } else {
+      current.entries.push.apply(current.entries, alwaysEntries);
+    }
   } else if (onlyDynamic) {
     current.type = { onlyDynamic: true };
     current.entries.push.apply(current.entries, alwaysEntries.concat(dynamicEntries));
@@ -70,6 +77,9 @@ function getEntries({ all, staticIfNoDynamic, dynamicIfNoStatic, onlyDynamic, on
   } else if (onlyStaticNoAlways) {
     current.type = { onlyStaticNoAlways: true };
     current.entries.push.apply(current.entries, staticEntries);
+  } else if (onlyAllways) {
+    current.type = { onlyAllways: true };
+    current.entries.push.apply(alwaysEntries);
   }
 
   return current.entries;
