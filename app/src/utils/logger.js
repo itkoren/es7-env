@@ -103,6 +103,17 @@ function info() {
   }
 }
 
+function debug() {
+  const args = [].slice.call(arguments);
+
+  if ('undefined' !== typeof document) {
+    args.unshift('[DEBUG]');
+    logInBrowser.apply(null, args);
+  } else {
+    console.info.apply(this, args); // eslint-disable-line no-console
+  }
+}
+
 function dir() {
   const args = [].slice.call(arguments);
   args.unshift('[DIR]');
@@ -115,5 +126,6 @@ module.exports = {
   error,
   warn,
   info,
+  debug,
   dir
 };
