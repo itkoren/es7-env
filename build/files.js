@@ -6,6 +6,7 @@ const files = [
   'rest.parameters',
   'spread.operator',
   'template.literals',
+  'destructuring.assignments',
   'object.values',
   'object.entries'
 ];
