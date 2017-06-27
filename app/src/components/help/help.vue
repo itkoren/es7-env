@@ -8,9 +8,9 @@
         <span aria-hidden="true">&times;</span>
       </button>
       <div class="content" @click="hide">
-        <h1 class="text-center">ES7 help</h1>
+        <h1 class="text-center">Help</h1>
         <h2>Key map</h2>
-        <p class="pb-3">Some key-bindings worth knowing. For the full list, <a href="https://codemirror.net/doc/manual.html#commands" target="_blank" rel="noopener noreferrer">see here</a>.</p>
+        <p class="pb-3">Some editor key-bindings worth knowing. For the full list, <a href="https://codemirror.net/doc/manual.html#commands" target="_blank" rel="noopener noreferrer">see here</a>.</p>
         <div v-for="details in keyMap">
           <h3>{{details.name}}<span class="float-right">
                 <span v-if="!!details.keys.all"><kbd v-for="allKey in details.keys.all">{{allKey}}</kbd></span>
