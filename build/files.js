@@ -9,7 +9,9 @@ const files = [
   'destructuring.assignments',
   'object.literals',
   'object.values',
-  'object.entries'
+  'object.entries',
+  'for.of.statement',
+  'symbols.primitive'
 ];
 
 module.exports = files;
