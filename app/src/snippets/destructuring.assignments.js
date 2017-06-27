@@ -92,3 +92,20 @@ console.log(`aa: ${aa}, bb: ${bb}, cc: ${cc}`);
   c: 7,
   x: 8
 });
+
+const points = [
+  [4, 5],
+  [10, 1],
+  [0, 40],
+  [20, 11]
+];
+/*
+  Needs to turn it to an array of objects with x and y
+  [
+    { x: 4, y: 5 },
+    { x: 10, y: 1 }
+    ...
+  ]
+*/
+const remodeled = points.map(([ x, y ]) => ({ x, y }));
+console.log(remodeled);
