@@ -3,6 +3,10 @@ const files = [
   'variables.const',
   'arrow.functions',
   'default.parameters',
+  'rest.parameters',
+  'spread.operator',
+  'template.literals',
+  'destructuring.assignments',
   'object.values',
   'object.entries'
 ];

@@ -150,9 +150,9 @@ new Vue({
         }
 
         if (this.loading.progress < 100) {
-          timer = setTimeout(function () {
+          timer = setTimeout(() => {
             this.updateProgress();
-          }.bind(this), 20);
+          }, 20);
         }
       }
     },
@@ -205,10 +205,10 @@ new Vue({
         axios.post('/code', body)
           .then(res => {
             console.log(res); // eslint-disable-line no-console
-            setTimeout(function () {
+            setTimeout(() => {
               this.stopProgress(this);
               this.formstate.$submitted = false;
-            }.bind(this), 500);
+            }, 500);
           })
           .catch(e => {
             this.setLoadingError(true);
