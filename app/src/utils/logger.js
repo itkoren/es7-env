@@ -30,7 +30,7 @@ function logInBrowser() {
     args.forEach(arg => {
       let msg = arg;
 
-      if ('string' !== typeof msg) {
+      if ('object' === typeof msg) {
         try {
           msg = JSON.stringify(msg);
         } catch (ex) {
