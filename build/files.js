@@ -3,6 +3,8 @@ const files = [
   'variables.const',
   'arrow.functions',
   'default.parameters',
+  'rest.parameters',
+  'spread.operator',
   'object.values',
   'object.entries'
 ];
