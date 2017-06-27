@@ -30,7 +30,7 @@ function Counter(limit) {
         this.tick();
       }, 1000);
     }
-  }
+  };
 
   this.tick();
 }
