@@ -27,23 +27,20 @@ function logInBrowser() {
   const args = [].slice.call(arguments);
 
   if ('undefined' !== typeof document) {
-    args.forEach(arg => {
-      let msg = arg;
 
-      if ('string' !== typeof msg) {
+    let message = args.map(arg => {
+      if ('string' !== typeof arg && !(arg instanceof Error)) {
         try {
-          msg = JSON.stringify(msg);
+          arg = JSON.stringify(arg);
         } catch (ex) {
           // Nothing
         }
       }
+      return arg;
+    }).join(' ');
 
-      consoleLog = consoleLog || logTo();
-      consoleLog.textContent += (msg + ' ');
-    });
-
-    consoleLog.textContent += '\n';
-
+    consoleLog = consoleLog || logTo();
+    consoleLog.textContent += (message + '\n');
     consoleLog.parentNode.scrollTop = consoleLog.parentNode.scrollHeight;
   }
 }
