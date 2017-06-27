@@ -36,7 +36,7 @@ function logInBrowser() {
           // Nothing
         }
       }
-      return arg;
+      return String(arg);
     }).join(' ');
 
     consoleLog = consoleLog || logTo();
