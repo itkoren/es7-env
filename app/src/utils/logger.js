@@ -29,7 +29,7 @@ function logInBrowser() {
   if ('undefined' !== typeof document) {
 
     let message = args.map(arg => {
-      if ('string' !== typeof arg && !(arg instanceof Error)) {
+      if ('object' === typeof arg && !(arg instanceof Error)) {
         try {
           arg = JSON.stringify(arg);
         } catch (ex) {
