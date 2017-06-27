@@ -11,13 +11,13 @@
         <h1 class="text-center">Help</h1>
         <h2>Key map</h2>
         <p class="pb-3">Some editor key-bindings worth knowing. For the full list, <a href="https://codemirror.net/doc/manual.html#commands" target="_blank" rel="noopener noreferrer">see here</a>.</p>
-        <div v-for="details in keyMap">
-          <h3>{{details.name}}<span class="float-right">
-                <span v-if="!!details.keys.all"><kbd v-for="allKey in details.keys.all">{{allKey}}</kbd></span>
-                <span v-if="!!details.keys.pc">pc: <kbd v-for="pcKey in details.keys.pc">{{pcKey}}</kbd></span>
-                <span v-if="!!details.keys.mac">mac: <kbd v-for="macKey in details.keys.mac">{{macKey}}</kbd></span>
+        <div v-for="entry in keyMap">
+          <h3>{{entry.name}}<span class="float-right">
+                <span v-if="!!entry.keys.all"><kbd v-for="allKey in entry.keys.all">{{allKey}}</kbd></span>
+                <span v-if="!!entry.keys.pc">pc: <kbd v-for="pcKey in entry.keys.pc">{{pcKey}}</kbd></span>
+                <span v-if="!!entry.keys.mac">mac: <kbd v-for="macKey in entry.keys.mac">{{macKey}}</kbd></span>
               </span></h3>
-          <p>{{details.description}}</p>
+          <p>{{entry.description}}</p>
         </div>
       </div>
     </div>
