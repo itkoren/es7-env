@@ -3,7 +3,6 @@
 // cache the log element
 let consoleLog;
 
-
 function getOrCreateElement(id, type, parent) {
   let el = document.getElementById(id);
 
@@ -19,7 +18,7 @@ function getOrCreateElement(id, type, parent) {
 }
 
 function logTo() {
-  let outer = getOrCreateElement('console-box', 'pre');
+  const outer = getOrCreateElement('console-box', 'pre');
   return getOrCreateElement('console-log', 'code', outer);
 }
 
@@ -27,8 +26,7 @@ function logInBrowser() {
   const args = [].slice.call(arguments);
 
   if ('undefined' !== typeof document) {
-
-    let message = args.map(arg => {
+    const message = args.map(arg => {
       if ('object' === typeof arg && !(arg instanceof Error)) {
         try {
           arg = JSON.stringify(arg);
@@ -40,7 +38,7 @@ function logInBrowser() {
     }).join(' ');
 
     consoleLog = consoleLog || logTo();
-    consoleLog.textContent += (message + '\n');
+    consoleLog.textContent += `${message}\n`;
     consoleLog.parentNode.scrollTop = consoleLog.parentNode.scrollHeight;
   }
 }
