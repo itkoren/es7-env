@@ -1,5 +1,5 @@
 const files = [
-  'logger-test', // add this to debug the logger
+  // 'logger-test', // add this to debug the logger
   'variables.let',
   'variables.const',
   'arrow.functions',
