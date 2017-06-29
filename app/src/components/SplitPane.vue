@@ -62,22 +62,20 @@ export default {
   z-index: 99;
   top: 0;
   bottom: 0;
-  right: -17px;
-  width: 10px;
+  right: -15px;
+  width: 15px;
   cursor: ew-resize;
-  margin-left: 0px;
-  padding: 8px;
 }
 .dragger::before {
+  content: '\2846';
   position: absolute;
-  font-size: 2rem;
-  content: '\2219\2219\2219';
-  word-break: break-all;
-  display: inline-block;
-  height: auto;
-  line-height: 8px;
-  top: calc(50% - 12px);
-  left: 2px;
+  top: calc(50% - .22em);
+  left: calc(50% - .22em);
+  width: 0;
+  line-height: 0;
+  /* font size can be changed to control the dragger dots size without changing any other property,
+   all other layout properties are computed relative to the glyph size */
+  font-size: 44px;
   color: #0275d8;
 }
 </style>
