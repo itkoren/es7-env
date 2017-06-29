@@ -62,22 +62,19 @@ export default {
   z-index: 99;
   top: 0;
   bottom: 0;
-  right: -17px;
-  width: 10px;
+  right: -15px;
+  width: 15px;
   cursor: ew-resize;
-  margin-left: 0px;
-  padding: 8px;
 }
 .dragger::before {
-  position: absolute;
-  font-size: 2rem;
   content: '\2219\2219\2219';
+  position: absolute;
+  /* 15px are half the height of three characters one on top of the other */
+  top: calc(50% - 15px);
+  left: 4px;
+  font-size: 16px;
+  line-height: 10px;
   word-break: break-all;
-  display: inline-block;
-  height: auto;
-  line-height: 8px;
-  top: calc(50% - 12px);
-  left: 2px;
   color: #0275d8;
 }
 </style>
