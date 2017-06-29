@@ -77,17 +77,19 @@
         <button class="btn btn-lg btn-outline-primary px-5 ml-auto" type="submit" :disabled="!model.code">Run</button>
       </nav>
       <div class="d-flex flex-grow py-3">
-        <validate auto-label class="col" :class="fieldClassName(formstate.code)">
-          <div id="code-box" class="text-left">
-            <codemirror id="code" name="code" v-model="model.code" :options="editorOptions" ref="codeEditor"
-                        validcode maxlength="10000"></codemirror>
+        <split-pane class="splitpane">
+          <validate slot="left" auto-label class="col h-100 right-padding-0" :class="fieldClassName(formstate.code)">
+            <div id="code-box" class="text-left">
+              <codemirror id="code" name="code" v-model="model.code" :options="editorOptions" ref="codeEditor"
+                          validcode maxlength="10000"></codemirror>
+            </div>
+          </validate>
+          <div slot="right" class="h-100 col left-padding-0">
+            <pre id="console-box" class="h-100">
+              <code id="console-log" class="h-100"></code>
+            </pre>
           </div>
-        </validate>
-        <div class="col">
-          <pre id="console-box" class="h-100">
-          <code id="console-log"></code>
-        </pre>
-        </div>
+        </split-pane>
       </div>
       <footer class="navbar flex-row">
         <field-messages name="code" show="$submitted" class="form-control-feedback">

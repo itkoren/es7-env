@@ -31,8 +31,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 9px;  /* for vertical scrollbars */
-  height: 9px; /* for horizontal scrollbars */
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-track {
@@ -84,4 +84,17 @@ body {
 
 .btn-outline-primary {
   background-color: #fff;
+}
+
+.splitpane {
+  width: 100%;
+  height: 100%;
+}
+
+.left-padding-0 {
+  padding-left: 0;
+}
+
+.right-padding-0 {
+  padding-right: 0;
 }

@@ -12,9 +12,10 @@ import 'codemirror/addon/hint/javascript-hint.js';
 import axios from 'axios';
 import Vue from 'vue';
 import VueForm from 'vue-form';
-import help from './components/help/help.vue';
 import LoadingBar from 'vue2-loading-bar';
 import { codemirror, CodeMirror } from 'vue-codemirror-lite'
+import help from './components/help/help.vue';
+import SplitPane from './components/SplitPane.vue'
 
 let timer;
 let stored = localStorage.getItem('es7-model');
@@ -74,6 +75,7 @@ new Vue({
     help,
     LoadingBar,
     codemirror,
+    SplitPane,
   },
 
   data() {
