@@ -55,15 +55,29 @@ export default {
   position: relative;
 }
 .left {
-  border-right: 0.2rem solid #DDDDDD;
+  border-right: 1rem solid transparent;
 }
 .dragger {
   position: absolute;
   z-index: 99;
   top: 0;
   bottom: 0;
-  right: -5px;
+  right: -17px;
   width: 10px;
   cursor: ew-resize;
+  margin-left: 0px;
+  padding: 8px;
+}
+.dragger::before {
+  position: absolute;
+  font-size: 2rem;
+  content: '\2219\2219\2219';
+  word-break: break-all;
+  display: inline-block;
+  height: auto;
+  line-height: 8px;
+  top: calc(50% - 12px);
+  left: 2px;
+  color: #0275d8;
 }
 </style>
