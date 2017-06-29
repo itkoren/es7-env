@@ -1,5 +1,16 @@
 'use strict';
 
+const logLevel = {
+  log: '»',
+  info: 'ℹ',
+  success: '✔',
+  warn: '⚠',
+  error: '✘',
+  debug: '🐛',
+  // debug: '🐞',
+  dir: ' ',
+};
+
 // cache the log element
 let consoleLog;
 
@@ -22,33 +33,33 @@ function logTo() {
   return getOrCreateElement('console-log', 'code', outer);
 }
 
-function logInBrowser() {
-  const args = [].slice.call(arguments);
+function domLog(level) {
+  // the first arg is the log-level symbol, and should not participate in processing
+  const args = [].slice.call(arguments, 1);
 
-  if ('undefined' !== typeof document) {
-    const message = args.map(arg => {
-      if ('object' === typeof arg && !(arg instanceof Error)) {
-        try {
-          arg = JSON.stringify(arg);
-        } catch (ex) {
-          // Nothing
-        }
+  const message = args.map(arg => {
+    if ('string' === typeof arg) {
+      return `"${arg}"`;
+    } else if ('object' === typeof arg && !(arg instanceof Error)) {
+      try {
+        return JSON.stringify(arg);
+      } catch (ex) {
+        // Nothing
       }
-      return String(arg);
-    }).join(' ');
+    }
+    return String(arg);
+  }).join(' ');
 
-    consoleLog = consoleLog || logTo();
-    consoleLog.textContent += `${message}\n`;
-    consoleLog.parentNode.scrollTop = consoleLog.parentNode.scrollHeight;
-  }
+  consoleLog = consoleLog || logTo();
+  consoleLog.textContent += `${level} ${message}\n`;
 }
 
 function log() {
   const args = [].slice.call(arguments);
 
-  if ('undefined' !== typeof document) {
-    args.unshift('[LOG]');
-    logInBrowser.apply(null, args);
+  if (isDom()) {
+    args.unshift(logLevel.log);
+    domLog.apply(null, args);
   } else {
     console.log.apply(this, args); // eslint-disable-line no-console
   }
@@ -57,9 +68,9 @@ function log() {
 function success() {
   const args = [].slice.call(arguments);
 
-  if ('undefined' !== typeof document) {
-    args.unshift('[SUCCESS]');
-    logInBrowser.apply(null, args);
+  if (isDom()) {
+    args.unshift(logLevel.success);
+    domLog.apply(null, args);
   } else {
     console.log(require('chalk').green.apply(this, args)); // eslint-disable-line no-console
   }
@@ -68,9 +79,9 @@ function success() {
 function error() {
   const args = [].slice.call(arguments);
 
-  if ('undefined' !== typeof document) {
-    args.unshift('[ERROR]');
-    logInBrowser.apply(null, args);
+  if (isDom()) {
+    args.unshift(logLevel.error);
+    domLog.apply(null, args);
   } else {
     console.error(require('chalk').red.apply(this, args)); // eslint-disable-line no-console
   }
@@ -79,9 +90,9 @@ function error() {
 function warn() {
   const args = [].slice.call(arguments);
 
-  if ('undefined' !== typeof document) {
-    args.unshift('[WARNING]');
-    logInBrowser.apply(null, args);
+  if (isDom()) {
+    args.unshift(logLevel.warn);
+    domLog.apply(null, args);
   } else {
     console.warn(require('chalk').orange.apply(this, args)); // eslint-disable-line no-console
   }
@@ -90,9 +101,9 @@ function warn() {
 function info() {
   const args = [].slice.call(arguments);
 
-  if ('undefined' !== typeof document) {
-    args.unshift('[INFO]');
-    logInBrowser.apply(null, args);
+  if (isDom()) {
+    args.unshift(logLevel.info);
+    domLog.apply(null, args);
   } else {
     console.info.apply(this, args); // eslint-disable-line no-console
   }
@@ -101,9 +112,9 @@ function info() {
 function debug() {
   const args = [].slice.call(arguments);
 
-  if ('undefined' !== typeof document) {
-    args.unshift('[DEBUG]');
-    logInBrowser.apply(null, args);
+  if (isDom()) {
+    args.unshift(logLevel.debug);
+    domLog.apply(null, args);
   } else {
     console.info.apply(this, args); // eslint-disable-line no-console
   }
@@ -111,8 +122,14 @@ function debug() {
 
 function dir() {
   const args = [].slice.call(arguments);
-  args.unshift('[DIR]');
-  logInBrowser.apply(null, args);
+  if (isDom()) {
+    args.unshift(logLevel.dir);
+    domLog.apply(null, args);
+  }
+}
+
+function isDom() {
+  return 'undefined' !== typeof document;
 }
 
 module.exports = {
