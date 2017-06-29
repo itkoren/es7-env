@@ -15,7 +15,7 @@ console.log(templatedWords);
 const a = 'ba';
 const b = 'QUX';
 const c = `foo bar
-${a + "z"} ${b.toLowerCase()}`;
+${a + 'z'} ${b.toLowerCase()}`;
 console.log(c);
 
 const foo = {

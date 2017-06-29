@@ -28,11 +28,27 @@ console.log('');
   person.lasName = 'Koren';
   console.log('Inside Block:', person);
 
-  //lastName = {}; // eslint-disable-line no-const-assign
-  console.log('Inside Block:', lastName);
+  /*
+  try {
+    lastName = {}; // eslint-disable-line no-const-assign
+    console.log('Inside Block:', lastName);
+  } catch(ex) {
+    console.error(ex);
+  }
 
-  //lastName = 5; // eslint-disable-line no-const-assign
+  try {
+    lastName = 5; // eslint-disable-line no-const-assign
+    console.log('Inside Block:', lastName);
+  } catch(ex) {
+    console.error(ex);
+  }
+  */
+
   console.log('Inside Block:', lastName);
 }
 
-console.log('Outside Block:', person); // eslint-disable-line no-undef
+try {
+  console.log('Outside Block:', person); // eslint-disable-line no-undef
+} catch(ex) {
+  console.error(ex);
+}

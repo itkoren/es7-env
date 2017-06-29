@@ -35,4 +35,4 @@ const name = {
   last: 'Koren'
 };
 const person = { ...name, ...address };
-console.log(JSON.stringify(person));
+console.log(person);

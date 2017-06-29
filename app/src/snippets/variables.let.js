@@ -14,4 +14,8 @@ for (let j = 0; j < 5; j++) {
   console.log('Inside Block:', j);
 }
 
-console.log('Outside Block:', j); // eslint-disable-line no-undef
+try {
+  console.log('Outside Block:', j); // eslint-disable-line no-undef
+} catch(ex) {
+  console.error(ex);
+}
