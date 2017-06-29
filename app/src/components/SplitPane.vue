@@ -67,14 +67,15 @@ export default {
   cursor: ew-resize;
 }
 .dragger::before {
-  content: '\2219\2219\2219';
+  content: '\2846';
   position: absolute;
-  /* 15px are half the height of three characters one on top of the other */
-  top: calc(50% - 15px);
-  left: 4px;
-  font-size: 16px;
-  line-height: 10px;
-  word-break: break-all;
+  top: calc(50% - .22em);
+  left: calc(50% - .22em);
+  width: 0;
+  line-height: 0;
+  /* font size can be changed to control the dragger dots size without changing any other property,
+   all other layout properties are computed relative to the glyph size */
+  font-size: 44px;
   color: #0275d8;
 }
 </style>
