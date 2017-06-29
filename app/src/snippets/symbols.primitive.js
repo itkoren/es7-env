@@ -1,6 +1,6 @@
+/*global Symbol*/
 'use strict';
 
-/*global Symbol*/
 console.log('');
 console.log('Processing Symbols Primitive:');
 console.log('');
