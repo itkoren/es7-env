@@ -1,4 +1,5 @@
 const files = [
+  // 'logger-test', // add this to debug the logger
   'variables.let',
   'variables.const',
   'arrow.functions',
@@ -11,7 +12,25 @@ const files = [
   'object.values',
   'object.entries',
   'for.of.statement',
-  'symbols.primitive'
+  'symbols.primitive',
+  'string.codePointAt',
+  'string.normalize',
+  'string.repeat',
+  'string.startsWith',
+  'string.endsWith',
+  'string.includes',
+  'string.iterator',
+  'string.padStart',
+  'string.padEnd',
+  'String.raw',
+  'String.fromCodePoint',
+  'Number.isFinite',
+  'Number.isInteger',
+  'Number.isSafeInteger',
+  'Number.isNaN',
+  'Number.EPSILON',
+  'Number.MIN_SAFE_INTEGER',
+  'Number.MAX_SAFE_INTEGER',
 ];
 
 module.exports = files;

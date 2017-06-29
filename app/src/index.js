@@ -13,7 +13,7 @@ import axios from 'axios';
 import Vue from 'vue';
 import VueForm from 'vue-form';
 import LoadingBar from 'vue2-loading-bar';
-import { codemirror } from 'vue-codemirror-lite'
+import { codemirror, CodeMirror } from 'vue-codemirror-lite'
 import help from './components/help/help.vue';
 import SplitPane from './components/SplitPane.vue'
 
@@ -92,12 +92,12 @@ new Vue({
         mode: 'javascript',
         theme: 'base16-light',
         tabSize: 2,
+        autofocus: true,
         lineNumbers: true,
         lineWrapping: true,
         styleActiveLine: true,
         extraKeys: {
           'Ctrl-Space': 'autocomplete',
-          'Ctrl-Enter': this.onSubmit,
         },
       },
     };
@@ -106,6 +106,10 @@ new Vue({
   created() {
     // fight the FOUC
     document.querySelector('.no-fouc').classList.remove('no-fouc');
+
+    // bind special keys separately for pc/mac
+    CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.onSubmit;
+    CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.onSubmit;
   },
 
   methods: {
