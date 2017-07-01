@@ -77,13 +77,13 @@ const files = [
   {
     topic: 'Number Enhancements',
     snippets: [
+      'Number.isNaN',
       'Number.isFinite',
       'Number.isInteger',
       'Number.isSafeInteger',
-      'Number.isNaN',
-      'Number.EPSILON',
       'Number.MIN_SAFE_INTEGER',
       'Number.MAX_SAFE_INTEGER',
+      'Number.EPSILON',
     ]
   },
 ];
