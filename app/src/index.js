@@ -80,7 +80,6 @@ new Vue({
 
   data() {
     return {
-      
       formstate: {},
       model: model,
       loading: {
