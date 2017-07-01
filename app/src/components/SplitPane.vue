@@ -17,9 +17,15 @@
 
 <script>
 export default {
+  props: {
+    initialSplit: {
+      type: Number,
+      default: 50,
+    },
+  },
   data () {
     return {
-      split: 50,
+      split: this.initialSplit,
       dragging: false
     }
   },
@@ -38,6 +44,7 @@ export default {
     },
     dragEnd () {
       this.dragging = false
+      this.$emit('dragend', this.split)
     }
   }
 }
