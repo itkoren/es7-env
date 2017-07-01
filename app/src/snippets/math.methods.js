@@ -1,3 +1,14 @@
+console.info('Math.trunc(x)');
+console.log(Math.trunc(13.37));    // 13
+console.log(Math.trunc(42.84));    // 42
+console.log(Math.trunc(0.123));    //  0
+console.log(Math.trunc(-0.123));   // -0
+console.log(Math.trunc('-1.123')); // -1
+console.log(Math.trunc(NaN));      // NaN
+console.log(Math.trunc('foo'));    // NaN
+console.log(Math.trunc());         // NaN
+
+
 console.info('Math.clz32(x)');
 console.log(Math.clz32(1));                // 31
 console.log(Math.clz32(1000));             // 22
@@ -96,17 +107,6 @@ console.log(Math.atanh(0));   // 0
 console.log(Math.atanh(0.5)); // 0.5493061443340548
 console.log(Math.atanh(1));   // Infinity
 console.log(Math.atanh(2));   // NaN
-
-
-console.info('Math.trunc(x)');
-console.log(Math.trunc(13.37));    // 13
-console.log(Math.trunc(42.84));    // 42
-console.log(Math.trunc(0.123));    //  0
-console.log(Math.trunc(-0.123));   // -0
-console.log(Math.trunc('-1.123')); // -1
-console.log(Math.trunc(NaN));      // NaN
-console.log(Math.trunc('foo'));    // NaN
-console.log(Math.trunc());         // NaN
 
 
 console.info('Math.fround(x)');
