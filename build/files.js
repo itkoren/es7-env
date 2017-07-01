@@ -33,6 +33,7 @@ const files = [
   'Number.MAX_SAFE_INTEGER',
   'integer.literals',
   'math.methods',
+  'exponentiation.operator',
 ];
 
 module.exports = files;
