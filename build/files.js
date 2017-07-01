@@ -31,6 +31,8 @@ const files = [
   'Number.EPSILON',
   'Number.MIN_SAFE_INTEGER',
   'Number.MAX_SAFE_INTEGER',
+  'integer.literals',
+  'math.methods',
 ];
 
 module.exports = files;
