@@ -77,6 +77,7 @@ const files = [
   {
     topic: 'Number Enhancements',
     snippets: [
+      'integer.literals',
       'Number.isFinite',
       'Number.isInteger',
       'Number.isSafeInteger',
@@ -84,9 +85,18 @@ const files = [
       'Number.EPSILON',
       'Number.MIN_SAFE_INTEGER',
       'Number.MAX_SAFE_INTEGER',
-      'integer.literals',
-      'math.methods',
+    ]
+  },
+  {
+    topic: 'Infix notation',
+    snippets: [
       'exponentiation.operator',
+    ]
+  },
+  {
+    topic: 'Math Enhancements',
+    snippets: [
+      'math.methods',
     ]
   },
 ];
