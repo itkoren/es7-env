@@ -71,7 +71,9 @@
           <select v-if="model.files && model.files.length" class="custom-select form-control form-control-lg"
                   name="file" v-model.lazy="model.file" @change="onFileSelect">
             <option disabled value="">Load Code Snippet...</option>
-            <option v-for="file of model.files" v-bind:value="file">{{file}}</option>
+            <optgroup v-for="group of model.files" :label="group.topic">
+              <option v-for="file of group.snippets" :value="file">{{file}}</option>
+            </optgroup>
           </select>
         </validate>
         <button class="btn btn-lg btn-outline-primary px-5 ml-auto" type="submit" :disabled="!model.code">Run</button>
