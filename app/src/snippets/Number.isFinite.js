@@ -1,3 +1,5 @@
+// previously global
+
 console.info('these are not finite');
 console.log(Number.isFinite(Infinity));
 console.log(Number.isFinite(NaN));
