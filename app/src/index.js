@@ -24,7 +24,8 @@ const defaults = {
   type: 'file',
   code: '',
   file: '',
-  files: []
+  files: [],
+  split: 50
 };
 const valid = {
   code: true
@@ -44,6 +45,7 @@ const model = Object.assign({}, {
   type: stored.type,
   code: stored.code,
   file: stored.file,
+  split: +stored.split,
   files: defaults.files
 });
 
@@ -80,7 +82,6 @@ new Vue({
 
   data() {
     return {
-      
       formstate: {},
       model: model,
       loading: {
@@ -207,7 +208,7 @@ new Vue({
       if (this.formstate.$valid) {
         this.updateProgress(this, 0);
         body.code = this.model.code;
-        localStorage.setItem('es7-model', JSON.stringify(this.model));
+        this.persist();
 
         axios.post('/code', body)
           .then(res => {
@@ -221,7 +222,7 @@ new Vue({
             this.setLoadingError(true);
 
             if (stored) {
-              localStorage.setItem('es7-model', JSON.stringify(stored));
+              this.persist(stored);
               this.model = Object.assign({}, this.model, stored);
             } else {
               localStorage.removeItem('es7-model');
@@ -241,6 +242,15 @@ new Vue({
             console.log(e); // eslint-disable-line no-console
           });
       }
-    }
+    },
+
+    saveSplit(splitValue) {
+      this.model.split = +splitValue;
+      this.persist();
+    },
+
+    persist(state) {
+      localStorage.setItem('es7-model', JSON.stringify(state || this.model));
+    },
   }
 });

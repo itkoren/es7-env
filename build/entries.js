@@ -12,9 +12,11 @@ const alwaysEntries = [
   path.resolve(__dirname, '..', 'app', 'src', 'index')
 ];
 
-files.forEach(file => {
-  staticEntries.push(path.resolve(__dirname, '..', 'app', 'src', 'snippets', file));
-});
+files
+  .reduce((accum, group) => accum.concat(group.snippets), [])
+  .forEach(file => {
+    staticEntries.push(path.resolve(__dirname, '..', 'app', 'src', 'snippets', file));
+  });
 
 function clearDynamic(noUpdate) {
   dynamicEntries.length = 0;

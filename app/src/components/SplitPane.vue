@@ -17,9 +17,15 @@
 
 <script>
 export default {
+  props: {
+    initialSplit: {
+      type: Number,
+      default: 50,
+    },
+  },
   data () {
     return {
-      split: 50,
+      split: this.initialSplit,
       dragging: false
     }
   },
@@ -38,6 +44,7 @@ export default {
     },
     dragEnd () {
       this.dragging = false
+      this.$emit('dragend', this.split)
     }
   }
 }
@@ -62,13 +69,14 @@ export default {
   z-index: 99;
   top: 0;
   bottom: 0;
-  right: -15px;
-  width: 15px;
+  right: -1rem;
+  width: 1rem;
   cursor: ew-resize;
 }
 .dragger::before {
   content: '\2846';
   position: absolute;
+  /* .22em is an offset from the glyph's own surrounding empty-space */
   top: calc(50% - .22em);
   left: calc(50% - .22em);
   width: 0;
