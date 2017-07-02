@@ -88,7 +88,7 @@ const files = [
     ]
   },
   {
-    topic: 'Infix notation',
+    topic: 'Infix Notation',
     snippets: [
       'exponentiation.operator',
     ]
