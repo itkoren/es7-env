@@ -28,7 +28,7 @@ function getOrCreateElement(id, type, parent) {
   return el;
 }
 
-function logElement() {
+function getLogElement() {
   if (!logEl) {
     const outer = getOrCreateElement('console-box', 'pre');
     logEl = getOrCreateElement('console-log', 'code', outer);
@@ -53,11 +53,11 @@ function domLog(level) {
     return String(arg);
   }).join(' ');
 
-  logElement().textContent += `${level} ${message}\n`;
+  getLogElement().textContent += `${level} ${message}\n`;
 }
 
 function domClear() {
-  logElement().textContent = '';
+  getLogElement().textContent = '';
 }
 
 function log() {
