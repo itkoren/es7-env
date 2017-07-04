@@ -1,3 +1,5 @@
+// we now have an infix notation operator for exponentiation
+
 const x = 10;
 const y = 2;
 

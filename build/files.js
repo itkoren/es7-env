@@ -77,6 +77,7 @@ const files = [
   {
     topic: 'Numbers and Math',
     snippets: [
+      'exponentiation-operator',
       'integer-literals',
       'number-enhancements',
       'safe-integers',
@@ -89,12 +90,6 @@ const files = [
     snippets: [
       'regexp-enhancements',
       'regexp-flags',
-    ]
-  },
-  {
-    topic: 'Infix Notation',
-    snippets: [
-      'exponentiation-operator',
     ]
   },
 ];
