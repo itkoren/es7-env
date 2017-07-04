@@ -75,28 +75,25 @@ const files = [
     ]
   },
   {
-    topic: 'Number Enhancements',
+    topic: 'Numbers and Math',
     snippets: [
-      'integer.literals',
-      'Number.isFinite',
-      'Number.isInteger',
-      'Number.isSafeInteger',
-      'Number.isNaN',
+      'integer-literals',
+      'number-enhancements',
+      'safe-integers',
       'Number.EPSILON',
-      'Number.MIN_SAFE_INTEGER',
-      'Number.MAX_SAFE_INTEGER',
+      'math-enhancements',
+    ]
+  },
+  {
+    topic: 'Regexp Enhancements',
+    snippets: [
+      'regexp-enhancements',
     ]
   },
   {
     topic: 'Infix Notation',
     snippets: [
-      'exponentiation.operator',
-    ]
-  },
-  {
-    topic: 'Math Enhancements',
-    snippets: [
-      'math.methods',
+      'exponentiation-operator',
     ]
   },
 ];
