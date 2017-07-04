@@ -1,4 +1,4 @@
-// rounding errors can become a problem in JavaScript, especially with decimal fractions. For example, 0.1 and 0.2 can’t be represented precisely, which you notice if you add them and compare them to 0.3 (which can’t be represented precisely, either).
+// rounding errors can become a problem in JavaScript, especially with decimal fractions. for example, 0.1 and 0.2 can’t be represented precisely, which you notice if you add them and compare them to 0.3 (which can’t be represented precisely, either).
 console.log(0.1 + 0.2 === 0.3); // wat?!
 
 // Number.EPSILON specifies a reasonable margin of error when comparing floating point numbers.

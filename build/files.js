@@ -80,14 +80,15 @@ const files = [
       'integer-literals',
       'number-enhancements',
       'safe-integers',
-      'Number.EPSILON',
+      'rounding-errors',
       'math-enhancements',
     ]
   },
   {
-    topic: 'Regexp Enhancements',
+    topic: 'Regular Expressions',
     snippets: [
       'regexp-enhancements',
+      'regexp-flags',
     ]
   },
   {
