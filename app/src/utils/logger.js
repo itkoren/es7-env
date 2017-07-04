@@ -12,7 +12,7 @@ const logLevel = {
 };
 
 // cache the log element
-let consoleLogEl;
+let logEl;
 
 function getOrCreateElement(id, type, parent) {
   let el = document.getElementById(id);
@@ -29,11 +29,11 @@ function getOrCreateElement(id, type, parent) {
 }
 
 function logElement() {
-  if (!consoleLogEl) {
+  if (!logEl) {
     const outer = getOrCreateElement('console-box', 'pre');
-    consoleLogEl = getOrCreateElement('console-log', 'code', outer);
+    logEl = getOrCreateElement('console-log', 'code', outer);
   }
-  return consoleLogEl;
+  return logEl;
 }
 
 function domLog(level) {
