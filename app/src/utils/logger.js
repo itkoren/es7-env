@@ -12,7 +12,7 @@ const logLevel = {
 };
 
 // cache the log element
-let consoleLog;
+let consoleLogEl;
 
 function getOrCreateElement(id, type, parent) {
   let el = document.getElementById(id);
@@ -28,12 +28,12 @@ function getOrCreateElement(id, type, parent) {
   return el;
 }
 
-function logTo() {
-  if (!consoleLog) {
+function logElement() {
+  if (!consoleLogEl) {
     const outer = getOrCreateElement('console-box', 'pre');
-    consoleLog = getOrCreateElement('console-log', 'code', outer);
+    consoleLogEl = getOrCreateElement('console-log', 'code', outer);
   }
-  return consoleLog;
+  return consoleLogEl;
 }
 
 function domLog(level) {
@@ -53,11 +53,11 @@ function domLog(level) {
     return String(arg);
   }).join(' ');
 
-  logTo().textContent += `${level} ${message}\n`;
+  logElement().textContent += `${level} ${message}\n`;
 }
 
 function domClear() {
-  logTo().textContent = '';
+  logElement().textContent = '';
 }
 
 function log() {
