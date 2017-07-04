@@ -29,8 +29,11 @@ function getOrCreateElement(id, type, parent) {
 }
 
 function logTo() {
-  const outer = getOrCreateElement('console-box', 'pre');
-  return getOrCreateElement('console-log', 'code', outer);
+  if (!consoleLog) {
+    const outer = getOrCreateElement('console-box', 'pre');
+    consoleLog = getOrCreateElement('console-log', 'code', outer);
+  }
+  return consoleLog;
 }
 
 function domLog(level) {
@@ -50,8 +53,11 @@ function domLog(level) {
     return String(arg);
   }).join(' ');
 
-  consoleLog = consoleLog || logTo();
-  consoleLog.textContent += `${level} ${message}\n`;
+  logTo().textContent += `${level} ${message}\n`;
+}
+
+function domClear() {
+  logTo().textContent = '';
 }
 
 function log() {
@@ -128,6 +134,12 @@ function dir() {
   }
 }
 
+function clear() {
+  if (isDom()) {
+    domClear();
+  }
+}
+
 function isDom() {
   return 'undefined' !== typeof document;
 }
@@ -139,5 +151,6 @@ module.exports = {
   warn,
   info,
   debug,
-  dir
+  dir,
+  clear,
 };
