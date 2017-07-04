@@ -12,7 +12,7 @@ const logLevel = {
 };
 
 // cache the log element
-let consoleLog;
+let logEl;
 
 function getOrCreateElement(id, type, parent) {
   let el = document.getElementById(id);
@@ -28,9 +28,12 @@ function getOrCreateElement(id, type, parent) {
   return el;
 }
 
-function logTo() {
-  const outer = getOrCreateElement('console-box', 'pre');
-  return getOrCreateElement('console-log', 'code', outer);
+function getLogElement() {
+  if (!logEl) {
+    const outer = getOrCreateElement('console-box', 'pre');
+    logEl = getOrCreateElement('console-log', 'code', outer);
+  }
+  return logEl;
 }
 
 function domLog(level) {
@@ -50,8 +53,11 @@ function domLog(level) {
     return String(arg);
   }).join(' ');
 
-  consoleLog = consoleLog || logTo();
-  consoleLog.textContent += `${level} ${message}\n`;
+  getLogElement().textContent += `${level} ${message}\n`;
+}
+
+function domClear() {
+  getLogElement().textContent = '';
 }
 
 function log() {
@@ -128,6 +134,12 @@ function dir() {
   }
 }
 
+function clear() {
+  if (isDom()) {
+    domClear();
+  }
+}
+
 function isDom() {
   return 'undefined' !== typeof document;
 }
@@ -139,5 +151,6 @@ module.exports = {
   warn,
   info,
   debug,
-  dir
+  dir,
+  clear,
 };

@@ -13,9 +13,10 @@ import axios from 'axios';
 import Vue from 'vue';
 import VueForm from 'vue-form';
 import LoadingBar from 'vue2-loading-bar';
-import { codemirror, CodeMirror } from 'vue-codemirror-lite'
+import {codemirror, CodeMirror} from 'vue-codemirror-lite';
 import help from './components/help/help.vue';
-import SplitPane from './components/SplitPane.vue'
+import SplitPane from './components/SplitPane.vue';
+import domLogger from './utils/logger';
 
 let timer;
 let stored = localStorage.getItem('es7-model');
@@ -55,7 +56,7 @@ Vue.use(VueForm, {
     invalid: 'form-control-danger'
   },
   validators: {
-    'validcode':() => {
+    'validcode': () => {
       // return true to set input as $valid, false to set as $invalid
       return valid.code;
     }
@@ -143,6 +144,8 @@ new Vue({
       // reset the select box to indicate to the user that snippets just serve
       // as an initial template that can be edited before running the code
       this.model.file = '';
+
+      domLogger.clear();
     },
 
     updateProgress(val) {
