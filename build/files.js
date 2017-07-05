@@ -59,19 +59,12 @@ const files = [
     ]
   },
   {
-    topic: 'String Enhancements',
+    topic: 'Strings',
     snippets: [
-      'string.codePointAt',
-      'string.normalize',
-      'string.repeat',
-      'string.startsWith',
-      'string.endsWith',
-      'string.includes',
-      'string.iterator',
-      'string.padStart',
-      'string.padEnd',
-      'String.raw',
-      'String.fromCodePoint',
+      'char-encoding',
+      'string-searching',
+      'string-manipulation',
+      'template-strings',
     ]
   },
   {
