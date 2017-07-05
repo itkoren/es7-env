@@ -62,6 +62,6 @@ console.log('\uD83D\uDE80'.match(/./gu).length);
 console.info('quantifiers apply to code points, not code units:');
 console.log(/\uD83D\uDE80{2}/u.test('\uD83D\uDE80\uD83D\uDE80'));
 
-console.info('bonus - what will be the output here?');
+// bonus - what will be the output here?
 // let lol = 123;
 // console.log(l\u{6F}l);
