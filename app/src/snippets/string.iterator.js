@@ -1,13 +1,16 @@
-let string = 'A\uD835\uDC68';
+let str = 'A\uD835\uDC68';
 
-const strIter = string[Symbol.iterator](); // eslint-disable-line no-undef
+const strIter = str[Symbol.iterator](); // eslint-disable-line no-undef
 
+console.info('iterator direct invocation:');
 console.log(strIter.next().value);
 console.log(strIter.next());
 console.log(strIter.next());
 
-string += 'B\uD835\uDC69C\uD835\uDC6A';
+str += 'B\uD835\uDC69C\uD835\uDC6A';
 
-for (let v of string) {
+console.dir();
+console.info('for..of:');
+for (let v of str) {
   console.log(v);
 }
