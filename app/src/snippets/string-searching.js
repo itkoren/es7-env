@@ -1,5 +1,5 @@
 {
-  const str = 'Despacito, Quiero respirar tu cuello despacito';
+  const str = 'Despacito, Quiero respirar tu cuello despacito'; // ❝slowly, i want to breath your neck slowly❞
 
   console.dir();
   console.info('string.startsWith()');
