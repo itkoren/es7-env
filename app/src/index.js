@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'vue2-loading-bar/src/css/loading-bar.css';
 import '../assets/styles.css';
