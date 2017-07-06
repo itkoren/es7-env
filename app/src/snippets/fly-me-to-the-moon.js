@@ -6,7 +6,7 @@ const rocket = String.fromCodePoint(0x1f680);
 const interval = 150;
 
 let steps = 20;
-let journey = Array(steps).fill(' ');
+let journey = ' '.repeat(steps);
 
 const tick = () => {
   if (steps) {
@@ -14,12 +14,11 @@ const tick = () => {
 
     setTimeout(() => {
 
-      journey.unshift(journey.includes(rocket) ? ' ' : rocket);
-      journey.pop();
+      journey = rocket.padEnd(steps, ' ').padStart(20, ' ');
 
       console.clear();
       console.dir();
-      console.dir(`${earth}${journey.join('')}${moon}`);
+      console.dir(`${earth}${journey}${moon}`);
 
       tick();
     }, interval);
