@@ -4,9 +4,10 @@ const moon = String.fromCodePoint(0x1f312);
 const rocket = String.fromCodePoint(0x1f680);
 
 const interval = 150;
+const distance = 20;
 
-let steps = 20;
-let journey = ' '.repeat(steps);
+let steps = distance;
+let journey = ' '.repeat(distance);
 
 const tick = () => {
   if (steps) {
@@ -14,7 +15,7 @@ const tick = () => {
 
     setTimeout(() => {
 
-      journey = rocket.padEnd(steps, ' ').padStart(20, ' ');
+      journey = rocket.padEnd(steps, ' ').padStart(distance, ' ');
 
       console.clear();
       console.dir();
