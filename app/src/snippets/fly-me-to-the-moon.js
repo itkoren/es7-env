@@ -14,15 +14,12 @@ const tick = () => {
 
     setTimeout(() => {
 
-      let ch = ' ';
-      if (!journey.includes(rocket)) {
-        ch = rocket;
-      }
-      journey.unshift(ch);
+      journey.unshift(journey.includes(rocket) ? ' ' : rocket);
       journey.pop();
 
       console.clear();
-      console.dir(` ${earth}${journey.join('')}${moon} `);
+      console.dir();
+      console.dir(`${earth}${journey.join('')}${moon}`);
 
       tick();
     }, interval);
