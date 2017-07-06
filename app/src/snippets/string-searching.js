@@ -1,5 +1,5 @@
 {
-  const str = 'Despacito, Quiero respirar tu cuello despacito'; // ❝slowly, i want to breath your neck slowly❞
+  const str = 'Despacito, Quiero respirar tu cuello despacito'; // "slowly, i want to breathe your neck slowly"
 
   console.dir();
   console.info('string.startsWith()');
@@ -22,10 +22,7 @@
   console.dir();
   console.info('string.includes()');
   console.dir();
-  console.log(str.includes('I\'ve been'));
+  console.log(str.includes(`I${String.fromCodePoint(39)}ve been`));
   console.log(str.includes('cocktail', 60)); // 60 is where the search should begin
   console.log(str.includes('grounds for divorce'));
-
-// bonus - what will be the output here?
-//   console.log(str.includes(String.fromCodePoint(39)));
 }

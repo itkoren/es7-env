@@ -62,8 +62,8 @@ for (let ch of rocket) {
   console.log(ch.length);
 }
 
-console.log('\uD83D\uDE80'.codePointAt(0));
-console.log('\uD83D\uDE80'.codePointAt(1));
+console.log(rocket.codePointAt(0));
+console.log(rocket.codePointAt(1));
 
 console.log([...rocket]);
 console.log([...rocket].map((v, k) => String.prototype.codePointAt.call(rocket, k)));
@@ -71,5 +71,7 @@ console.log([...rocket].map((v, k) => String.prototype.codePointAt.call(rocket, 
 
 // todo - added from console
 
-// how surrogate pair is decoded to code-point in utf-16:
-console.log((0x10000 + ((0xD83D & 0x03FF) << 10) + (0xDE80 & 0x03FF)).toString(16));
+// how to decode surrogate pairs to code points in utf-16:
+const lowSurrogate = 0xD83D;
+const highSurrogate = 0xDE80;
+console.log((0x10000 + ((lowSurrogate & 0x03FF) << 10) + (highSurrogate & 0x03FF)).toString(16));
