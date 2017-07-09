@@ -24,15 +24,15 @@ print(...numbers);
 console.log(Math.min(...numbers));
 console.log(Math.min(...'1975'));
 
-const address = {
-  id: '12',
-  city: 'Raanana',
-  country: 'Israel'
-};
 const name = {
   id: 'ab',
   first: 'Itai',
   last: 'Koren'
+};
+const address = {
+  id: '12',
+  city: 'Raanana',
+  country: 'Israel'
 };
 const person = { ...name, ...address };
 console.log(person);
