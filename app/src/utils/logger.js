@@ -41,9 +41,7 @@ function domLog(level) {
   const args = [].slice.call(arguments, 1);
 
   const message = args.map(arg => {
-    if ('string' === typeof arg) {
-      return `"${arg}"`;
-    } else if ('object' === typeof arg && !(arg instanceof Error)) {
+    if ('object' === typeof arg && !(arg instanceof Error)) {
       try {
         return JSON.stringify(arg);
       } catch (ex) {
