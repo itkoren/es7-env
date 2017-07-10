@@ -1,9 +1,9 @@
-// unicode "characters" (code points) are 21 bit long. JavaScript strings are (roughly) sequences of 16 bit characters, encoded as UTF-16.
-// therefore, code points beyond the first 16 bits of the code point range are represented by two JavaScript characters.
-
 console.dir();
 console.info('--- unicode code point escapes ---');
 console.dir();
+
+// unicode "characters" (code points) are 21 bit long. JavaScript strings are (roughly) sequences of 16 bit characters, encoded as UTF-16.
+// therefore, code points beyond the first 16 bits of the code point range are represented by two JavaScript characters.
 
 // until now, if you wanted to specify such code points via numbers, you needed two so-called unicode escapes:
 console.log('\uD83D\uDE80');
