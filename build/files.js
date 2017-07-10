@@ -85,6 +85,12 @@ const files = [
       'regexp-flags',
     ]
   },
+  {
+    topic: 'Fun',
+    snippets: [
+      'fly-me-to-the-moon',
+    ]
+  },
 ];
 
 module.exports = files;
