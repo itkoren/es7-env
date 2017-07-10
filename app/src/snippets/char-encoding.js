@@ -1,77 +1,96 @@
-// todo - extracted from string.codePointAt
+// unicode "characters" (code points) are 21 bit long. JavaScript strings are (roughly) sequences of 16 bit characters, encoded as UTF-16.
+// therefore, code points beyond the first 16 bits of the code point range are represented by two JavaScript characters.
 
-// the code-point of 'B' is 66
+console.dir();
+console.info('--- unicode code point escapes ---');
+console.dir();
+
+// until now, if you wanted to specify such code points via numbers, you needed two so-called unicode escapes:
+console.log('\uD83D\uDE80');
+// the new kind of unicode escape lets you specify any code point:
+console.log('\u{1F680}');
+console.log('\uD83D\uDE80' === '\u{1F680}');
+console.dir();
+
+// the string iterator splits strings along code point boundaries, which means that the strings it returns comprise one or two characters:
+console.info('iterator split:');
+for (let ch of 'a\uD83D\uDE80b') {
+  console.log(ch.length);
+}
+console.dir();
+
+// that gives you a quick way to count the unicode code points in a string:
+console.info('count chars, including code points:');
+console.log([...'a\uD83D\uDE80b'].length);
+console.dir();
+
+// ... and may help with reversing such strings:
+console.info('ES5 reverse with unicode:');
+console.log('\uD83D\uDE80'.split('').reverse().join(''));
+console.info('ES6 reverse with unicode:');
+console.log([...'\uD83D\uDE80'].reverse().join(''));
+console.dir();
+
+
+console.dir();
+console.info('--- numeric values of code points ---');
+console.dir();
+
+console.info('codePointAt returns the numeric (decimal) value of a code point:');
 console.log('ABC'.codePointAt(1));
+console.log('ABC'.codePointAt(1).toString(16));
+console.log('ABC'.codePointAt(42));
+console.dir();
 
-// unicode escape sequences work, too
-console.log('\uD800\uDC00'.codePointAt(0));
+// bonus: what will be the output of this:
+// console.log('\u{1F680}'.codePointAt(0).toString(16));
 
-// an index overflow will result in undefined
-console.log('XYZ'.codePointAt(42));
-
-
-// todo - extracted from String.fromCodePoint
-
-console.info('code point can be represented by decimals:');
+console.info('the opposite of codePointAt is String.fromCodePoint:');
 console.log(String.fromCodePoint(42));
-console.log(String.fromCodePoint(65, 90));
+console.dir();
 
-console.info('...or by hexadecimals:');
-console.log(String.fromCodePoint(0x404));
-console.log(String.fromCodePoint(0x1D306, 0x61, 0x1D307));
-console.log(String.fromCodePoint(0x10FFFF)); // highest code-point available
+[
+  0x1f312,
+  0x1f680,
+  0x1f30e,
+  '_',
+  Infinity,
+  -1,
+  3.14,
+  3e-2,
+  NaN,
+  0x10ffff, // highest code point available
+  0x11ffff,
+].map(cp => {
+  try {
+    console.success(String.fromCodePoint(cp));
+  } catch (e) {
+    console.error(e);
+  }
+});
+console.dir();
 
-console.info('these will throw a RangeError:');
-['_', Infinity, -1, 3.14, 3e-2, NaN]
-  .map(cp => {
-    console.log(cp);
-    try {
-      console.success(String.fromCodePoint(cp));
-    } catch (e) {
-      console.error(e);
-    }
-  });
 
-// String.fromCharCode() cannot get a character at such a high code point, but String.fromCodePoint() can return a 4-byte character as well as the usual 2-byte ones (i.e., it can return a single character which actually has a string length of 2 instead of 1!)
-console.log(String.fromCodePoint(0x2F804)); // or 194564 in decimal
+// bonus - what will be the output here?
+// let lol = 123;
+// console.log(l\u{6F}l);
 
 
-// todo - extracted from string.normalize
+
+console.dir();
+console.info('--- addendum: string normalization ---');
+console.dir();
 
 const str = '\u1E9B\u0323';
 
-// Canonically-composed form (NFC) - the default
+// canonically-composed form (NFC) - the default
 console.log('NFC:', str.normalize('NFC')); // '\u1E9B\u0323'
 
-// Canonically-decomposed form (NFD)
+// canonically-decomposed form (NFD)
 console.log('NFD:', str.normalize('NFD')); // '\u017F\u0323\u0307'
 
-// Compatibly-composed (NFKC)
+// compatibly-composed (NFKC)
 console.log('NFKC:', str.normalize('NFKC')); // '\u1E69'
 
-// Compatibly-decomposed (NFKD)
+// compatibly-decomposed (NFKD)
 console.log('NFKD:', str.normalize('NFKD')); // '\u0073\u0323\u0307'
-
-
-// todo - added after reading at 2ality
-
-const rocket = '\uD83D\uDE80';
-console.log(rocket.length);
-console.log([...rocket].length);
-for (let ch of rocket) {
-  console.log(ch.length);
-}
-
-console.log(rocket.codePointAt(0));
-console.log(rocket.codePointAt(1));
-
-console.log([...rocket]);
-console.log([...rocket].map((v, k) => String.prototype.codePointAt.call(rocket, k)));
-
-
-// todo - added from console
-
-// how to decode surrogate pairs to code points in utf-16:
-const lowSurrogate = 0xD83D;
-const highSurrogate = 0xDE80;
-console.log((0x10000 + ((lowSurrogate & 0x03FF) << 10) + (highSurrogate & 0x03FF)).toString(16));
