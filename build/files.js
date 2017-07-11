@@ -6,6 +6,12 @@ const files = [
   //   ],
   // },
   {
+    topic: 'Proper Tail Call',
+    snippets: [
+      'tail.call',
+    ]
+  },
+  {
     topic: 'Scoping',
     snippets: [
       'variables.let',
