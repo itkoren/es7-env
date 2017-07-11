@@ -65,31 +65,36 @@ const files = [
     ]
   },
   {
-    topic: 'String Enhancements',
+    topic: 'Strings',
     snippets: [
-      'string.codePointAt',
-      'string.normalize',
-      'string.repeat',
-      'string.startsWith',
-      'string.endsWith',
-      'string.includes',
-      'string.iterator',
-      'string.padStart',
-      'string.padEnd',
-      'String.raw',
-      'String.fromCodePoint',
+      'char-encoding',
+      'string-searching',
+      'string-manipulation',
+      'template-strings',
     ]
   },
   {
-    topic: 'Number Enhancements',
+    topic: 'Numbers and Math',
     snippets: [
-      'Number.isNaN',
-      'Number.isFinite',
-      'Number.isInteger',
-      'Number.isSafeInteger',
-      'Number.MIN_SAFE_INTEGER',
-      'Number.MAX_SAFE_INTEGER',
-      'Number.EPSILON',
+      'exponentiation-operator',
+      'integer-literals',
+      'number-enhancements',
+      'safe-integers',
+      'rounding-errors',
+      'math-enhancements',
+    ]
+  },
+  {
+    topic: 'Regular Expressions',
+    snippets: [
+      'regexp-enhancements',
+      'regexp-flags',
+    ]
+  },
+  {
+    topic: 'Fun',
+    snippets: [
+      'fly-me-to-the-moon',
     ]
   },
 ];

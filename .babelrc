@@ -11,7 +11,7 @@
       "targets": {
         "node": "4"
       },
-      "useBuiltIns": "usage"
+      "useBuiltIns": "entry"
     }]
   ]
 }
