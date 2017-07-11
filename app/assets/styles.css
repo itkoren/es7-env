@@ -61,7 +61,6 @@ body {
 #console-box {
   font-size: 1.2rem;
   border: 1px solid #ddd;
-  background-color: #fff;
 }
 
 #console-box {
@@ -69,12 +68,13 @@ body {
   color: #777;
 }
 
-#code-box {
+#code-box,
+#code-box .CodeMirror {
   height: 100%;
 }
 
+#console-box,
 #code-box .CodeMirror {
-  height: 100%;
   background-color: #fff;
 }
 

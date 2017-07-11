@@ -1,6 +1,9 @@
+import 'babel-polyfill';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'vue2-loading-bar/src/css/loading-bar.css';
 import '../assets/styles.css';
+import '../assets/themes.css';
 
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/selection/active-line.js';
@@ -17,6 +20,7 @@ import {codemirror, CodeMirror} from 'vue-codemirror-lite';
 import help from './components/help/help.vue';
 import SplitPane from './components/SplitPane.vue';
 import domLogger from './utils/logger';
+import themes from './themes';
 
 let timer;
 let stored = localStorage.getItem('es7-model');
@@ -26,7 +30,8 @@ const defaults = {
   code: '',
   file: '',
   files: [],
-  split: 50
+  split: 50,
+  consoleTheme: '',
 };
 const valid = {
   code: true
@@ -47,7 +52,8 @@ const model = Object.assign({}, {
   code: stored.code,
   file: stored.file,
   split: +stored.split,
-  files: defaults.files
+  files: defaults.files,
+  consoleTheme: stored.consoleTheme,
 });
 
 Vue.use(VueForm, {
@@ -102,6 +108,9 @@ new Vue({
           'Ctrl-Space': 'autocomplete',
         },
       },
+      consoleThemeMap: {
+        'fly-me-to-the-moon': 'space'
+      },
     };
   },
 
@@ -112,6 +121,11 @@ new Vue({
     // bind special keys separately for pc/mac
     CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.onSubmit;
     CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.onSubmit;
+
+    // restore saved theme
+    if (this.model.consoleTheme) {
+      themes.apply(this.model.consoleTheme, '#console-box');
+    }
   },
 
   methods: {
@@ -146,6 +160,15 @@ new Vue({
       this.model.file = '';
 
       domLogger.clear();
+
+      let oldConsoleTheme = this.model.consoleTheme;
+      let newConsoleTheme = this.consoleThemeMap[file] || '';
+      if (newConsoleTheme !== oldConsoleTheme) {
+        themes.clear(oldConsoleTheme, '#console-box');
+        themes.apply(newConsoleTheme, '#console-box');
+        this.model.consoleTheme = newConsoleTheme;
+        this.persist();
+      }
     },
 
     updateProgress(val) {

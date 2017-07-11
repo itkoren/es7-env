@@ -76,7 +76,7 @@
     left: 0;
     right: 0;
     z-index: 99999;
-    opacity: .8;
+    opacity: .9;
     background-color: #f2f2f2;
   }
 
