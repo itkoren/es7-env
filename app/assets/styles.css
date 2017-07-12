@@ -26,7 +26,7 @@ body {
   min-height: 100vh;
   font-size: 24px;
   color: #555;
-  background-color: #fafafa;
+  background-color: #f9f9f9;
   letter-spacing: .02em;
 }
 
@@ -78,8 +78,26 @@ body {
   background-color: #fff;
 }
 
-#code-box .CodeMirror .CodeMirror-activeline-background {
+#code-box .CodeMirror.cm-s-base16-light span.cm-string-2 {
+  color: #f4bf75;
+}
+
+#code-box .CodeMirror.cm-s-base16-light .CodeMirror-activeline-background {
   background-color: #f6f6f6;
+}
+
+#code-box .CodeMirror.cm-s-base16-light div.CodeMirror-selected {
+  background-color: #eef;
+}
+
+#code-box .CodeMirror.cm-s-base16-light .cm-matchhighlight {
+  border-bottom: 1px solid;
+}
+
+#code-box .CodeMirror.cm-s-base16-light .CodeMirror-matchingbracket {
+  color: #6a9fb5 !important;
+  text-decoration: none;
+  border-bottom: 1px solid;
 }
 
 .btn-outline-primary {
