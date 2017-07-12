@@ -92,6 +92,12 @@ const files = [
     ]
   },
   {
+    topic: 'Function Enhancements',
+    snippets: [
+      'function.name',
+    ]
+  },
+  {
     topic: 'Fun',
     snippets: [
       'fly-me-to-the-moon',
