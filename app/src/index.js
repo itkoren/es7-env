@@ -32,6 +32,7 @@ const defaults = {
   files: [],
   split: 50,
   consoleTheme: '',
+  editorState: {},
 };
 const valid = {
   code: true
@@ -54,6 +55,7 @@ const model = Object.assign({}, {
   split: +stored.split,
   files: defaults.files,
   consoleTheme: stored.consoleTheme,
+  editorState: stored.editorState,
 });
 
 Vue.use(VueForm, {
@@ -114,6 +116,12 @@ new Vue({
     };
   },
 
+  computed: {
+    editor() {
+      return this.$refs.codeEditor.editor;
+    },
+  },
+
   created() {
     // fight the FOUC
     document.querySelector('.no-fouc').classList.remove('no-fouc');
@@ -125,6 +133,24 @@ new Vue({
     // restore saved theme
     if (this.model.consoleTheme) {
       themes.apply(this.model.consoleTheme, '#console-box');
+    }
+  },
+
+  mounted() {
+    // restore code editor saved state
+    const {cursor, selections, history, scroll} = this.model.editorState;
+    if (cursor) {
+      this.editor.setCursor(cursor);
+    }
+    if (selections) {
+      this.editor.setSelections(selections);
+    }
+    if (history) {
+      this.editor.setHistory(history);
+    }
+    if (scroll) {
+      const {left: x, top: y} = scroll;
+      this.editor.scrollTo(x, y);
     }
   },
 
@@ -169,6 +195,16 @@ new Vue({
         this.model.consoleTheme = newConsoleTheme;
         this.persist();
       }
+
+      // reset the code editor state
+      this.model.editorState = {};
+      this.editor.setCursor(0, 0);
+      this.editor.scrollTo(0, 0);
+      this.editor.clearHistory(); // this also takes care of clearing current selections
+
+      // regain editor focus
+      this.editor.focus();
+
     },
 
     updateProgress(val) {
@@ -214,8 +250,6 @@ new Vue({
     },
 
     onSubmit() {
-      const body = {};
-
       if (this.formstate.code && this.formstate.code.$error && this.formstate.code.$error.validcode) {
         valid.code = true;
 
@@ -233,10 +267,17 @@ new Vue({
 
       if (this.formstate.$valid) {
         this.updateProgress(this, 0);
-        body.code = this.model.code;
+
+        this.model.editorState = {
+          cursor: this.editor.getCursor(),
+          selections: this.editor.listSelections(),
+          history: this.editor.getHistory(),
+          scroll: this.editor.getScrollInfo(),
+        };
+
         this.persist();
 
-        axios.post('/code', body)
+        axios.post('/code', {code: this.model.code})
           .then(res => {
             console.log(res); // eslint-disable-line no-console
             setTimeout(() => {
@@ -252,11 +293,7 @@ new Vue({
               this.model = Object.assign({}, this.model, stored);
             } else {
               localStorage.removeItem('es7-model');
-              this.model = Object.assign({}, this.model, {
-                type: 'file',
-                code: '',
-                file: ''
-              });
+              this.model = Object.assign({}, this.model, defaults);
             }
 
             valid.code = false;
