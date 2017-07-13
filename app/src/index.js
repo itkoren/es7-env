@@ -1,16 +1,23 @@
 import 'babel-polyfill';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'vue2-loading-bar/src/css/loading-bar.css';
-import '../assets/styles.css';
-import '../assets/themes.css';
 
+import 'vue2-loading-bar/src/css/loading-bar.css';
+
+import 'codemirror/theme/base16-light.css';
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/selection/active-line.js';
-import 'codemirror/theme/base16-light.css';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/hint/show-hint.css';
 import 'codemirror/addon/hint/javascript-hint.js';
+import 'codemirror/addon/edit/matchbrackets.js';
+import 'codemirror/addon/edit/closebrackets.js';
+import 'codemirror/addon/comment/comment.js';
+import 'codemirror/addon/search/match-highlighter.js';
+
+import '../assets/styles.css';
+import '../assets/themes.css';
+
 
 import axios from 'axios';
 import Vue from 'vue';
@@ -32,6 +39,7 @@ const defaults = {
   files: [],
   split: 50,
   consoleTheme: '',
+  editorState: {},
 };
 const valid = {
   code: true
@@ -54,6 +62,7 @@ const model = Object.assign({}, {
   split: +stored.split,
   files: defaults.files,
   consoleTheme: stored.consoleTheme,
+  editorState: stored.editorState,
 });
 
 Vue.use(VueForm, {
@@ -104,6 +113,9 @@ new Vue({
         lineNumbers: true,
         lineWrapping: true,
         styleActiveLine: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        highlightSelectionMatches: true,
         extraKeys: {
           'Ctrl-Space': 'autocomplete',
         },
@@ -114,6 +126,12 @@ new Vue({
     };
   },
 
+  computed: {
+    editor() {
+      return this.$refs.codeEditor.editor;
+    },
+  },
+
   created() {
     // fight the FOUC
     document.querySelector('.no-fouc').classList.remove('no-fouc');
@@ -121,10 +139,30 @@ new Vue({
     // bind special keys separately for pc/mac
     CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.onSubmit;
     CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.onSubmit;
+    CodeMirror.keyMap.macDefault['Cmd-/'] = CodeMirror.commands.toggleComment;
+    CodeMirror.keyMap.pcDefault['Ctrl-/'] = CodeMirror.commands.toggleComment;
 
     // restore saved theme
     if (this.model.consoleTheme) {
       themes.apply(this.model.consoleTheme, '#console-box');
+    }
+  },
+
+  mounted() {
+    // restore code editor saved state
+    const {cursor, selections, history, scroll} = this.model.editorState;
+    if (cursor) {
+      this.editor.setCursor(cursor);
+    }
+    if (selections) {
+      this.editor.setSelections(selections);
+    }
+    if (history) {
+      this.editor.setHistory(history);
+    }
+    if (scroll) {
+      const {left: x, top: y} = scroll;
+      this.editor.scrollTo(x, y);
     }
   },
 
@@ -169,6 +207,16 @@ new Vue({
         this.model.consoleTheme = newConsoleTheme;
         this.persist();
       }
+
+      // reset the code editor state
+      this.model.editorState = {};
+      this.editor.setCursor(0, 0);
+      this.editor.scrollTo(0, 0);
+      this.editor.clearHistory(); // this also takes care of clearing current selections
+
+      // regain editor focus
+      this.editor.focus();
+
     },
 
     updateProgress(val) {
@@ -214,8 +262,6 @@ new Vue({
     },
 
     onSubmit() {
-      const body = {};
-
       if (this.formstate.code && this.formstate.code.$error && this.formstate.code.$error.validcode) {
         valid.code = true;
 
@@ -233,10 +279,17 @@ new Vue({
 
       if (this.formstate.$valid) {
         this.updateProgress(this, 0);
-        body.code = this.model.code;
+
+        this.model.editorState = {
+          cursor: this.editor.getCursor(),
+          selections: this.editor.listSelections(),
+          history: this.editor.getHistory(),
+          scroll: this.editor.getScrollInfo(),
+        };
+
         this.persist();
 
-        axios.post('/code', body)
+        axios.post('/code', {code: this.model.code})
           .then(res => {
             console.log(res); // eslint-disable-line no-console
             setTimeout(() => {
@@ -252,11 +305,7 @@ new Vue({
               this.model = Object.assign({}, this.model, stored);
             } else {
               localStorage.removeItem('es7-model');
-              this.model = Object.assign({}, this.model, {
-                type: 'file',
-                code: '',
-                file: ''
-              });
+              this.model = Object.assign({}, this.model, defaults);
             }
 
             valid.code = false;
