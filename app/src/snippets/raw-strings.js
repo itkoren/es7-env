@@ -6,12 +6,6 @@ console.dir();
 console.log(String.raw`\u000A`.length);
 console.dir();
 
-// interpolation still takes place, so ${substitutions} are processed
-const action = 'go';
-const consequence = 'die';
-console.log(String.raw`if you ${action}, i will surely ${consequence}`);
-console.dir();
-
 // normally you would not call String.raw() as a function, but to simulate `6${'*'}7${'='}42` you can do:
 console.log(String.raw({
   raw: '6742'
@@ -19,7 +13,15 @@ console.log(String.raw({
 console.dir();
 
 // the above works as a string is an array-like object. we could pass in an actual array instead:
+const splitter = 'devil';
 console.log(String.raw({
   raw: ['must be a ', ' between us']
-}, 'devil'));
+}, splitter));
+console.dir();
+
+// interpolation still takes place, so ${substitutions} are processed
+const action = 'go';
+const consequence = 'die';
+const reason = 'chained';
+console.log(String.raw`if you ${action}, i will surely ${consequence}, we're ${reason}`);
 console.dir();
