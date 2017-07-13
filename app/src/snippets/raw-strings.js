@@ -1,8 +1,8 @@
-// '\n' will not become a newline character, but two separate characters: '\' and 'n'
+// '\n' will not become a newline character, but two separate characters, '\' and 'n':
 console.log(String.raw`hey,\n been trying to meet you`);
 console.dir();
 
-// similarly, '\u000A' is not an escape sequence anymore: check the string length for proof
+// similarly, '\u000A' is not an escape sequence anymore, check the string length for proof:
 console.log(String.raw`\u000A`.length);
 console.dir();
 
@@ -19,7 +19,7 @@ console.log(String.raw({
 }, splitter));
 console.dir();
 
-// interpolation still takes place, so ${substitutions} are processed
+// interpolation still takes place, so ${substitutions} are processed:
 const action = 'go';
 const consequence = 'die';
 const reason = 'chained';
