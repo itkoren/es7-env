@@ -6,7 +6,7 @@ console.dir();
 
 console.log(str.repeat(0));
 console.log(str.repeat(2));
-console.log(str.repeat(3.5));
+console.log(str.repeat(3.5)); // what will happen with 3.6?
 
 try {
   str.repeat(-1);
