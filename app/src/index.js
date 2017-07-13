@@ -7,6 +7,7 @@ import 'vue2-loading-bar/src/css/loading-bar.css';
 import 'codemirror/theme/base16-light.css';
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/selection/active-line.js';
+import 'codemirror/addon/selection/mark-selection.js';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/hint/show-hint.css';
 import 'codemirror/addon/hint/javascript-hint.js';
@@ -113,6 +114,7 @@ new Vue({
         lineNumbers: true,
         lineWrapping: true,
         styleActiveLine: true,
+        styleSelectedText: true,
         matchBrackets: true,
         autoCloseBrackets: true,
         highlightSelectionMatches: true,

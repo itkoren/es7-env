@@ -82,14 +82,6 @@ body {
   color: #f4bf75;
 }
 
-#code-box .CodeMirror.cm-s-base16-light .CodeMirror-activeline-background {
-  background-color: #f6f6f6;
-}
-
-#code-box .CodeMirror.cm-s-base16-light div.CodeMirror-selected {
-  background-color: #eef;
-}
-
 #code-box .CodeMirror.cm-s-base16-light .cm-matchhighlight {
   border-bottom: 1px solid;
 }
@@ -99,6 +91,20 @@ body {
   text-decoration: none;
   border-bottom: 1px solid;
 }
+
+#code-box .CodeMirror.cm-s-base16-light .CodeMirror-activeline-background {
+  background-color: #f6f6f6;
+}
+
+#code-box .CodeMirror.cm-s-base16-light div.CodeMirror-selected {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#code-box .CodeMirror.cm-s-base16-light .CodeMirror-selectedtext {
+  color: #fff !important;
+  border-bottom: 0 none;
+}
+
 
 .btn-outline-primary {
   background-color: #fff;
