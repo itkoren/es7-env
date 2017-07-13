@@ -97,6 +97,12 @@ const files = [
       'fly-me-to-the-moon',
     ]
   },
+  {
+    topic: 'Exercises',
+    snippets: [
+      'exercise.1',
+    ]
+  },
 ];
 
 module.exports = files;
