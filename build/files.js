@@ -69,7 +69,7 @@ const files = [
     snippets: [
       'string-searching',
       'string-manipulation',
-      'template-strings',
+      'raw-strings',
       'char-encoding',
     ]
   },
