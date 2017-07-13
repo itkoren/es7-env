@@ -150,7 +150,7 @@ new Vue({
 
   mounted() {
     // restore code editor saved state
-    const {cursor, selections, history, scroll} = this.model.editorState;
+    const {cursor, selections, history, scroll} = this.model.editorState || {};
     if (cursor) {
       this.editor.setCursor(cursor);
     }
