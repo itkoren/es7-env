@@ -1,15 +1,13 @@
-// the character after 'Hi' is not a newline character, '\' and 'n' are two characters.
+// '\n' is not a newline character, '\' and 'n' are two characters
 console.log(String.raw`Hi\n${2 + 3}!`);
 console.dir();
 
-// same here, this time we will get the \, u, 0, 0, 0, A; 6 characters.
-// all kinds of escape characters will be ineffective and backslashes will be present in the output string.
-// you can confirm this by checking the .length property of the string.
+// similarly, '\u000A' is not an escape sequence: check the string length for proof
 console.log(String.raw`Hi\u000A!`);
 console.log(String.raw`Hi\u000A!`.length);
 console.dir();
 
-// substitutions are processed.
+// interpolation takes place, so ${substitutions} are processed
 const name = 'Bob';
 console.log(String.raw`Hi\n${name}!`);
 console.dir();
@@ -18,7 +16,8 @@ console.dir();
 console.log(String.raw({raw: 'test'}, 0, 1, 2));
 console.dir();
 
-// note that 'test', a string, is an array-like object. The following is equivalent to:
+// note that a string is an array-like object, so we could pass in an actual array.
+// the following is equivalent to:
 // `foo${2 + 3}bar${'Java' + 'Script'}baz`
 console.log(String.raw({
   raw: ['foo', 'bar', 'baz']
