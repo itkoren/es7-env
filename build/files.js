@@ -67,10 +67,10 @@ const files = [
   {
     topic: 'Strings',
     snippets: [
-      'char-encoding',
       'string-searching',
       'string-manipulation',
       'template-strings',
+      'char-encoding',
     ]
   },
   {
