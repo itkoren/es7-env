@@ -103,6 +103,12 @@ const files = [
       'exercise.1',
     ]
   },
+  {
+    topic: 'Solutions',
+    snippets: [
+      'solution.1',
+    ]
+  },
 ];
 
 module.exports = files;
