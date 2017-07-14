@@ -13,10 +13,9 @@ console.log(String.raw({
 console.dir();
 
 // the above works as a string is an array-like object. we could pass in an actual array instead:
-const splitter = 'devil';
 console.log(String.raw({
   raw: ['must be a ', ' between us']
-}, splitter));
+}, 'devil'));
 console.dir();
 
 // interpolation still takes place, so ${substitutions} are processed:
