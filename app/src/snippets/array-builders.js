@@ -4,10 +4,10 @@ let arr;
 
 console.dir();
 console.info('--- Array.from() ---');
-console.dir('turns array-like objects or iterables into real arrays');
 console.dir();
+// turns array-like objects or iterables into real arrays
 
-// array-like objects (anything that has a length property and can be accessed by index)
+// array-like objects examples (anything that has a length property and can be accessed by index):
 
 console.info('arguments list:');
 
@@ -31,7 +31,7 @@ console.log(arr[10]);
 console.log('forEach is a', typeof arr.forEach);
 console.dir();
 
-// iterables (constructs that expose their elements via methods)
+// iterables examples (constructs that expose their elements via methods):
 
 console.info('string:');
 
@@ -77,14 +77,14 @@ console.dir();
 
 console.dir();
 console.info('--- Array.of() ---');
-console.dir('creates an array from all of its arguments');
 console.dir();
+// creates an array from all of its arguments
 
-console.info('we can mix types:')
+console.info('we can mix types:');
 console.log(Array.of('', +'', !''));
 console.dir();
 
-console.info('it behaves a little differet from the array constructor:')
+console.info('it behaves a little differet from the array constructor:');
 
 arr = Array.of(3);
 console.log(arr);

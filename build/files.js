@@ -101,6 +101,7 @@ const files = [
     topic: 'Arrays',
     snippets: [
       'array-builders',
+      'array-mutation',
     ]
   },
   {
