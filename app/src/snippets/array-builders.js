@@ -7,7 +7,7 @@ console.info('--- Array.from() ---');
 console.dir('turns array-like objects or iterables into real arrays');
 console.dir();
 
-// array-like objects
+// array-like objects (anything that has a length property and can be accessed by index)
 
 console.info('arguments list:');
 
@@ -31,7 +31,7 @@ console.log(arr[10]);
 console.log('forEach is a', typeof arr.forEach);
 console.dir();
 
-// iterables
+// iterables (constructs that expose their elements via methods)
 
 console.info('string:');
 
@@ -62,6 +62,17 @@ arr = Array.from(new Clazz());
 console.log(arr);
 console.log('is array?', Array.isArray(arr));
 console.dir();
+
+console.info('mapping:');
+
+const buttons = document.querySelectorAll('button');
+arr = Array.from(buttons, b => b.textContent);
+
+console.log(arr);
+// use the logger as the mapper, to print each item's value/index
+Array.from(arr, console.log);
+console.dir();
+
 
 
 console.dir();
