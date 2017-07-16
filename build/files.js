@@ -98,15 +98,21 @@ const files = [
     ]
   },
   {
-    topic: 'Fun',
+    topic: 'Arrays',
     snippets: [
-      'fly-me-to-the-moon',
+      'array-builders',
     ]
   },
   {
     topic: 'Exercises',
     snippets: [
       'exercise.1',
+    ]
+  },
+  {
+    topic: 'Fun',
+    snippets: [
+      'fly-me-to-the-moon',
     ]
   },
 ];
