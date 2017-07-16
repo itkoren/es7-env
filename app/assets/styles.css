@@ -31,8 +31,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 12px;  /* for vertical scrollbars */
-  height: 12px; /* for horizontal scrollbars */
+  width: 10px;  /* for vertical scrollbars */
+  height: 10px; /* for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-track {
@@ -78,22 +78,38 @@ body {
   background-color: #fff;
 }
 
-#code-box .CodeMirror.cm-s-base16-light span.cm-string-2 {
-  color: #f4bf75;
+#code-box .CodeMirror .CodeMirror-lines {
+  /* virtual space on bottom */
+  padding-bottom: 500px;
 }
 
-#code-box .CodeMirror.cm-s-base16-light .cm-matchhighlight {
+#code-box .CodeMirror .cm-matchhighlight {
   border-bottom: 1px solid;
 }
 
-#code-box .CodeMirror.cm-s-base16-light .CodeMirror-matchingbracket {
-  color: #6a9fb5 !important;
+#code-box .CodeMirror .CodeMirror-matchingbracket {
   text-decoration: none;
   border-bottom: 1px solid;
 }
 
+#code-box .CodeMirror .CodeMirror-selectedtext {
+  border-bottom: 0 none;
+}
+
+#code-box .CodeMirror.cm-s-base16-light span.cm-string-2 {
+  color: #f4bf75;
+}
+
+#code-box .CodeMirror.cm-s-base16-light .CodeMirror-matchingbracket {
+  color: #6a9fb5 !important;
+}
+
 #code-box .CodeMirror.cm-s-base16-light .CodeMirror-activeline-background {
   background-color: #f6f6f6;
+}
+
+#code-box .CodeMirror.cm-s-base16-light .CodeMirror-activeline-gutter .CodeMirror-linenumber {
+  color: #555;
 }
 
 #code-box .CodeMirror.cm-s-base16-light div.CodeMirror-selected {
@@ -102,7 +118,6 @@ body {
 
 #code-box .CodeMirror.cm-s-base16-light .CodeMirror-selectedtext {
   color: #fff !important;
-  border-bottom: 0 none;
 }
 
 
