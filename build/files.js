@@ -102,6 +102,7 @@ const files = [
     snippets: [
       'array-builders',
       'array-mutation',
+      'array-searching',
     ]
   },
   {
