@@ -1,7 +1,7 @@
 let altered;
 
 console.dir();
-console.info('--- Array.copyWithin() ---');
+console.info('--- Array.prototype.copyWithin() ---');
 console.dir();
 // shallow-copies part of an array to another location in the same array
 

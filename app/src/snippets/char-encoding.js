@@ -52,7 +52,7 @@ console.dir();
 // bonus: what will be the output of this:
 // console.log('\u{1F680}'.codePointAt(0).toString(16));
 
-console.info('the opposite of codePointAt is String.fromCodePoint:');
+console.info('the opposite of codePointAt is fromCodePoint:');
 console.log(String.fromCodePoint(42));
 console.dir();
 

@@ -1,7 +1,7 @@
 const str = 'abc';
 
 console.dir();
-console.info('string.repeat()');
+console.info('String.prototype.repeat()');
 console.dir();
 
 console.log(str.repeat(0));
@@ -22,7 +22,7 @@ console.log(obj.repeat(2));
 
 
 console.dir();
-console.info('string.padStart()');
+console.info('String.prototype.padStart()');
 console.dir();
 
 console.info('state the target length as 10:');
@@ -39,7 +39,7 @@ console.log(str.padStart(1));
 
 
 console.dir();
-console.info('string.padEnd()');
+console.info('String.prototype.padEnd()');
 console.dir();
 
 console.info('state the target length as 10:');
