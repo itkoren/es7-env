@@ -100,6 +100,10 @@ body {
   color: #f4bf75;
 }
 
+#code-box .CodeMirror.cm-s-base16-light .cm-matchhighlight {
+  border-bottom-color: #333;
+}
+
 #code-box .CodeMirror.cm-s-base16-light .CodeMirror-matchingbracket {
   color: #6a9fb5 !important;
 }
