@@ -42,6 +42,17 @@ console.info(`find an object's index by property:`);
 
 console.log(guitars.findIndex(sixStrings));
 console.log(guitars.findIndex(threeStrings));
+console.dir();
+
+console.info('the notorious NaN:');
+
+const nanArray = [NaN];
+
+// indexOf() fails here, since it uses strict equality under the hood, and NaN === NaN -> false
+console.log(nanArray.indexOf(NaN));
+
+// let's compare with Object.is to remedy this
+console.log(nanArray.findIndex((n) => Object.is(n, NaN)));
 
 
 console.dir();
