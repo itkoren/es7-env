@@ -103,6 +103,7 @@ const files = [
       'array-builders',
       'array-mutation',
       'array-searching',
+      'array-iteration',
     ]
   },
   {
