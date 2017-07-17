@@ -8,9 +8,13 @@ const ø = Object.create(null);
 
 console.info('find a value:');
 
-const above10 = (n) => n > 10;
+const integers = [1, 2, 10, 30, 100];
 
-console.log([1, 2, 10, 30, 100].find(above10));
+const above10 = (n) => n > 10;
+const equals20 = (n) => n === 20;
+
+console.log(integers.find(above10));
+console.log(integers.find(equals20));
 console.dir();
 
 
@@ -39,3 +43,13 @@ console.log(
   guitars.findIndex(prop.bind(ø, 'strings', 6))
 );
 
+
+console.dir();
+console.info('--- Array.prototype.includes() ---');
+console.dir();
+
+const letters = ['a', 'b', 'c'];
+
+console.log(letters.includes('b'));
+console.log(letters.includes('b', 2));
+console.log(letters.includes('b', -2));
