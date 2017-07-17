@@ -3,9 +3,6 @@ console.info('--- Array.prototype.find() ---');
 console.dir();
 // retrieves the first value that satisfies the predicate
 
-const ø = Object.create(null);
-
-
 console.info('find a value:');
 
 const integers = [1, 2, 10, 30, 100];
@@ -28,9 +25,13 @@ let guitars = [
 
 const prop = (name, value, obj) => obj[name] === value;
 
-console.log(
-  guitars.find(prop.bind(ø, 'strings', 6))
-);
+const ø = Object.create(null);
+
+const sixStrings = prop.bind(ø, 'strings', 6);
+const threeStrings = prop.bind(ø, 'strings', 3);
+
+console.log(guitars.find(sixStrings));
+console.log(guitars.find(threeStrings));
 
 
 console.dir();
@@ -39,9 +40,8 @@ console.dir();
 
 console.info(`find an object's index by property:`);
 
-console.log(
-  guitars.findIndex(prop.bind(ø, 'strings', 6))
-);
+console.log(guitars.findIndex(sixStrings));
+console.log(guitars.findIndex(threeStrings));
 
 
 console.dir();
