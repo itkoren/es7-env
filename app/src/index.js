@@ -295,6 +295,9 @@ new Vue({
           .then(res => {
             console.log(res); // eslint-disable-line no-console
             setTimeout(() => {
+              // we know successful response will cause a page reload,
+              // so let's show the splash screen in the meanwhile
+              document.documentElement.className = 'no-fouc';
               this.stopProgress(this);
               this.formstate.$submitted = false;
             }, 500);
