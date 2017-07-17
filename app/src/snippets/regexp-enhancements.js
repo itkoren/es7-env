@@ -5,7 +5,7 @@
 
 const REGEX = /abc/ig;
 
-console.info(`
+console.dir(`
 flags property:
 `);
 
@@ -13,7 +13,7 @@ console.log(REGEX.source); // ES5
 console.log(REGEX.flags); // ES6
 
 
-console.info(`
+console.dir(`
 clone via RegExp() constructor:
 `);
 

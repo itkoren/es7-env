@@ -1,6 +1,6 @@
 const str = 'abc';
 
-console.info(`
+console.dir(`
 String.prototype.repeat()
 `);
 
@@ -21,7 +21,7 @@ const obj = {
 console.log(obj.repeat(2));
 
 
-console.info(`
+console.dir(`
 String.prototype.padStart()
 `);
 
@@ -38,7 +38,7 @@ console.info('when the target length is shorter than the initial string, the str
 console.log(str.padStart(1));
 
 
-console.info(`
+console.dir(`
 String.prototype.padEnd()
 `);
 

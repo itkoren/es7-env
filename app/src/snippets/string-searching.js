@@ -1,6 +1,6 @@
 const str = 'Despacito, Quiero respirar tu cuello despacito'; // "slowly, i want to breathe your neck slowly"
 
-console.info(`
+console.dir(`
 String.prototype.startsWith()
 `);
 
@@ -10,7 +10,7 @@ console.log(str.startsWith('Quiero'));
 console.log(str.startsWith('Quiero', 11));
 
 
-console.info(`
+console.dir(`
 String.prototype.endsWith()
 `);
 
@@ -20,7 +20,7 @@ console.log(str.endsWith('Quiero'));
 console.log(str.endsWith('Quiero', 17));
 
 
-console.info(`
+console.dir(`
 String.prototype.includes()
 `);
 
