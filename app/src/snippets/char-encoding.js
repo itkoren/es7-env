@@ -2,9 +2,9 @@
 // therefore, code points beyond the first 16 bits of the code point range are represented by two JavaScript characters.
 
 
-console.dir();
-console.info('--- unicode code point escapes ---');
-console.dir();
+console.dir(`
+--- unicode code point escapes ---
+`);
 
 // ES5 - you need two hex escapes:
 const pair = '\uD83D\uDE80';
@@ -17,9 +17,9 @@ console.log(pair === single);
 console.dir();
 
 
-console.dir();
-console.info('--- iterator split support ---');
-console.dir();
+console.dir(`
+--- iterator split support ---
+`);
 
 const sequence = 'a\uD83D\uDE80b';
 
@@ -39,9 +39,9 @@ console.success([...sequence].reverse().join(''));
 console.dir();
 
 
-console.dir();
-console.info('--- numeric values of code points ---');
-console.dir();
+console.dir(`
+--- numeric values of code points ---
+`);
 
 console.info('codePointAt returns the numeric (decimal) value of a code point:');
 console.log('ABC'.codePointAt(1));
@@ -84,9 +84,9 @@ console.dir();
 
 
 
-console.dir();
-console.info('--- addendum: string normalization ---');
-console.dir();
+console.dir(`
+--- addendum: string normalization ---
+`);
 
 const str = '\u1E9B\u0323';
 

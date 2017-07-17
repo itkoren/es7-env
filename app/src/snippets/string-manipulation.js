@@ -1,8 +1,8 @@
 const str = 'abc';
 
-console.dir();
-console.info('String.prototype.repeat()');
-console.dir();
+console.info(`
+String.prototype.repeat()
+`);
 
 console.log(str.repeat(0));
 console.log(str.repeat(2));
@@ -21,9 +21,9 @@ const obj = {
 console.log(obj.repeat(2));
 
 
-console.dir();
-console.info('String.prototype.padStart()');
-console.dir();
+console.info(`
+String.prototype.padStart()
+`);
 
 console.info('state the target length as 10:');
 console.log(str.padStart(10));
@@ -38,9 +38,9 @@ console.info('when the target length is shorter than the initial string, the str
 console.log(str.padStart(1));
 
 
-console.dir();
-console.info('String.prototype.padEnd()');
-console.dir();
+console.info(`
+String.prototype.padEnd()
+`);
 
 console.info('state the target length as 10:');
 console.log(str.padEnd(10));

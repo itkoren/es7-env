@@ -1,14 +1,12 @@
-/* 'array-mutation' */
-
 let altered;
 
 const printer = (v, i) => console.log(
   `» index: ${i}, value: ${JSON.stringify(v)}`
 );
 
-console.dir();
-console.info('--- Array.prototype.fill() ---');
-console.dir();
+console.dir(`
+--- Array.prototype.fill() ---
+`);
 // fills all the specified elements with a static value
 
 const flags = [1,0,1,0,0];
@@ -23,15 +21,15 @@ console.dir();
 const emptySlots = new Array(3);
 const emptyStrings = (new Array(3)).fill('');
 
-console.log('empty slots:')
+console.log('empty slots:');
 emptySlots.forEach(printer);
-console.log('empty strings:')
+console.log('empty strings:');
 emptyStrings.forEach(printer);
 
 
-console.dir();
-console.info('--- Array.prototype.copyWithin() ---');
-console.dir();
+console.dir(`
+--- Array.prototype.copyWithin() ---
+`);
 // shallow-copies part of an array to another location in the same array
 
 const shapes = ['▲', '●', '●', '●'];

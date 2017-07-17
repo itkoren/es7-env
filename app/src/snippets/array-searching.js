@@ -1,6 +1,6 @@
-console.dir();
-console.info('--- Array.prototype.find() ---');
-console.dir();
+console.dir(`
+--- Array.prototype.find() ---
+`);
 // retrieves the first value that satisfies the predicate
 
 console.info('find a value:');
@@ -34,9 +34,9 @@ console.log(guitars.find(sixStrings));
 console.log(guitars.find(threeStrings));
 
 
-console.dir();
-console.info('--- Array.prototype.findIndex() ---');
-console.dir();
+console.dir(`
+--- Array.prototype.findIndex() ---
+`);
 
 console.info(`find an object's index by property:`);
 
@@ -55,9 +55,9 @@ console.log(nanArray.indexOf(NaN));
 console.log(nanArray.findIndex((n) => Object.is(n, NaN)));
 
 
-console.dir();
-console.info('--- Array.prototype.includes() ---');
-console.dir();
+console.dir(`
+--- Array.prototype.includes() ---
+`);
 
 const letters = ['a', 'b', 'c'];
 
