@@ -68,6 +68,10 @@ body {
   color: #777;
 }
 
+#console-box.space {
+  font-size: 5rem;
+}
+
 #code-box,
 #code-box .CodeMirror {
   height: 100%;

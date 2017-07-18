@@ -3,7 +3,6 @@
 
 .space {
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  font-size: 5rem !important;
   color: #fff !important;
 }
 
@@ -65,22 +64,22 @@
 }
 
 .space .stars1 {
-  animation: animStar 150s linear infinite;
+  animation: animStar 75s linear infinite;
 }
 
 .space .stars2 {
-  animation: animStar 250s linear infinite;
+  animation: animStar 125s linear infinite;
 }
 
 .space .stars3 {
-  animation: animStar 300s linear infinite;
+  animation: animStar 150s linear infinite;
 }
 
 @keyframes animStar {
   from {
-    transform: translateY(-300px) translateX(-100px);
+    transform: translateY(0) translateX(0);
   }
   to {
-    transform: translateY(-2000px) translateX(-1500px);
+    transform: translateY(-1200px) translateX(-1000px);
   }
 }
