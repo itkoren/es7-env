@@ -6,8 +6,7 @@ const printer = (v, i) => console.log(
 
 console.dir(`
 --- Array.prototype.fill() ---
-`);
-// fills all the specified elements with a static value
+`); // fills all the specified elements with a static value
 
 const flags = [1,0,1,0,0];
 altered = flags.fill(0);
@@ -29,8 +28,7 @@ emptyStrings.forEach(printer);
 
 console.dir(`
 --- Array.prototype.copyWithin() ---
-`);
-// shallow-copies part of an array to another location in the same array
+`); // shallow-copies part of an array to another location in the same array
 
 const shapes = ['▲', '●', '●', '●'];
 const len = shapes.length;

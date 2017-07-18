@@ -4,8 +4,7 @@ let arr;
 
 console.dir(`
 --- Array.from() ---
-`);
-// turns array-like objects or iterables into real arrays
+`); // turns array-like objects or iterables into real arrays
 
 // array-like objects examples (anything that has a length property and can be accessed by index):
 
@@ -77,8 +76,7 @@ console.dir();
 
 console.dir(`
 --- Array.of() ---
-`);
-// creates an array from all of its arguments
+`); // creates an array from all of its arguments
 
 console.info('we can mix types:');
 console.log(Array.of('', +'', !''));

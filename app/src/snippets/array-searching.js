@@ -1,14 +1,13 @@
 console.dir(`
 --- Array.prototype.find() ---
-`);
-// retrieves the first value that satisfies the predicate
+`); // retrieves the first value that satisfies the predicate
 
 console.info('find a value:');
 
 const integers = [1, 2, 10, 30, 100];
 
-const above10 = (n) => n > 10;
-const equals20 = (n) => n === 20;
+const above10 = n => n > 10;
+const equals20 = n => n === 20;
 
 console.log(integers.find(above10));
 console.log(integers.find(equals20));
@@ -52,7 +51,8 @@ const nanArray = [NaN];
 console.log(nanArray.indexOf(NaN));
 
 // let's compare with Object.is to remedy this
-console.log(nanArray.findIndex((n) => Object.is(n, NaN)));
+const isNan = n => Object.is(n, NaN);
+console.log(nanArray.findIndex(isNan));
 
 
 console.dir(`
