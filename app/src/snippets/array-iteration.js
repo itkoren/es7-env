@@ -69,7 +69,7 @@ console.dir();
 // what's going on:
 // - a new array is created, with N empty slots
 // - keys() returns an iterator with N index numbers as its values (empty slots are also visited)
-// - the spread operator shallow-copies them onto a new array
+// - the spread operator activates the iterator and shallow-copies the values onto a new array
 
 console.info('range with start offset of 5:');
 
