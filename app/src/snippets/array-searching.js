@@ -64,3 +64,12 @@ const letters = ['a', 'b', 'c'];
 console.log(letters.includes('b'));
 console.log(letters.includes('b', 2));
 console.log(letters.includes('b', -2));
+console.dir();
+
+console.info('includes() is also good at finding NaNs:');
+console.log([NaN].includes(NaN));
+console.dir();
+
+console.info('like many other methods, it is generic:');
+console.log([].includes.call('abc', 'b')); // 'this' doesn't have to be an array
+console.dir();
