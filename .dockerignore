@@ -3,6 +3,7 @@
 .vscode
 .editorconfig
 .dockerignore
+.eslintignore
 *.swp
 node_modules
 Dockerfile
