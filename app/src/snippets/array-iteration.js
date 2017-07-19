@@ -71,9 +71,9 @@ console.dir();
 // - keys() returns an iterator with N index numbers as its values (empty slots are also visited)
 // - the spread operator shallow-copies them onto a new array
 
-console.info('range with start offset of 10:');
+console.info('range with start offset of 5:');
 
-[,,,,,,,,,, ...range] = [...Array(15).keys()];
+[,,,,, ...range] = [...Array(10).keys()];
 console.log(range);
 console.dir();
 
@@ -95,7 +95,7 @@ class Range {
   }
 }
 
-range = new Range(20, 25);
+range = new Range(10, 15);
 
 console.log(range);
 console.log(range instanceof Array);
@@ -103,6 +103,6 @@ console.dir();
 
 console.info('usage with for..of loop:');
 
-for (const index of range) {
-  console.log(index);
+for (const n of range) {
+  console.log(n);
 }
