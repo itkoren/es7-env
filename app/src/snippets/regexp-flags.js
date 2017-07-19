@@ -15,7 +15,7 @@ console.info('use case: using sticky matching for tokenizing:');
 function tokenize(TOKEN_REGEX, str) {
   let result = [];
   let match;
-  while (match = TOKEN_REGEX.exec(str)) { // eslint-disable-line no-cond-assign
+  while (match = TOKEN_REGEX.exec(str)) {
     result.push(match[1]);
   }
   return result;

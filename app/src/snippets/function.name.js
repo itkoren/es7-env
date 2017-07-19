@@ -1,5 +1,3 @@
-/*global Symbol*/
-
 console.dir();
 console.info('anonymous functions names are inferred:');
 

@@ -13,7 +13,7 @@ console.dir();
 
 console.info('the keys iterator does not ignore holes:');
 
-const sparseArr = ['a', , 'c']; // eslint-disable-line no-sparse-arrays
+const sparseArr = ['a', , 'c'];
 
 console.log('sparse keys:', Object.keys(sparseArr));
 console.log('dense keys:', [...sparseArr.keys()]);
@@ -27,13 +27,14 @@ console.dir(`
 const browsers = ['chrome', 'firefox', 'ie'];
 const valuesIter = browsers.values();
 
-console.info('for..of loop on the extracted iterator:');
+console.info('for..of loop on the values() iterator:');
 for (const browser of valuesIter) {
   console.log(browser);
 }
 console.dir();
 
-console.info('the initial array iterator is the same as the initial values():');
+console.info('for..of loop on the default array iterator:');
+// the initial value of the @@iterator property is the same function object as the initial value of the values() property
 for (const browser of browsers) {
   console.log(browser);
 }

@@ -1,5 +1,3 @@
-/*global Symbol*/
-
 let arr;
 
 console.dir(`
