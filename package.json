@@ -17,7 +17,8 @@
     "es7": "docker stop es7; docker run --rm -it -p 3000:3000 -p 5858:5858 -p 35729:35729 -v \"$PWD:/var/app\" -v es7-node-modules:/var/app/node_modules --name es7 es7-env bash; exit 0",
     "es7:sh": "docker exec -it es7 bash; exit 0",
     "es7:node": "docker exec -it es7 node ./app/src/${F}; exit 0",
-    "es7:clean": "docker stop es7; docker rmi es7-env; exit 0"
+    "es7:clean": "docker stop es7; docker rmi es7-env; exit 0",
+    "es7:prune": "npm run es7:clean; node_image=$(docker images node -q); [[ $node_image ]] && docker rmi $node_image; exit 0"
   },
   "author": "Itai Koren",
   "license": "MIT",
