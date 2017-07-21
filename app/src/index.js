@@ -181,6 +181,10 @@ new Vue({
       return '';
     },
 
+    onEditorChange() {
+      this.formstate.code.$pristine = false;
+    },
+
     onFileSelect() {
       const file = this.model.file;
 
@@ -190,17 +194,21 @@ new Vue({
         return false;
       }
 
-      const snippetHeader = `/* '${file}' */\n\n`;
-      const snippetBody = require(`!!babel-loader!raw-loader!./snippets/${file}`);
-
-      this.model.code = `${snippetHeader}${snippetBody}`;
+      this.model.code = require(`!!babel-loader!raw-loader!./snippets/${file}`);
 
       // reset the select box to indicate to the user that snippets just serve
       // as an initial template that can be edited before running the code
       this.model.file = '';
 
+      // save the selected file somewhere else, just to show a message
+      this.model.loadedFile = file;
+      // reset the editor field dirty state, it affects the message visibility
+      this.formstate.code.$pristine = true;
+
+      // clear the browser console
       domLogger.clear();
 
+      // set theme by the selected file
       let oldConsoleTheme = this.model.consoleTheme;
       let newConsoleTheme = this.consoleThemeMap[file] || '';
       if (newConsoleTheme !== oldConsoleTheme) {

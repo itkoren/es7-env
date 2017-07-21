@@ -87,7 +87,7 @@
           <validate slot="left" auto-label class="col h-100 right-padding-0" :class="fieldClassName(formstate.code)">
             <div id="code-box" class="text-left">
               <codemirror id="code" name="code" v-model="model.code" :options="editorOptions" ref="codeEditor"
-                          validcode maxlength="10000"></codemirror>
+                          validcode maxlength="10000" @change="onEditorChange"></codemirror>
             </div>
           </validate>
           <div slot="right" class="h-100 col left-padding-0">
@@ -102,6 +102,9 @@
           <div>Success!</div>
           <div slot="maxlength">Code must be less than 10000 characters</div>
           <div slot="validcode">Invalid Code! Reverted</div>
+        </field-messages>
+        <field-messages name="code" show="$pristine" v-show="!!model.loadedFile" class="form-control-feedback">
+          <div>'{{model.loadedFile}}' snippet was loaded.</div>
         </field-messages>
         <help class="ml-auto"></help>
       </footer>
