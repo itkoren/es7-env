@@ -18,7 +18,7 @@
     "es7:sh": "docker exec -it es7 bash; exit 0",
     "es7:node": "docker exec -it es7 node ./app/src/${F}; exit 0",
     "es7:clean": "docker stop es7; docker rmi es7-env; exit 0",
-    "es7:prune": "npm run es7:clean; node_image=$(docker images node -q); [[ $node_image ]] && docker rmi $node_image; exit 0"
+    "es7:prune": "npm run es7:clean; node_image=$(docker images node -q); [[ $node_image ]] && docker rmi $node_image; npm_volume=$(docker volume ls -q | grep es7-node-modules); [[ $npm_volume ]] && docker volume rm $npm_volume; exit 0"
   },
   "author": "Itai Koren",
   "license": "MIT",
