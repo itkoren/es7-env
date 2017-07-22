@@ -123,7 +123,8 @@ new Vue({
         },
       },
       consoleThemeMap: {
-        'fly-me-to-the-moon': 'space'
+        'fly-me-to-the-moon': 'space',
+        'binary-drumz': 'hexdump',
       },
     };
   },

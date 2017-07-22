@@ -74,6 +74,9 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
+// serve static files
+app.use(express.static('./public'));
+
 app.get('/files', (req, res) => {
   res.json(files);
 });

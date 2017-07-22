@@ -68,8 +68,14 @@ body {
   color: #777;
 }
 
-#console-box.space {
+.space #console-log {
   font-size: 5rem;
+}
+
+.hexdump #console-log {
+  font-size: 4rem;
+  font-family: courier-new, monospace;
+  color: #6cebff;
 }
 
 #code-box,
