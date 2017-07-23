@@ -92,6 +92,12 @@ const files = [
     ]
   },
   {
+    topic: 'Async I/O',
+    snippets: [
+      'async.promises',
+    ]
+  },
+  {
     topic: 'Fun',
     snippets: [
       'fly-me-to-the-moon',
