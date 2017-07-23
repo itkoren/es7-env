@@ -55,7 +55,7 @@ const loadSound = (url, done) => {
 const soundMap808 = new Map(Object.entries({
   'BD5025': {keys: ['a'], gain: 1},
   'SD1010': {keys: ['s'], gain: .3},
-  'RS': {keys: ['d'], gain: .3},
+  'RS': {keys: ['d'], gain: .5},
   'CH': {keys: ['f', 't'], gain: .5},
   'OH50': {keys: ['g'], gain: .3},
   'CY2550': {keys: ['h'], gain: .3},
