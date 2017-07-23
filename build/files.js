@@ -107,6 +107,12 @@ const files = [
     ]
   },
   {
+    topic: 'Async I/O',
+    snippets: [
+      'async.promises',
+    ]
+  },
+  {
     topic: 'Exercises',
     snippets: [
       'exercise.1',
