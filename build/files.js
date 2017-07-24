@@ -104,6 +104,7 @@ const files = [
       'array-mutation',
       'array-searching',
       'array-iteration',
+      'typed-arrays',
     ]
   },
   {
