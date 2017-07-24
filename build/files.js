@@ -6,6 +6,12 @@ const files = [
   //   ],
   // },
   {
+    topic: 'Classes',
+    snippets: [
+      'class.playgroud',
+    ]
+  },
+  {
     topic: 'Proper Tail Call',
     snippets: [
       'tail.call',
