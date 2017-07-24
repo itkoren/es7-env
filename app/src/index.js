@@ -124,7 +124,7 @@ new Vue({
       },
       consoleThemeMap: {
         'fly-me-to-the-moon': 'space',
-        'binary-drumz': 'hexdump',
+        'beats-and-bytes': 'hexdump',
       },
     };
   },

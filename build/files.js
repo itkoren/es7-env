@@ -123,7 +123,7 @@ const files = [
     topic: 'Fun',
     snippets: [
       'fly-me-to-the-moon',
-      'binary-drumz',
+      'beats-and-bytes',
     ]
   },
 ];
