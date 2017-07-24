@@ -5,6 +5,12 @@ const folder = String.fromCodePoint('0x1f4c1');
 const keyboard = String.fromCodePoint('0x2328');
 const audioCtx = new AudioContext();
 
+const littleEndian = (function() {
+  const buffer = new ArrayBuffer(2);
+  new DataView(buffer).setInt16(0, 256, true);
+  return new Int16Array(buffer)[0] === 256;
+})();
+
 let timeoutId;
 const debounce = (fn, delay) => {
   if (timeoutId) {
@@ -23,7 +29,7 @@ const logSound = (name, gain, key) => {
 };
 
 const playAudio = (soundBuffer, gain) => {
-  let src = audioCtx.createBufferSource();
+  const src = audioCtx.createBufferSource();
   src.buffer = soundBuffer;
   const gainNode = audioCtx.createGain();
   gainNode.gain.value = gain;
@@ -34,7 +40,7 @@ const playAudio = (soundBuffer, gain) => {
 
 const attachTriggers = (name, {keys, gain}, soundBuffer) => {
   window.addEventListener('keydown', (e) => {
-    let key = keys.find(k => {
+    const key = keys.find(k => {
       return k.toUpperCase().codePointAt(0) === e.keyCode;
     });
     if (key) {
@@ -45,12 +51,32 @@ const attachTriggers = (name, {keys, gain}, soundBuffer) => {
 };
 
 const loadSound = (url, done) => {
-  let xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', url, true);
   xhr.responseType = 'arraybuffer';
-  xhr.onload = () => audioCtx.decodeAudioData(xhr.response, done);
+  xhr.onload = () => {
+
+    // the composition pattern is often used in buffers
+    const arr = new Uint16Array(xhr.response);
+    const view = new DataView(xhr.response);
+
+    // change sample rate
+//     view.setInt32(24, view.getInt32(24, littleEndian) * 8, littleEndian);
+//     arr[12] = arr[12] / 8;
+
+    audioCtx.decodeAudioData(xhr.response, done)
+  };
   xhr.send();
 };
+
+const loadSoundMap = (path, soundMap) => {
+  for (const [name, config] of soundMap) {
+    const file = `sounds/${path}/${name}.wav`;
+    loadSound(file, attachTriggers.bind(ø, name, config));
+  }
+};
+
+
 
 const soundMap808 = new Map(Object.entries({
   'BD5025': {keys: ['a'], gain: 1},
@@ -79,12 +105,6 @@ const soundMapRock = new Map(Object.entries({
   'hihat': {keys: ['j', 'k'], gain: .3},
 }));
 
-const loadSoundMap = (path, soundMap) => {
-  for (const [name, config] of soundMap) {
-    let file = `sounds/${path}/${name}.wav`;
-    loadSound(file, attachTriggers.bind(ø, name, config));
-  }
-};
 
 
 // loadSoundMap('rock', soundMapRock);
