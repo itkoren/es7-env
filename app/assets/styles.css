@@ -73,7 +73,7 @@ body {
 }
 
 .hexdump #console-log {
-  font-size: 4.4rem;
+  font-size: 4rem;
   font-family: courier-new, monospace;
   color: #6cebff;
 }
