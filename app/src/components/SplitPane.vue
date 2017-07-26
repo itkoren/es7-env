@@ -39,7 +39,7 @@ export default {
       if (this.dragging) {
         const dx = e.pageX - this.startX
         const totalWidth = this.$el.offsetWidth
-        this.split = this.startSplit + Number(dx / totalWidth * 100).toPrecision(4)
+        this.split = this.startSplit + +Number(dx / totalWidth * 100).toFixed(3)
       }
     },
     dragEnd () {
