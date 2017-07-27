@@ -97,7 +97,9 @@ const files = [
       'async.iterators',
       'async.generators',
       'async.promises',
-      'async.fetch'
+      'async.fetch',
+      'async.function',
+      'async.await'
     ]
   },
   {
