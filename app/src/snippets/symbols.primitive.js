@@ -61,8 +61,8 @@ log(levels.INFO, 'info message');
 
 // Well known Symbol for example
 const MyObject = {
-    [Symbol.hasInstance](instance) {
+    [Symbol.hasInstance]:(instance) => {
         return Array.isArray(instance);
     }
-}
+};
 console.log(`[] is instanceof MyObject: ${[] instanceof MyObject}`);
