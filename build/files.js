@@ -119,6 +119,7 @@ const files = [
     topic: 'Solutions',
     snippets: [
       'solution.1',
+      'solution.2',
     ]
   },
 ];
