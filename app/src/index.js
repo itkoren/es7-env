@@ -133,6 +133,9 @@ new Vue({
     editor() {
       return this.$refs.codeEditor.editor;
     },
+    isEditorEmpty() {
+      return !this.model.code || !this.model.code.trim();
+    },
   },
 
   created() {
@@ -140,8 +143,8 @@ new Vue({
     document.querySelector('.no-fouc').classList.remove('no-fouc');
 
     // bind special keys separately for pc/mac
-    CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.onSubmit;
-    CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.onSubmit;
+    CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.submitCommand;
+    CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.submitCommand;
     CodeMirror.keyMap.macDefault['Cmd-/'] = CodeMirror.commands.toggleComment;
     CodeMirror.keyMap.pcDefault['Ctrl-/'] = CodeMirror.commands.toggleComment;
 
@@ -331,6 +334,13 @@ new Vue({
             console.log(e); // eslint-disable-line no-console
           });
       }
+    },
+
+    submitCommand() {
+      if (this.isEditorEmpty) {
+        return false;
+      }
+      this.onSubmit();
     },
 
     saveSplit(splitValue) {

@@ -78,7 +78,7 @@
             <option v-for="file of group.snippets" :value="file">{{file}}</option>
           </optgroup>
         </select>
-        <button class="btn btn-lg btn-outline-primary px-5 ml-auto" type="submit" :disabled="!model.code">Run</button>
+        <button class="btn btn-lg btn-outline-primary px-5 ml-auto" type="submit" :disabled="isEditorEmpty">Run</button>
       </nav>
       <div class="d-flex flex-grow py-3">
         <split-pane class="splitpane" draggerClass="col" :initial-split="model.split" v-on:dragend="saveSplit">
@@ -103,6 +103,9 @@
         </field-messages>
         <field-messages name="code" show="$pristine" v-show="!!model.loadedFile" class="form-control-feedback">
           <div>'{{model.loadedFile}}' snippet was loaded.</div>
+        </field-messages>
+        <field-messages name="code" v-show="isEditorEmpty" class="form-control-feedback">
+          <div>Code editor is empty! Write some code or load a snippet</div>
         </field-messages>
         <help class="ml-auto"></help>
       </footer>
