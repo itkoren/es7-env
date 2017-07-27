@@ -112,6 +112,7 @@ const files = [
     topic: 'Exercises',
     snippets: [
       'exercise.1',
+      'exercise.2',
     ]
   },
 ];
