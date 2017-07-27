@@ -53,7 +53,7 @@ const files = [
     ]
   },
   {
-    topic: 'Iterators',
+    topic: 'Iterations',
     snippets: [
       'for.of.statement',
     ]
@@ -89,6 +89,17 @@ const files = [
     snippets: [
       'regexp-enhancements',
       'regexp-flags',
+    ]
+  },
+  {
+    topic: 'Async I/O',
+    snippets: [
+      'async.iterators',
+      'async.generators',
+      'async.promises',
+      'async.fetch',
+      'async.function',
+      'async.await'
     ]
   },
   {

@@ -15,13 +15,13 @@ To get started with this repository:
 
 The command line is of a shell running within a docker container, which includes all needed tools to experiment and try ES7 new features. There are a few options for what you can do.
 
-### Run Node.js v8.1.2
+### Run Node.js v8.1.4
 
-The container has Node.js v8.1.2 installed.
+The container has Node.js v8.1.4 installed.
 
 You can use this version of Node.js to run your code by running `F={filename.js} npm run es7:node` or `F={filename.js} yarn es7:node` from an external command line, or `node ./app/src/{filename.js}` from a command line whithin the container.
 
-### Run Babel.js v7.0-alpha.12
+### Run Babel.js v7.0-alpha.15
 
 The container has an alpha version of the latest (alpha) Babel.js installed and configured.
 

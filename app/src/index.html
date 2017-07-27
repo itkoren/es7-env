@@ -67,15 +67,13 @@
     <div class="h-100 d-flex flex-column">
       <nav id="topNav" class="navbar flex-row">
         <h1 class="mb-0">ES7 env</h1>
-        <validate auto-label class="col mx-5" :class="fieldClassName(formstate.file)">
-          <select v-if="model.files && model.files.length" class="custom-select form-control form-control-lg"
-                  name="file" v-model.lazy="model.file" @change="onFileSelect">
-            <option disabled value="">Load Code Snippet...</option>
-            <optgroup v-for="group of model.files" :label="group.topic">
-              <option v-for="file of group.snippets" :value="file">{{file}}</option>
-            </optgroup>
-          </select>
-        </validate>
+        <select class="col mx-5 custom-select form-control form-control-lg" name="file"
+                v-if="model.files && model.files.length" v-model.lazy="model.file" @change="onFileSelect">
+          <option disabled value="">Load Code Snippet...</option>
+          <optgroup v-for="group of model.files" :label="group.topic">
+            <option v-for="file of group.snippets" :value="file">{{file}}</option>
+          </optgroup>
+        </select>
         <button class="btn btn-lg btn-outline-primary px-5 ml-auto" type="submit" :disabled="!model.code">Run</button>
       </nav>
       <div class="d-flex flex-grow py-3">
