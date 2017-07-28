@@ -59,7 +59,7 @@ const files = [
     ]
   },
   {
-    topic: 'Symbol Type',
+    topic: 'Symbols',
     snippets: [
       'symbols.primitive',
     ]
@@ -105,6 +105,15 @@ const files = [
       'array-searching',
       'array-iteration',
       'typed-arrays',
+    ]
+  },
+  {
+    topic: 'Collections',
+    snippets: [
+      'set',
+      'map',
+      'weak-collections',
+      'polymorphic-collections',
     ]
   },
   {
