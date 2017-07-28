@@ -1,5 +1,3 @@
-
-# ignore snippets so they are not cluttered with eslint comments
 **/snippets/function.name.js
 **/snippets/array-builders.js
 **/snippets/array-iteration.js
