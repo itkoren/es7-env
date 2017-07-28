@@ -53,7 +53,7 @@ const files = [
     ]
   },
   {
-    topic: 'Iterators',
+    topic: 'Iterations',
     snippets: [
       'for.of.statement',
     ]
@@ -119,13 +119,19 @@ const files = [
   {
     topic: 'Async I/O',
     snippets: [
+      'async.iterators',
+      'async.generators',
       'async.promises',
+      'async.fetch',
+      'async.function',
+      'async.await'
     ]
   },
   {
     topic: 'Exercises',
     snippets: [
       'exercise.1',
+      'exercise.2',
     ]
   },
   {
