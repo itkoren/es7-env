@@ -43,7 +43,12 @@ function domLog(level) {
   const message = args.map(arg => {
     if ('object' === typeof arg && !(arg instanceof Error)) {
       try {
-        return JSON.stringify(arg);
+        return JSON.stringify(arg, (k, v) => {
+          if (typeof v === 'function') {
+            return `function ${v.name}() {}`;
+          }
+          return v;
+        });
       } catch (ex) {
         // Nothing
       }
