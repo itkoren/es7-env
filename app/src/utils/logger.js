@@ -45,7 +45,7 @@ function domLog(level) {
       try {
         return JSON.stringify(arg, (k, v) => {
           if (typeof v === 'function') {
-            return `function ${v.name}() {}`;
+            return v.toString();
           }
           return v;
         });
