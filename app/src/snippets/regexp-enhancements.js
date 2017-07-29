@@ -5,17 +5,17 @@
 
 const REGEX = /abc/ig;
 
-console.dir();
-console.info('flags property:');
-console.dir();
+console.dir(`
+flags property:
+`);
 
 console.log(REGEX.source); // ES5
 console.log(REGEX.flags); // ES6
 
 
-console.dir();
-console.info('clone via RegExp() constructor:');
-console.dir();
+console.dir(`
+clone via RegExp() constructor:
+`);
 
 console.log(new RegExp(REGEX).source);
 console.log(new RegExp(REGEX).flags);

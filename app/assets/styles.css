@@ -68,6 +68,16 @@ body {
   color: #777;
 }
 
+.space #console-log {
+  font-size: 5rem;
+}
+
+.hexdump #console-log {
+  font-size: 4rem;
+  font-family: courier-new, monospace;
+  color: #6cebff;
+}
+
 #code-box,
 #code-box .CodeMirror {
   height: 100%;
@@ -98,6 +108,10 @@ body {
 
 #code-box .CodeMirror.cm-s-base16-light span.cm-string-2 {
   color: #f4bf75;
+}
+
+#code-box .CodeMirror.cm-s-base16-light .cm-matchhighlight {
+  border-bottom-color: #333;
 }
 
 #code-box .CodeMirror.cm-s-base16-light .CodeMirror-matchingbracket {

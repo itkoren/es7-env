@@ -59,7 +59,7 @@ const files = [
     ]
   },
   {
-    topic: 'Symbol Type',
+    topic: 'Symbols',
     snippets: [
       'symbols.primitive',
     ]
@@ -67,10 +67,10 @@ const files = [
   {
     topic: 'Strings',
     snippets: [
-      'char-encoding',
       'string-searching',
       'string-manipulation',
-      'template-strings',
+      'raw-strings',
+      'char-encoding',
     ]
   },
   {
@@ -92,6 +92,31 @@ const files = [
     ]
   },
   {
+    topic: 'Function Enhancements',
+    snippets: [
+      'function.name',
+    ]
+  },
+  {
+    topic: 'Arrays',
+    snippets: [
+      'array-builders',
+      'array-mutation',
+      'array-searching',
+      'array-iteration',
+      'typed-arrays',
+    ]
+  },
+  {
+    topic: 'Collections',
+    snippets: [
+      'set',
+      'map',
+      'weak-collections',
+      'polymorphic-collections',
+    ]
+  },
+  {
     topic: 'Async I/O',
     snippets: [
       'async.iterators',
@@ -103,16 +128,17 @@ const files = [
     ]
   },
   {
-    topic: 'Fun',
-    snippets: [
-      'fly-me-to-the-moon',
-    ]
-  },
-  {
     topic: 'Exercises',
     snippets: [
       'exercise.1',
       'exercise.2',
+    ]
+  },
+  {
+    topic: 'Fun',
+    snippets: [
+      'fly-me-to-the-moon',
+      'beats-and-bytes',
     ]
   },
 ];

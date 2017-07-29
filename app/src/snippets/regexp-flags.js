@@ -1,6 +1,6 @@
-console.dir();
-console.info('--- sticky flag ---');
-console.dir();
+console.dir(`
+--- sticky flag ---
+`);
 
 // - the new flag /y (sticky) anchors each match of a regular expression to the end of the previous match. it adds two behaviors:
 //   - anchored to re.lastIndex: The match must start at re.lastIndex (the index after the previous match). This behavior is similar to the ^ anchor, but with that anchor, matches must always start at index 0.
@@ -15,7 +15,7 @@ console.info('use case: using sticky matching for tokenizing:');
 function tokenize(TOKEN_REGEX, str) {
   let result = [];
   let match;
-  while (match = TOKEN_REGEX.exec(str)) { // eslint-disable-line no-cond-assign
+  while (match = TOKEN_REGEX.exec(str)) {
     result.push(match[1]);
   }
   return result;
@@ -34,9 +34,9 @@ console.log(tokenize(TOKEN_G, '3x + 4'));
 console.dir();
 
 
-console.dir();
-console.info('--- unicode flag ---');
-console.dir();
+console.dir(`
+--- unicode flag ---
+`);
 
 // - the new flag /u (unicode) handles surrogate pairs (such as \uD83D\uDE80) as code points and lets you use Unicode code point escapes (such as \u{1F680}) in regular expressions.
 //   - you can use Unicode code point escape sequences such as \u{1F42A} for specifying characters via code points. normal Unicode escapes such as \u03B1 only have a range of four hexadecimal digits (which equals the Basic Multilingual Plane).
