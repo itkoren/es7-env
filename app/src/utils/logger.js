@@ -44,7 +44,7 @@ function domLog(level) {
     if ('object' === typeof arg && !(arg instanceof Error)) {
       try {
         return JSON.stringify(arg, (k, v) => {
-          if (typeof v === 'function') {
+          if (typeof v === 'function' || typeof v === 'symbol') {
             return String(v);
           }
           return v;
