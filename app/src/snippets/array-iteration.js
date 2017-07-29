@@ -24,6 +24,8 @@ console.dir(`
 --- Array.prototype.values() ---
 `); // returns an iterator with the values for each index in the array
 
+// the initial value of the @@iterator property is the same function object as the initial value of the values() property
+
 const browsers = ['chrome', 'firefox', 'ie'];
 const valuesIter = browsers.values();
 
@@ -34,7 +36,6 @@ for (const browser of valuesIter) {
 console.dir();
 
 console.info('for..of loop on the default array iterator:');
-// the initial value of the @@iterator property is the same function object as the initial value of the values() property
 for (const browser of browsers) {
   console.log(browser);
 }
