@@ -1,7 +1,7 @@
 # --------------------------------------
 # build from a base image that includes
-# everything needed to run Node.js v8.1.4
-FROM node:8.1.4
+# everything needed to run Node.js v8.2.1
+FROM node:8.2.1
 # --------------------------------------
 
 # --------------------------------------
@@ -13,7 +13,7 @@ WORKDIR /var/app
 
 # --------------------------------------
 # cache npm modules for faster builds
-RUN yarn global add nodemon babel-cli@7.0.0-alpha.15
+RUN yarn global add nodemon babel-cli@7.0.0-alpha.15 flow-bin
 COPY ./package.json /var/app
 COPY ./yarn.lock /var/app
 RUN yarn
