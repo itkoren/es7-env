@@ -117,6 +117,13 @@ const files = [
     ]
   },
   {
+    topic: 'Object Enhancements',
+    snippets: [
+      'object-inspection',
+      'object-modification',
+    ]
+  },
+  {
     topic: 'Async I/O',
     snippets: [
       'async.iterators',

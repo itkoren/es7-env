@@ -6,6 +6,8 @@
 **/snippets/map.js
 **/snippets/weak-collections.js
 **/snippets/polymorphic-collections.js
+**/snippets/object-inspection.js
+**/snippets/object-modification.js
 **/snippets/regexp-flags.js
 **/snippets/logger-test.js
 **/snippets/beats-and-bytes.js
