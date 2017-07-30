@@ -13,7 +13,7 @@ const tossUserId = async () => {
   });
 };
 
-const asyncFetch = async (urlOrRequest) => {
+const fetchJSON = async (urlOrRequest) => {
   let data;
 
   try {
@@ -23,7 +23,7 @@ const asyncFetch = async (urlOrRequest) => {
     // Use the fetch api and data should already contain the JSON response
     data = await (await fetch(urlOrRequest)).json();
   } catch (ex) {
-    console.log('Error while trying to fetch', ex);
+    console.log('Error while trying to fetch JSON', ex);
   }
 
   return data;
@@ -44,15 +44,15 @@ const getData = async () => {
   console.log(`Selected User Id is: ${userId}`);
 
   // Get the user & his albums (parrallel)
-  const [users, albums] = await Promise.all([asyncFetch(`${userUrl}${userId}`), asyncFetch(`${albumsUrl}${userId}`)]); // Use the asyncFetch to get the user and his albums
+  const [users, albums] = await Promise.all([fetchJSON(`${userUrl}${userId}`), fetchJSON(`${albumsUrl}${userId}`)]); // Use the fetchJSON to get the user and his albums
   console.log(`Name: ${users[0].name}`);
 
   // Get the photos for all albums (parrallel)
   const photosFetch = [];
   albums.forEach(album => {
-    photosFetch.push(asyncFetch(`${photosUrl}${album.id}`));
+    photosFetch.push(fetchJSON(`${photosUrl}${album.id}`));
   });
-  const photos = await Promise.all(photosFetch); // Use the asyncFetch to get the user's albums photos
+  const photos = await Promise.all(photosFetch); // Use the fetchJSON to get the user's albums photos
 
   // Log Everything
   console.log(`${albums.length} Albums:`); // Should have 10 Albums
