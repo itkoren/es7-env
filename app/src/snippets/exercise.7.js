@@ -13,7 +13,7 @@ const tossUserId = async() => {
   });
 };
 
-const asyncFetch = async(urlOrRequest) => {
+const fetchJSON = async(urlOrRequest) => {
   let data;
 
   try {
@@ -22,7 +22,7 @@ const asyncFetch = async(urlOrRequest) => {
     // Hint:
     // Use the fetch api and data should already contain the JSON response
   } catch (ex) {
-    console.log('Error while trying to fetch', ex);
+    console.log('Error while trying to fetch JSON', ex);
   }
 
   return data;
@@ -43,12 +43,12 @@ const getData = async() => {
   console.log(`Selected User Id is: ${userId}`);
 
   // Get the user & his albums (parrallel)
-  const [users, albums]; // Use the asyncFetch to get the user and his albums
+  const [users, albums]; // Use the fetchJSON to get the user and his albums
   console.log(`Name: ${users[0].name}`);
 
   // Get the photos for all albums (parrallel)
   const photosFetch = [];
-  const photos; // Use the asyncFetch to get the user's albums photos
+  const photos; // Use the fetchJSON to get the user's albums photos
 
   // Log Everything
   console.log(`${albums.length} Albums:`); // Should have 10 Albums
