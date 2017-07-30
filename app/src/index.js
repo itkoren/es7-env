@@ -123,7 +123,8 @@ new Vue({
         },
       },
       consoleThemeMap: {
-        'fly-me-to-the-moon': 'space'
+        'fly-me-to-the-moon': 'space',
+        'beats-and-bytes': 'hexdump',
       },
     };
   },
@@ -132,6 +133,9 @@ new Vue({
     editor() {
       return this.$refs.codeEditor.editor;
     },
+    isEditorEmpty() {
+      return !this.model.code || !this.model.code.trim();
+    },
   },
 
   created() {
@@ -139,8 +143,8 @@ new Vue({
     document.querySelector('.no-fouc').classList.remove('no-fouc');
 
     // bind special keys separately for pc/mac
-    CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.onSubmit;
-    CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.onSubmit;
+    CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.submitCommand;
+    CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.submitCommand;
     CodeMirror.keyMap.macDefault['Cmd-/'] = CodeMirror.commands.toggleComment;
     CodeMirror.keyMap.pcDefault['Ctrl-/'] = CodeMirror.commands.toggleComment;
 
@@ -181,6 +185,10 @@ new Vue({
       return '';
     },
 
+    onEditorChange() {
+      this.formstate.code.$pristine = false;
+    },
+
     onFileSelect() {
       const file = this.model.file;
 
@@ -190,17 +198,21 @@ new Vue({
         return false;
       }
 
-      const snippetHeader = `/* '${file}' */\n\n`;
-      const snippetBody = require(`!!babel-loader!raw-loader!./snippets/${file}`);
-
-      this.model.code = `${snippetHeader}${snippetBody}`;
+      this.model.code = require(`!!babel-loader!raw-loader!./snippets/${file}`);
 
       // reset the select box to indicate to the user that snippets just serve
       // as an initial template that can be edited before running the code
       this.model.file = '';
 
+      // save the selected file somewhere else, just to show a message
+      this.model.loadedFile = file;
+      // reset the editor field dirty state, it affects the message visibility
+      this.formstate.code.$pristine = true;
+
+      // clear the browser console
       domLogger.clear();
 
+      // set theme by the selected file
       let oldConsoleTheme = this.model.consoleTheme;
       let newConsoleTheme = this.consoleThemeMap[file] || '';
       if (newConsoleTheme !== oldConsoleTheme) {
@@ -295,6 +307,9 @@ new Vue({
           .then(res => {
             console.log(res); // eslint-disable-line no-console
             setTimeout(() => {
+              // we know successful response will cause a page reload,
+              // so let's show the splash screen in the meanwhile
+              document.documentElement.className = 'no-fouc';
               this.stopProgress(this);
               this.formstate.$submitted = false;
             }, 500);
@@ -319,6 +334,13 @@ new Vue({
             console.log(e); // eslint-disable-line no-console
           });
       }
+    },
+
+    submitCommand() {
+      if (this.isEditorEmpty) {
+        return false;
+      }
+      this.onSubmit();
     },
 
     saveSplit(splitValue) {

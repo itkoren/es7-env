@@ -3,7 +3,8 @@ export default [
   {
     name: 'Run',
     keys: {
-      all: ['Ctrl-Enter'],
+      pc: ['Ctrl-Enter'],
+      mac: ['Cmd-Enter'],
     },
     description: 'Executes the current content of the editor.'
   },

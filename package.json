@@ -55,6 +55,7 @@
     "esprima": "latest",
     "express": "latest",
     "extract-text-webpack-plugin": "latest",
+    "flow-bin": "latest",
     "html-webpack-plugin": "latest",
     "imports-loader": "latest",
     "npm-run-all": "latest",

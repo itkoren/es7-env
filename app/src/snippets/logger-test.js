@@ -32,7 +32,7 @@ console.log(Number);
 console.log(Array);
 console.log(Object);
 console.log(Function);
-console.log(Symbol); // eslint-disable-line no-undef
+console.log(Symbol);
 
 console.log('log');
 console.info('info');

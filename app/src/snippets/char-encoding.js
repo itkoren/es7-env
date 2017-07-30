@@ -1,40 +1,47 @@
-console.dir();
-console.info('--- unicode code point escapes ---');
-console.dir();
-
 // unicode "characters" (code points) are 21 bit long. JavaScript strings are (roughly) sequences of 16 bit characters, encoded as UTF-16.
 // therefore, code points beyond the first 16 bits of the code point range are represented by two JavaScript characters.
 
-// until now, if you wanted to specify such code points via numbers, you needed two so-called unicode escapes:
-console.log('\uD83D\uDE80');
-// the new kind of unicode escape lets you specify any code point:
-console.log('\u{1F680}');
-console.log('\uD83D\uDE80' === '\u{1F680}');
+
+console.dir(`
+--- unicode code point escapes ---
+`);
+
+// ES5 - you need two hex escapes:
+const pair = '\uD83D\uDE80';
+// new syntax - specify any code point with a single escape:
+const single = '\u{1F680}';
+
+console.log(pair);
+console.log(single);
+console.log(pair === single);
 console.dir();
 
-// the string iterator splits strings along code point boundaries, which means that the strings it returns comprise one or two characters:
-console.info('iterator split:');
-for (let ch of 'a\uD83D\uDE80b') {
+
+console.dir(`
+--- iterator split support ---
+`);
+
+const sequence = 'a\uD83D\uDE80b';
+
+console.info('test char length:');
+for (let ch of sequence) {
   console.log(ch.length);
 }
 console.dir();
 
-// that gives you a quick way to count the unicode code points in a string:
-console.info('count chars, including code points:');
-console.log([...'a\uD83D\uDE80b'].length);
+console.info('count chars:');
+console.log([...sequence].length);
 console.dir();
 
-// ... and may help with reversing such strings:
-console.info('ES5 reverse with unicode:');
-console.log('\uD83D\uDE80'.split('').reverse().join(''));
-console.info('ES6 reverse with unicode:');
-console.log([...'\uD83D\uDE80'].reverse().join(''));
+console.info('reverse is now working!');
+console.error(sequence.split('').reverse().join(''));
+console.success([...sequence].reverse().join(''));
 console.dir();
 
 
-console.dir();
-console.info('--- numeric values of code points ---');
-console.dir();
+console.dir(`
+--- numeric values of code points ---
+`);
 
 console.info('codePointAt returns the numeric (decimal) value of a code point:');
 console.log('ABC'.codePointAt(1));
@@ -45,7 +52,7 @@ console.dir();
 // bonus: what will be the output of this:
 // console.log('\u{1F680}'.codePointAt(0).toString(16));
 
-console.info('the opposite of codePointAt is String.fromCodePoint:');
+console.info('the opposite of codePointAt is fromCodePoint:');
 console.log(String.fromCodePoint(42));
 console.dir();
 
@@ -77,9 +84,9 @@ console.dir();
 
 
 
-console.dir();
-console.info('--- addendum: string normalization ---');
-console.dir();
+console.dir(`
+--- addendum: string normalization ---
+`);
 
 const str = '\u1E9B\u0323';
 

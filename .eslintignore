@@ -1,0 +1,15 @@
+**/snippets/function.name.js
+**/snippets/array-builders.js
+**/snippets/array-iteration.js
+**/snippets/typed-arrays.js
+**/snippets/set.js
+**/snippets/map.js
+**/snippets/weak-collections.js
+**/snippets/polymorphic-collections.js
+**/snippets/object-inspection.js
+**/snippets/object-modification.js
+**/snippets/regexp-flags.js
+**/snippets/logger-test.js
+**/snippets/beats-and-bytes.js
+**/snippets/exercise.1.js
+**/snippets/exercise.7.js
