@@ -139,15 +139,17 @@ const files = [
     snippets: [
       'exercise.1',
       'exercise.2',
+      'exercise.3',
+      'exercise.4',
     ]
   },
-  {
-    topic: 'Fun',
-    snippets: [
-      'fly-me-to-the-moon',
-      'beats-and-bytes',
-    ]
-  },
+  // {
+  //   topic: 'Fun',
+  //   snippets: [
+  //     'fly-me-to-the-moon',
+  //     'beats-and-bytes',
+  //   ]
+  // },
 ];
 
 module.exports = files;
