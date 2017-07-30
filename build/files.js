@@ -139,7 +139,7 @@ const files = [
     snippets: [
       'exercise.1',
       'exercise.2',
-      'exercise.7',
+      'exercise.8',
     ]
   },
   {
