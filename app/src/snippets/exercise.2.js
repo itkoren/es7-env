@@ -4,6 +4,7 @@
 const max = 50; // eslint-disable-line no-unused-vars
 const SevenBoom = {
   [Symbol.iterator]:() => {
+    // Your Code Here
     // Here belongs the 7 Boom logic
     // Hint：
     // When it's finished you have to return an object

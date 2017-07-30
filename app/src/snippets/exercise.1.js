@@ -1,5 +1,4 @@
-/* eslint-disable */
-'use strict'
+'use strict';
 
 function createKitten(fullName, birthDate) {
   // Your Code Here

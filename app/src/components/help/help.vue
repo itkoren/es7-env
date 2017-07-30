@@ -10,12 +10,12 @@
       <div class="content" @click="hide">
         <h1 class="text-center">Help</h1>
         <h2>Key map</h2>
-        <p class="pb-3">Some editor key-bindings worth knowing. For the full list, <a href="https://codemirror.net/doc/manual.html#commands" target="_blank" rel="noopener noreferrer">see here</a>.</p>
+        <p class="pb-3">Some editor key-bindings worth knowing. For more bindings, <a href="https://codemirror.net/doc/manual.html#commands" target="_blank" rel="noopener noreferrer">see here</a>.</p>
         <div v-for="entry in keyMap">
           <h3>{{entry.name}}<span class="float-right">
                 <span v-if="!!entry.keys.all"><kbd v-for="allKey in entry.keys.all">{{allKey}}</kbd></span>
-                <span v-if="!!entry.keys.pc">pc: <kbd v-for="pcKey in entry.keys.pc">{{pcKey}}</kbd></span>
                 <span v-if="!!entry.keys.mac">mac: <kbd v-for="macKey in entry.keys.mac">{{macKey}}</kbd></span>
+                <span v-if="!!entry.keys.pc">pc: <kbd v-for="pcKey in entry.keys.pc">{{pcKey}}</kbd></span>
               </span></h3>
           <p>{{entry.description}}</p>
         </div>
