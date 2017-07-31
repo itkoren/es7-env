@@ -102,7 +102,10 @@ try {
 
 console.dir(`
 --- Object.setPrototypeOf ---
-`); // sets the internal [[prototype]] property of a given object (the canonical way of: obj.__proto__ = proto)
+`); // sets the internal [[prototype]] property of a given object
+
+// it's es6's canonical way of setting an object's dunder-proto (thanx, ned batchelder):
+// obj.__proto__ = proto
 
 // don't do it!
 // - it's very slow, due to how engines optimize property accesses

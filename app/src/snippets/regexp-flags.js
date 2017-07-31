@@ -1,3 +1,33 @@
+
+console.dir(`
+--- unicode flag ---
+`);
+
+// - the new flag /u (unicode) handles surrogate pairs (such as \uD83D\uDE80) as code points and lets you use Unicode code point escapes (such as \u{1F680}) in regular expressions.
+//   - you can use Unicode code point escape sequences such as \u{1F42A} for specifying characters via code points. normal Unicode escapes such as \u03B1 only have a range of four hexadecimal digits (which equals the Basic Multilingual Plane).
+//   - “characters” in the regular expression pattern and the string are code points (not UTF-16 code units). code units are converted into code points.
+
+console.info('the new unicode code point escapes can be used in regex literals:');
+console.log(/^\u{3}$/u.test('uuu'));
+console.log(/^\u{3}$/.test('uuu')); // otherwise interpreted as 3 times the character 'u'
+
+console.info('code point vs. surrogate pairs:');
+console.log('\u{1F680}' === '\uD83D\uDE80');
+
+console.info('detect lone surrogates inside (surrogate pairs encoding) code points:');
+console.log(/\uD83D/.test('\uD83D\uDC2A'));
+console.log(/\uD83D/u.test('\uD83D\uDC2A')); // in unicode mode, surrogate pairs are atomic units
+
+console.info('code points in character classes:');
+console.log(/^[\uD83D\uDC2A]$/u.test('\uD83D\uDC2A'));
+
+console.info('the dot operator matches code points, not code units:');
+console.log('\uD83D\uDE80'.match(/./gu).length);
+
+console.info('quantifiers apply to code points, not code units:');
+console.log(/\uD83D\uDE80{2}/u.test('\uD83D\uDE80\uD83D\uDE80'));
+
+
 console.dir(`
 --- sticky flag ---
 `);
@@ -32,32 +62,3 @@ console.info('with non-token text in the string - sticky matching stops tokenizi
 console.log(tokenize(TOKEN_GY, '3x + 4'));
 console.log(tokenize(TOKEN_G, '3x + 4'));
 console.dir();
-
-
-console.dir(`
---- unicode flag ---
-`);
-
-// - the new flag /u (unicode) handles surrogate pairs (such as \uD83D\uDE80) as code points and lets you use Unicode code point escapes (such as \u{1F680}) in regular expressions.
-//   - you can use Unicode code point escape sequences such as \u{1F42A} for specifying characters via code points. normal Unicode escapes such as \u03B1 only have a range of four hexadecimal digits (which equals the Basic Multilingual Plane).
-//   - “characters” in the regular expression pattern and the string are code points (not UTF-16 code units). code units are converted into code points.
-
-console.info('the new unicode code point escapes can be used in regex literals:');
-console.log(/^\u{3}$/u.test('uuu'));
-console.log(/^\u{3}$/.test('uuu')); // otherwise interpreted as 3 times the character 'u'
-
-console.info('code point vs. surrogate pairs:');
-console.log('\u{1F680}' === '\uD83D\uDE80');
-
-console.info('detect lone surrogates inside (surrogate pairs encoding) code points:');
-console.log(/\uD83D/.test('\uD83D\uDC2A'));
-console.log(/\uD83D/u.test('\uD83D\uDC2A')); // in unicode mode, surrogate pairs are atomic units
-
-console.info('code points in character classes:');
-console.log(/^[\uD83D\uDC2A]$/u.test('\uD83D\uDC2A'));
-
-console.info('the dot operator matches code points, not code units:');
-console.log('\uD83D\uDE80'.match(/./gu).length);
-
-console.info('quantifiers apply to code points, not code units:');
-console.log(/\uD83D\uDE80{2}/u.test('\uD83D\uDE80\uD83D\uDE80'));
