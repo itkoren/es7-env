@@ -45,7 +45,7 @@ const files = [
     ]
   },
   {
-    topic: 'Object Enhancements',
+    topic: 'Object Upgrades',
     snippets: [
       'object.literals',
       'object.values',
@@ -139,16 +139,18 @@ const files = [
     snippets: [
       'exercise.1',
       'exercise.2',
+      'exercise.3',
+      'exercise.4',
       'exercise.8',
     ]
   },
-  {
-    topic: 'Fun',
-    snippets: [
-      'fly-me-to-the-moon',
-      'beats-and-bytes',
-    ]
-  },
+  // {
+  //   topic: 'Fun',
+  //   snippets: [
+  //     'fly-me-to-the-moon',
+  //     'beats-and-bytes',
+  //   ]
+  // },
 ];
 
 module.exports = files;

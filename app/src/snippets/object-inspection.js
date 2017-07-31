@@ -83,7 +83,7 @@ console.log(Object.values(extendedObj), '\n');
 
 console.info('array:');
 
-let arr = [ ~~1.99, +'2.00', 1.00 << '1.00' ^ 1.00 ];
+let arr = [ ~~1, 2 & 2, 3 >> 3 ^ 3 ];
 console.log(Object.values(arr), '\n');
 
 
