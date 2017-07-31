@@ -45,7 +45,7 @@ const files = [
     ]
   },
   {
-    topic: 'Object Enhancements',
+    topic: 'Object Upgrades',
     snippets: [
       'object.literals',
       'object.values',
@@ -139,6 +139,8 @@ const files = [
     snippets: [
       'exercise.1',
       'exercise.2',
+      'exercise.3',
+      'exercise.4',
       'exercise.8',
     ]
   },
