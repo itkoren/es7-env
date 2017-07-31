@@ -50,7 +50,7 @@ const paint = (currStep, currPerc) => {
 
   console.clear();
   console.dir();
-  console.dir(`${start}${bar}${end}%`);
+  console.dir(`${start}${bar}${end}`);
   console.dir();
   console.dir(`current step: ${currStep}`);
   console.dir(`   next step: ${nextStep}`);
