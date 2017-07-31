@@ -80,7 +80,7 @@ console.info('we can mix types:');
 console.log(Array.of('', +'', !''));
 console.dir();
 
-console.info('it behaves a little differet from the array constructor:');
+console.info('it behaves a little different from the array constructor:');
 
 arr = Array.of(3);
 console.log(arr);
