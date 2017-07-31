@@ -26,7 +26,7 @@ const interval = 500;
 const times = 12;
 
 
-// the main render loop. this function is called repeatedly, until times is reached.
+// the main render loop. this function is called repeatedly, until 'times' is reached.
 const paint = (currStep, currPerc) => {
 
   let nextPerc = currPerc + 100 / times;
@@ -50,7 +50,7 @@ const paint = (currStep, currPerc) => {
 
   console.clear();
   console.dir();
-  console.dir(`${start}${bar}${end}%`);
+  console.dir(`${start}${bar}${end}`);
   console.dir();
   console.dir(`current step: ${currStep}`);
   console.dir(`   next step: ${nextStep}`);
