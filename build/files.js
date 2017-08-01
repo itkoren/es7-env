@@ -6,9 +6,24 @@ const files = [
   //   ],
   // },
   {
+    topic: 'Shorthand Methods Definition',
+    snippets: [
+      'smd',
+      'smd-01-method',
+      'smd-02-generators',
+      'smd-03-async-methods',
+      'smd-04-async-generators'
+    ]
+  },
+  {
     topic: 'Classes',
     snippets: [
-      'class.playgroud',
+      'class-01-decleration',
+      'class-02-expressions',
+      'class-03-methods',
+      'class-04-properties',
+      'class-05-static-methods',
+      'class-06-symbol-species'
     ]
   },
   {
