@@ -58,7 +58,7 @@ c = null;
 
 console.dir();
 
-console.info(`use case: attach volatile data to dom nodes
+console.info(`use case: attach data to dom nodes without memory leaks
 `);
 
 const nodeMap = new WeakMap();
@@ -77,7 +77,7 @@ const createVolatileNode = (name, details) => {
   setTimeout(() => {
     document.body.removeChild(node);
     console.log(`'${name}' is gone...`);
-  }, 10000 * nodeMap.get(node).linger );
+  }, 10000 * details.linger );
 };
 
 // create a bunch of nodes
@@ -91,7 +91,9 @@ createVolatileNode('arik bar droma', {
   smell: 0.1, loudness: 1.0, linger: 0.1
 });
 
-// the same technique can be used to safely handle ghost event-listeners
+
+// - the same technique can be used to safely handle ghost event-listeners
+// - Map can be used in the same manner to attach data to dom nodes, but it will not handle removals for you
 
 // reference: http://israblog.nana10.co.il/blogread.asp?blog=262964&blogcode=4260608
 

@@ -1,7 +1,7 @@
 
 console.dir(`
 --- Map ---
-`); // data structure for value to value mapping (entry-set)
+`); // data structure for value to value mapping (associative array / entry-set)
 
 console.info(`operations
 `);
@@ -41,13 +41,21 @@ console.dir();
 console.info(`construction
 `);
 
-console.info('by passing an iterable of key-value pairs (2-D array):');
+console.info('by passing an iterable of key-value pairs (2d array):');
 
 map = new Map([
   ['one', 1],
   ['two', 2],
   ['three', 3],
 ]);
+console.log(map);
+
+// Object.entries creates key-value pairs from an object
+map = new Map(Object.entries({
+  'one': 1,
+  'two': 2,
+  'three': 3,
+}));
 console.log(map);
 console.dir();
 
@@ -100,7 +108,7 @@ for (const val of map.values()) {
 console.dir();
 
 console.info(`over entries (explicitly):`);
-[...map.entries()].forEach((e) => console.log(e));
+[...map.entries()].forEach(e => console.log(e));
 console.dir();
 
 console.info(`over entries (via default iterator):`);

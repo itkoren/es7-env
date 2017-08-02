@@ -21,10 +21,10 @@ console.dir();
 
 console.info('node list:');
 
-const nodeList = document.querySelectorAll('div');
+const nodeList = document.querySelectorAll('h1');
 arr = Array.from(nodeList);
 
-console.log(arr[10]);
+console.log(arr.map(el => el.outerHTML));
 console.log('forEach is a', typeof arr.forEach);
 console.dir();
 
@@ -40,27 +40,27 @@ console.dir();
 
 console.info('custom iterable:');
 
-class Clazz {
-  constructor() { this.index = 3; }
-
-  [Symbol.iterator]() {
+const countBack = {
+  index: 3,
+  [Symbol.iterator]: () => {
     return {
       next: () => {
-        if (this.index--) {
-          return {value: this.index, done: false};
+        if (countBack.index--) {
+          return {value: countBack.index, done: false};
         }
         return {done: true};
       }
     }
   }
-}
-arr = Array.from(new Clazz());
+};
+arr = Array.from(countBack);
 
 console.log(arr);
 console.log('is array?', Array.isArray(arr));
 console.dir();
 
 console.info('mapping:');
+// the second argument of Array.from is a mapper
 
 const buttons = document.querySelectorAll('button');
 arr = Array.from(buttons, b => b.textContent);
