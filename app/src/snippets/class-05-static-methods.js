@@ -4,7 +4,6 @@ class Point {
         this.y = y;
     }
 
-
     toString() {
         return `<Point>[x:${this.x}, y: ${this.y}]`;
     }

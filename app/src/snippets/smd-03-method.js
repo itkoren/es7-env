@@ -1,3 +1,5 @@
+/* 'smd-03-method' */
+
 
 const obj = {
   foo: function() {
@@ -8,8 +10,10 @@ const obj = {
   }
 };
 
+console.info('obj methods');
 obj.foo();
 obj.bar();
+console.dir();
 
 // The shorthand syntax uses named function instead of anonymous functions
 const shortObj = {
@@ -21,5 +25,7 @@ const shortObj = {
   }
 };
 
+console.info('shortObj methods');
 shortObj.foo();
 shortObj.bar();
+console.dir();

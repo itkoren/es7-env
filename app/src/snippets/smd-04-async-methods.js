@@ -1,9 +1,7 @@
 'use strict'
 
 /**
- * 
  * This concept will be explain in details in the Async I/O Session.
- * 
  */
 
 // eslint-disable-next-line no-undef,no-unused-vars
@@ -29,7 +27,6 @@ const acClient1 = {
     }
 };
 
-
 acClient1.fetch().then((value) => {
     console.log('The Value of the Promise...', value);
 });
@@ -40,6 +37,7 @@ const acClient2 = {
         return await loadAccountConfigData();
     }
 };
+
 acClient2.fetch().then((value) => {
     console.log('The Value of the Promise...', value);
 });

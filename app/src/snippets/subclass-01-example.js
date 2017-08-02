@@ -1,5 +1,5 @@
 /*The extends keyword is used in class declarations or class expressions to create a class as a child of another class.*/
-
+/* Calling super in a constructor should happen before accessing this. As a rule of thumb:*/ 
 console.error('TODO: Aligment of the Console readability');
 
 class Person {
@@ -86,3 +86,11 @@ console.log(`instance of <Object> : ${employee instanceof Object}`);
 
 console.log(`number of known persons:`, Person.instancePool.length);
 Person.instancePool.forEach(item => console.log(item.toString()));
+
+/**
+    Advantages of getters and setters:
+    =================================
+    Elimination of redundancy: computed fields can be derived using an algorithm depending on other properties.
+    Easier debugging: just add debugging commands or breakpoints to a setter, and you will know what caused a value to change.
+
+ */

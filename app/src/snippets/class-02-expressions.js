@@ -9,11 +9,11 @@ const Rectangle = class {
 };
 
 let rectangleInstance = new Rectangle(100,100);
-// console.log(rectangleInstance);
-console.log(typeof rectangleInstance);
-console.log(typeof Rectangle);
-console.log(Rectangle.name);
-console.log(Rectangle.prototype.constructor.name);
+console.info('Rectangle class Name')
+console.log(`rectangleInstance.constructor.name     => ${rectangleInstance.constructor.name}`);
+console.log(`Rectangle.name                         => ${Rectangle.name}`);
+console.log(`Rectangle.prototype.constructor.name   => ${Rectangle.prototype.constructor.name}`);
+console.dir();
 
 // named (will be named after the class name in the decleration)
 const PointClass = class Point {
@@ -24,12 +24,10 @@ const PointClass = class Point {
 };
 
 let pointInstance = new PointClass(1,1);
-
-console.log(typeof pointInstance);
-console.log(typeof PointClass);
-console.log(PointClass.name);
-console.log(PointClass.prototype.constructor.name);
-
+console.info('Point Class Name');
+console.log(`pointInstance.constructor.name         => ${pointInstance.constructor.name}`);
+console.log(`PointClass.name                        => ${PointClass.name}`);
+console.log(`PointClass.prototype.constructor.name  => ${PointClass.prototype.constructor.name}`);
 console.dir();
 
 

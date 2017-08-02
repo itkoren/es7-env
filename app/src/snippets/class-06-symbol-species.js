@@ -5,6 +5,7 @@ it usually instantiates a new this.constructor, which might be a subclass of the
 But you might not always want this when subclassing, and that's where Symbol.species comes in.
 */
 
+/* Example not working in here... */
 class MyArray extends Array {
   // Overwrite species to the parent Array constructor
   // eslint-disable-next-line no-undef,no-unused-vars
@@ -15,9 +16,8 @@ var mapped = a.map(x => x * x);
 
 console.log(mapped instanceof MyArray); // false
 console.log(mapped instanceof Array);   // true
-console.log(mapped instanceof Object);   // true
 
-console.log(mapped);
+// console.log(mapped);
 
 /* ES5 Map Function */
 // Array.prototype.map = function (callback) {

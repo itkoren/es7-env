@@ -1,3 +1,7 @@
+// class ChildClass extends ParentClass { ... }
+
+
+
 // var Factory = () =>{
 //     return class FactoryClass{
 //         constructor(){
