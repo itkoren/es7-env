@@ -37,3 +37,13 @@ console.log(mapped instanceof Array);   // true
 //     });
 //     return returnValue;
 // }
+
+/**
+Array.get [Symbol.species]()
+ArrayBuffer.get [Symbol.species]()
+Map.get [Symbol.species]()
+Promise.get [Symbol.species]()
+RegExp.get [Symbol.species]()
+Set.get [Symbol.species]()
+%TypedArray%.get [Symbol.species]()
+ */

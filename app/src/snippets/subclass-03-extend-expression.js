@@ -1,18 +1,20 @@
 // class ChildClass extends ParentClass { ... }
+var Factory = () =>{
+    return class FactoryClass{
+        constructor(){
+            this.fromFactory = true;
+        }
+    }
+};
+
+// we can extend from any class, the extend is an expression
+class Component extends Factory(){
+    
+}
+
+var instance = new Component();
 
 
-
-// var Factory = () =>{
-//     return class FactoryClass{
-//         constructor(){
-//             this.fromFactory = true;
-//         }
-//     }
-// };
-
-// var ComponentFactory = () => {return class Component extends (Factory()){}};
-
-// var instance = new (ComponentFactory())();
-// var instance2 = new (ComponentFactory())();
-
-// console.log(instance);
+console.log(`instance  => ${instance}`);
+console.log(`instance.__proto__.constructor.name            => ${instance.__proto__.constructor.name}`);
+console.log(`instance.__proto__.__proto__.constructor.name  => ${instance.__proto__.__proto__.constructor.name}`);

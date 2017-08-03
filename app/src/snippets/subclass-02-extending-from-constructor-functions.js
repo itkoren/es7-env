@@ -23,18 +23,21 @@ d.__proto__.__proto__.speak.call(d);    // from the parent prototype
 console.info('Prototype methods chain');
 console.log(`d.__proto__.speak === Dog.prototype.speak              => ${d.__proto__.speak === Dog.prototype.speak}`);
 console.log(`d.__proto__.__proto__.speak === Animal.prototype.speak => ${d.__proto__.__proto__.speak === Animal.prototype.speak}`);
+console.dir();
 
 console.info('Prototype Chain');
-
 console.log(`d instanceof Animal  => ${d instanceof Animal}`);
-console.log(d instanceof Dog);
-console.log(Animal.prototype.isPrototypeOf(d));
-console.log(Dog.prototype.isPrototypeOf(d));
+console.log(`d instanceof Dog     => ${d instanceof Dog}`);
+console.log(`Animal.prototype.isPrototypeOf(d) => ${Animal.prototype.isPrototypeOf(d)}`);
+console.log(`Dog.prototype.isPrototypeOf(d)    => ${Dog.prototype.isPrototypeOf(d)}`);
+console.dir();
 
-// Direct Prototype
-console.log(d.constructor.name);
-console.log(Object.getPrototypeOf(d) === d.constructor.prototype);
+console.info('Direct Prototype');
+console.log(`d.constructor.name => ${d.constructor.name}`);
+console.log(`Object.getPrototypeOf(d) === d.constructor.prototype => ${Object.getPrototypeOf(d) === d.constructor.prototype}`);
+console.dir();
 
-console.log('Static Inheritance');
+console.info('Static Inheritance');
 console.log(Dog.AnimalTypes);
 console.log(Animal.AnimalTypes === Dog.AnimalTypes);
+console.dir();
