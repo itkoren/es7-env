@@ -1,4 +1,3 @@
-/** TODO: Add Slide to understand the connection of the Prototype */
 /* 
 
 A new instance of an object is created and its prototype (exposed via the __proto__ property)

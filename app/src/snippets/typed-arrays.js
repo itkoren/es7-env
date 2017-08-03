@@ -5,7 +5,7 @@
 // - interacting with native APIs more naturally
 
 // they were created as a separate spec, initially for WebGL API, and
-// added to the ECMA spec later.
+// added to the ECMA-262 spec later.
 
 console.dir(`
 --- API realms ---
@@ -20,7 +20,7 @@ console.info('direct instantiation:');
 const byteLength = 3;
 const buf = new ArrayBuffer(byteLength);
 
-console.log(~~(buf[0])); // each byte is initially stored with 0
+console.log(~~(buf[0])); // each byte is initially stored with undefined (which is treated as 0 for binary operations)
 buf[0] = buf[0] | 0b10; // we can manipulate the bits in each byte, but it's a drag
 console.log(buf[0]);
 console.dir();
@@ -87,7 +87,7 @@ console.log('why 2580?');
 // and both of them are concatenated before read:
 console.dir(`10,20 in binary: ${0b1010},${0b10100}`);
 console.dir(`left-padded, to fit 8 bits: ${0b00001010},${0b00010100}`);
-console.dir(`joined, as if they were a 16-bit value: ${0b0000101000010100}`);
+console.dir(`joined, as if they were a single 16-bit value: ${0b0000101000010100}`);
 console.dir();
 
 

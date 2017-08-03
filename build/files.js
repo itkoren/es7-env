@@ -159,6 +159,7 @@ const files = [
     snippets: [
       'set',
       'map',
+      'map-memoize',
       'weak-collections',
       'polymorphic-collections',
     ]
@@ -189,6 +190,7 @@ const files = [
       'exercise.3',
       'exercise.4',
       'exercise.8',
+      'exercise.class'
     ]
   },
   {
