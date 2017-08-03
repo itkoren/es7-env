@@ -23,7 +23,9 @@ const isStrict = (function() { return !this; })();
 console.log(`is Strict Mode:`, isStrict);
 let notAShape = Shape();
 console.log(notAShape); // what will this object resolve to? 
-
+console.log(notAShape.color);
+console.log(color);
+console.log(notAShape.color === color);
 // *** constructor functions *must* be invoked via the new keyword or ```Bad Things``` will happen. ***
 
 
