@@ -9,7 +9,7 @@
 
 let Person = (function () {
   let ageKey = Symbol('age');// eslint-disable-line no-unused-vars, no-undef
-  let ganderKey = Symbol('gander')// eslint-disable-line no-unused-vars, no-undef
+  let ganderKey = Symbol('gander');// eslint-disable-line no-unused-vars, no-undef
 
   class Person {
     constructor(name) {

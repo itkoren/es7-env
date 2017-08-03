@@ -48,6 +48,7 @@ class Shape {
     }
 
     static getTotalCount() {
+        //TODO: Redundent
         if (Shape === this) {
             return Shape.instances.length;
         } else {
@@ -116,9 +117,16 @@ console.log('number of Rectangles:', Rectangle.getTotalCount());                
 console.log('number of Points:', Point.getTotalCount());
 
 try{
-    let e1 = new Shape(); // AbstractClassException: Cannot create instance of an abstracted class
+    let e1 = new Shape();
+    throw new Error('You should not enable the creation of an abstracted class.');
 }catch(e){
-    console.error(e);
+    if(e instanceof AbstractClassException ){
+        console.log(`Good job, you disable the creation of the abstracted class.` );     
+        return;
+    }
+    console.error(e);     
+    // e => AbstractClassException: Cannot create instance of an abstracted class
+    
 }
 
 try{

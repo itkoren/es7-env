@@ -1,5 +1,15 @@
 /*
-    TODO: instructions
+    
+in this situation we have a 3 types of shapes, Rectangle, Circle, and Point.
+
+we have a program that get's a list of shapes and get some information about them.
+
+requirements>
+shape class should be abstracted and implement's the usilities functions in the code.
+execution of the code shuold run without errors and display the same results as in the comments.
+
+Bonus: protect the creation of derived shapes.
+
 */
 
 let r1 = new Rectangle(50, 100);
@@ -21,9 +31,15 @@ console.log('number of Rectangles:', Rectangle.getTotalCount());                
 console.log('number of Points:', Point.getTotalCount());                                // 3
 
 try{
-    let e1 = new Shape(); // AbstractClassException: Cannot create instance of an abstracted class
+    let e1 = new Shape();
+    throw new Error('You should not enable the creation of an abstracted class.');
 }catch(e){
-    console.error(e);
+    if(e instanceof AbstractClassException ){
+        console.log(`Good job, you disable the creation of the abstracted class.` );     
+        return;
+    }
+    console.error(e);     
+    // e => AbstractClassException: Cannot create instance of an abstracted class
 }
 
 try{
