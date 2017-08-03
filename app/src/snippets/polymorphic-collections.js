@@ -79,7 +79,7 @@ console.log('set 2:', set2, '\n');
 
 
 let intersection = (a, b) => {
-  return visitor('filter', a, (x) => b.has(x));
+  return visitor('filter', a, x => b.has(x));
 };
 
 result = intersection(set1, set2);
@@ -87,14 +87,14 @@ console.log('intersection:', result);
 
 
 let difference = (a, b) => {
-  return visitor('filter', a, (x) => !b.has(x));
+  return visitor('filter', a, x => !b.has(x));
 };
 
 result = difference(set1, set2);
 console.log('difference:', result);
 
 
-let union = (a, b) => visitor('concat', a, [...b]);
+let union = (a, b) => visitor('concat', a, ...b);
 
 result = union(set1, set2);
 console.log('union:', result);

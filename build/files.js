@@ -159,6 +159,7 @@ const files = [
     snippets: [
       'set',
       'map',
+      'map-memoize',
       'weak-collections',
       'polymorphic-collections',
     ]
