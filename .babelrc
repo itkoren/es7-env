@@ -1,6 +1,8 @@
 {
   "plugins": [
-    "transform-runtime"
+    "transform-runtime",
+    "transform-class-properties",
+     ["transform-class-properties", { "spec": true }]
   ],
   "presets": [
     "stage-0",
@@ -9,7 +11,7 @@
     "stage-3",
     ["env", {
       "targets": {
-        "node": "4"
+        "node": "8"
       },
       "useBuiltIns": "entry"
     }]
