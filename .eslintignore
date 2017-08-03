@@ -4,6 +4,7 @@
 **/snippets/typed-arrays.js
 **/snippets/set.js
 **/snippets/map.js
+**/snippets/map-memoize.js
 **/snippets/weak-collections.js
 **/snippets/polymorphic-collections.js
 **/snippets/object-inspection.js
@@ -13,4 +14,5 @@
 **/snippets/beats-and-bytes.js
 **/snippets/exercise.1.js
 **/snippets/exercise.3.js
+**/snippets/exercise.4.js
 **/snippets/exercise.8.js

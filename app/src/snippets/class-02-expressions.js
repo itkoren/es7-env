@@ -1,5 +1,3 @@
-// TODO: Add Console Log Information for better reading.
-
 // unnamed (name will be taken from the assigment name)
 const Rectangle = class {
   constructor(height, width) {
