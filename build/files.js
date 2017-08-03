@@ -44,7 +44,7 @@ const files = [
   {
     topic: 'SubClasses',
     snippets: [
-      'subclass-01-examplee',
+      'subclass-01-example',
       'subclass-02-extending-from-constructor-functions',
       'subclass-03-extend-expression',
       'subclass-04-shadowing',
