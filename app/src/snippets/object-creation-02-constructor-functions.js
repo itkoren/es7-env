@@ -1,7 +1,3 @@
-/**
- *  Once an object is created, you cannot change its prototype. So how do you add properties and methods to it?
- */
-
 let shape = {
     color: 'red',
     borderThickness: '2.0',
