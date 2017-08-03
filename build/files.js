@@ -39,6 +39,7 @@ const files = [
       'class-07-0-encapsulation',
       'class-07-1-encapsulation',
       'class-07-2-encapsulation',
+      'class-08-abstract-class'
     ]
   },
   {
@@ -190,7 +191,8 @@ const files = [
       'exercise.3',
       'exercise.4',
       'exercise.8',
-      'exercise.class'
+      'exercise.class',
+      'exercise.class.solution'
     ]
   },
   // {
