@@ -40,8 +40,7 @@ try {
 }
 
 Shape.prototype.describe = function () {
-    console.log("I am a " + this.color + " shape, with a border that is " +
-        this.borderThickness + " thick");
+    console.log(`I am a ${this.color} shape, with a border that is ${this.borderThickness} thick`);
 };
 
 try {
