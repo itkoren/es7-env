@@ -1,6 +1,5 @@
-/*The extends keyword is used in class declarations or class expressions to create a class as a child of another class.*/
+/* The extends keyword is used in class declarations or class expressions to create a class as a child of another class.*/
 /* Calling super in a constructor should happen before accessing this. As a rule of thumb:*/ 
-console.error('TODO: Aligment of the Console readability');
 
 class Person {
     constructor(name, id) {

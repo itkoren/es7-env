@@ -1,4 +1,3 @@
-// TODO: Encapsulation...
 // https://github.com/littledan/proposal-unified-class-features
 
 

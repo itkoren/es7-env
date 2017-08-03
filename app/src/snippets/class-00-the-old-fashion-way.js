@@ -1,5 +1,3 @@
-
-
 function Shape(color) {
     this.color = color;
 }
@@ -7,7 +5,7 @@ function Shape(color) {
 Shape.prototype.color = 'brown';
 Shape.prototype.getColor = function () {
     return this.color;
-}
+};
 
 /*
 Rectangle is a constructor function.
