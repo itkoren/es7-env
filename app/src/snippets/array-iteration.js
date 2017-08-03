@@ -11,12 +11,12 @@ console.log(keysIter.next());
 console.log(keysIter.next());
 console.dir();
 
-console.info('the keys iterator does not ignore holes:');
+console.info('the keys iterator does not ignore holes (unlike Object.keys):');
 
 const sparseArr = ['a', , 'c'];
 
-console.log('sparse keys:', Object.keys(sparseArr));
 console.log('dense keys:', [...sparseArr.keys()]);
+console.log('sparse keys:', Object.keys(sparseArr));
 console.dir();
 
 
@@ -86,17 +86,15 @@ console.dir();
 
 console.info('the generic range generator:');
 
-class Range {
-  constructor(from, to) {
-    const discardedSlots = ','.repeat(from);
-    return new Function(`
-      let [${discardedSlots} ...range] = [...Array(${to + 1}).keys()];
-      return range;
-    `)();
-  }
-}
+const Range = (from, to) => {
+  const discardedSlots = ','.repeat(from);
+  return new Function(`
+    let [${discardedSlots} ...range] = [...Array(${to + 1}).keys()];
+    return range;
+  `)();
+};
 
-range = new Range(10, 15);
+range = Range(10, 15);
 
 console.log(range);
 console.log(range instanceof Array);
