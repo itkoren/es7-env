@@ -1,7 +1,3 @@
-/**
- *  Once an object is created, you cannot change its prototype. So how do you add properties and methods to it?
- */
-
 let shape = {
     color: 'red',
     borderThickness: '2.0',
@@ -44,8 +40,7 @@ try {
 }
 
 Shape.prototype.describe = function () {
-    console.log("I am a " + this.color + " shape, with a border that is " +
-        this.borderThickness + " thick");
+    console.log(`I am a ${this.color} shape, with a border that is ${this.borderThickness} thick`);
 };
 
 try {
