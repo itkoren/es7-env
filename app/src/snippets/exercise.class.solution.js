@@ -48,12 +48,12 @@ class Shape {
     }
 
     static getTotalCount() {
-        //TODO: Redundent
         if (Shape === this) {
             return Shape.instances.length;
         } else {
             let derivedShapes = Shape.instances.filter((item) => {
-                return item instanceof this;
+                return item.constructor === this; // (item instanceof this) <= polymorphisem;
+                
             });
             return derivedShapes.length;
         }
@@ -62,6 +62,8 @@ class Shape {
 
 Shape.instances = [];
 
+// If you implemented this you fall into the inheritance trap.
+// Point is not a shape!
 class Point extends Shape {
     constructor(x, y) {
         super();
@@ -114,17 +116,18 @@ console.log('The total of all the shapes is: ', Shape.getCombinedArea(...shapes)
 console.log('number of shapes:', Shape.getTotalCount());                                // 8
 console.log('number of Circles:', Circle.getTotalCount());                              // 3
 console.log('number of Rectangles:', Rectangle.getTotalCount());                        // 2
-console.log('number of Points:', Point.getTotalCount());
+console.log('number of Points:', Point.getTotalCount());																// 2
 
 try{
     let e1 = new Shape();
     throw new Error('You should not enable the creation of an abstracted class.');
 }catch(e){
     if(e instanceof AbstractClassException ){
-        console.log(`Good job, you disable the creation of the abstracted class.` );     
-        return;
+        console.info(`Good job, you disable the creation of the abstracted class.` );     
+    }else{
+		    console.error(e);       
     }
-    console.error(e);     
+    
     // e => AbstractClassException: Cannot create instance of an abstracted class
     
 }
