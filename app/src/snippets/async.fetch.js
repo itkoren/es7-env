@@ -86,7 +86,9 @@ function showMagic() {
 }
 
 
-
+// Fetch has two phases
+// Fetch is not using error for HTTP error codes
+// Fetch cannot be cancelled
 
 
 
