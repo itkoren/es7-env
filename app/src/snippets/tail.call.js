@@ -1,6 +1,6 @@
 'use strict';
 
-// TC
+// TC / PTC / TCO / STC
 const factorialNTC = n => { // Not TC
   if (console.trace) {
     console.trace();
