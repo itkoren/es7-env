@@ -207,6 +207,7 @@ const files = [
       'solution.1',
       'solution.2',
       'solution.8',
+      'solution.flow',
     ]
   },
 ];
