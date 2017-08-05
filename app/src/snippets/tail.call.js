@@ -1,5 +1,30 @@
 'use strict';
 
+// TC
+const factorialNTC = n => { // Not TC
+  if (console.trace) {
+    console.trace();
+  }
+  if (n === 0) {
+    return 1;
+  }
+
+  return n * factorialNTC(n - 1);
+}
+console.log(factorialNTC(4));
+
+const factorialTC = (n, total = 1) => { // TC
+  if (console.trace) {
+    console.trace();
+  }
+  if (n === 0) {
+    return total;
+  }
+
+  return factorialTC(n - 1, n * total);
+}
+console.log(factorialTC(4));
+
 let counter;
 const recursion = num => {
   if (num <= 0) {
@@ -12,12 +37,12 @@ const recursion = num => {
 
 try {
   console.log(recursion(1e6));
-} catch(ex) {
+} catch (ex) {
   console.log(ex);
   console.log(`Got to ${1e6 - counter} iterations`);
 }
 
-const fibonacci = function(x, y, limit, index) {
+const fibonacci = function (x, y, limit, index) {
   if (arguments.length === 1) {
     if (x) {
       return fibonacci(0, 1, x, 1);
@@ -35,6 +60,6 @@ try {
   console.log(fibonacci(3));
   console.log(fibonacci(10));
   console.log(fibonacci(100000));
-} catch(ex) {
+} catch (ex) {
   console.log(ex);
 }
