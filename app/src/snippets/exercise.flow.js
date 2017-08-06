@@ -6,7 +6,7 @@ const getCoffee = (): Coffee => {
   return { symbol: '☕' };
 };
 
-const tossUserId = async(): number => {
+const tossUserId = async() => {
   return new Promise(resolve => {
     setTimeout(() => resolve(Math.floor(Math.random() * 10) + 1), 1000); // It takes 1 second to toss a userId
   });
