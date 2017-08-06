@@ -1,4 +1,5 @@
 //@flow
+/*esprima no-validate*/
 /*global Promise*/
 'use strict';
 type Coffee = {
