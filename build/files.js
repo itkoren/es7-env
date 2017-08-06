@@ -192,7 +192,8 @@ const files = [
       'exercise.4',
       'exercise.8',
       'exercise.class',
-      'exercise.class.solution'
+      'exercise.class.solution',
+      'exercise.flow'
     ]
   },
   {
