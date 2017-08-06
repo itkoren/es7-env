@@ -142,7 +142,8 @@ new Vue({
     // fight the FOUC
     document.querySelector('.no-fouc').classList.remove('no-fouc');
 
-    // bind special keys separately for pc/mac
+    // bind editor special keys
+    CodeMirror.commands.save = this.persistCommand;
     CodeMirror.keyMap.macDefault['Cmd-Enter'] = this.submitCommand;
     CodeMirror.keyMap.pcDefault['Ctrl-Enter'] = this.submitCommand;
     CodeMirror.keyMap.macDefault['Cmd-/'] = CodeMirror.commands.toggleComment;
@@ -173,6 +174,10 @@ new Vue({
   },
 
   methods: {
+
+    basename(path) {
+      return path.split('/').pop();
+    },
 
     fieldClassName(field) {
       if (field && (field.$submitted) && field.$valid) {
@@ -205,7 +210,7 @@ new Vue({
       this.model.file = '';
 
       // save the selected file somewhere else, just to show a message
-      this.model.loadedFile = file;
+      this.model.loadedFile = this.basename(file);
       // reset the editor field dirty state, it affects the message visibility
       this.formstate.code.$pristine = true;
 
@@ -350,6 +355,10 @@ new Vue({
 
     persist(state) {
       localStorage.setItem('es7-model', JSON.stringify(state || this.model));
+    },
+
+    persistCommand() {
+      this.persist();
     },
   }
 });
