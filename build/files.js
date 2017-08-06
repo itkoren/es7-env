@@ -39,12 +39,13 @@ const files = [
       'class-07-0-encapsulation',
       'class-07-1-encapsulation',
       'class-07-2-encapsulation',
+      'class-08-abstract-class'
     ]
   },
   {
     topic: 'SubClasses',
     snippets: [
-      'subclass-01-examplee',
+      'subclass-01-example',
       'subclass-02-extending-from-constructor-functions',
       'subclass-03-extend-expression',
       'subclass-04-shadowing',
@@ -191,6 +192,7 @@ const files = [
       'exercise.4',
       'exercise.8',
       'exercise.class',
+      'exercise.class.solution',
       'exercise.flow'
     ]
   },
