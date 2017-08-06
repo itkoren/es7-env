@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/.*
+.*/snippets/exercise.flow.js
 [include]
 
 [libs]
