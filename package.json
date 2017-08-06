@@ -39,6 +39,7 @@
     "babel-core": "^7.0.0-alpha.15",
     "babel-loader": "^7.0.0-alpha.15",
     "babel-plugin-transform-class-properties": "^7.0.0-alpha.17",
+    "babel-plugin-transform-es2015-modules-commonjs": "7.0.0-alpha.15",
     "babel-plugin-transform-runtime": "^7.0.0-alpha.15",
     "babel-preset-env": "^2.0.0-alpha.12",
     "babel-preset-es2017": "latest",

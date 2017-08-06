@@ -1,9 +1,9 @@
 {
   "plugins": [
+    "transform-es2015-modules-commonjs",
     "transform-flow-strip-types",
     "transform-runtime",
-    "transform-class-properties",
-     ["transform-class-properties", { "spec": true }]
+    "transform-class-properties"
   ],
   "presets": [
     "stage-0",
