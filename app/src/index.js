@@ -358,7 +358,12 @@ new Vue({
     },
 
     persistCommand() {
+      // activate the progress to show (lie) to the user that something is happening
+      this.updateProgress(this, 0);
       this.persist();
+      setTimeout(() => {
+        this.stopProgress(this);
+      }, 500);
     },
   }
 });
