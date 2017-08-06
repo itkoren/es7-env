@@ -142,16 +142,31 @@ const files = [
       'exercise.2',
       'exercise.3',
       'exercise.4',
+      'meta-programming/exercise.7',
       'exercise.8',
     ]
   },
-  // {
-  //   topic: 'Fun',
-  //   snippets: [
-  //     'fly-me-to-the-moon',
-  //     'beats-and-bytes',
-  //   ]
-  // },
+  {
+    topic: 'Meta Programming',
+    snippets: [
+      'meta-programming/programming-levels',
+      'meta-programming/meta-programming-kinds',
+      'meta-programming/proxies-in-depth/proxies-introduction',
+      'meta-programming/proxies-in-depth/function-specific-traps',
+      'meta-programming/proxies-in-depth/virtual-objects-vs-wrappers',
+      'meta-programming/proxies-in-depth/forwarding-intercepted-operations',
+      'meta-programming/proxies-in-depth/proxies-and-prototypes',
+      'meta-programming/proxies-in-depth/intercepting-method-calls',
+      'meta-programming/proxies-in-depth/revocable-proxies',
+    ]
+  },
+  {
+    topic: 'Fun',
+    snippets: [
+      'fly-me-to-the-moon',
+      'beats-and-bytes',
+    ]
+  },
 ];
 
 module.exports = files;
