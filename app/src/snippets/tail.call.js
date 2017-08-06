@@ -1,10 +1,14 @@
 'use strict';
 
-// TC / PTC / TCO / STC
-const factorialNTC = n => { // Not TC
+const trace = () => {
   if (console.trace) {
     console.trace();
   }
+};
+
+// TC / PTC - TCE / TCO / STC
+const factorialNTC = n => { // NTC
+  trace();
   if (n === 0) {
     return 1;
   }
@@ -14,9 +18,7 @@ const factorialNTC = n => { // Not TC
 console.log(factorialNTC(4));
 
 const factorialTC = (n, total = 1) => { // TC
-  if (console.trace) {
-    console.trace();
-  }
+  trace();
   if (n === 0) {
     return total;
   }
