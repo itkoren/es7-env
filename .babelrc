@@ -1,15 +1,19 @@
 {
   "plugins": [
-    "transform-runtime"
+    "transform-es2015-modules-commonjs",
+    "transform-flow-strip-types",
+    "transform-runtime",
+    "transform-class-properties"
   ],
   "presets": [
     "stage-0",
     "stage-1",
     "stage-2",
     "stage-3",
+    "flow",
     ["env", {
       "targets": {
-        "node": "4"
+        "node": "8"
       },
       "useBuiltIns": "entry"
     }]

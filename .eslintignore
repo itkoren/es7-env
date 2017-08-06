@@ -12,8 +12,12 @@
 **/snippets/regexp-flags.js
 **/snippets/logger-test.js
 **/snippets/beats-and-bytes.js
+**/snippets/object-creation-03-the-new-keyword.js
 **/snippets/meta-programming/**/*.js
 **/snippets/exercise.1.js
 **/snippets/exercise.3.js
 **/snippets/exercise.4.js
 **/snippets/exercise.8.js
+**/snippets/exercise.class.js
+**/snippets/exercise.class.solution.js
+**/snippets/exercise.flow.js
