@@ -10,6 +10,15 @@ export default [
   },
 
   {
+    name: 'Save',
+    keys: {
+      pc: ['Ctrl-S'],
+      mac: ['Cmd-S'],
+    },
+    description: 'Persists the current UI state to storage.'
+  },
+
+  {
     name: 'Auto Complete',
     keys: {
       all: ['Ctrl-Space'],
